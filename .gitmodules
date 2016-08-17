@@ -1,0 +1,3 @@
+[submodule "libraryoflibrary"]
+	path = libraryoflibrary
+	url = ./libraryoflibrary
