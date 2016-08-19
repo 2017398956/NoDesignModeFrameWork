@@ -7,11 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.a2017398956.nodesignmodeframework.MainActivity">
-
+    tools:context="com.a2017398956.nodesignmodeframework.exception.test.CreateResultInfoActivity">
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="next"
-        android:text="测试ResultInfo异常" />
+        android:text="直接返回"/>
 </RelativeLayout>
