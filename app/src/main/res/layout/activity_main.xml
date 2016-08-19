@@ -9,9 +9,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.a2017398956.nodesignmodeframework.MainActivity">
 
+    <TextView
+        android:id="@+id/tv_test_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="next"
+        android:layout_below="@id/tv_test_info"
+        android:layout_marginTop="5dp"
         android:text="测试ResultInfo异常" />
 </RelativeLayout>

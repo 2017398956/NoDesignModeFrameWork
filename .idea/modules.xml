@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/NoDesignModeFrameWork.iml" filepath="$PROJECT_DIR$/NoDesignModeFrameWork.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraryoflibrary/libraryoflibrary.iml" filepath="$PROJECT_DIR$/libraryoflibrary/libraryoflibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraryoflibrary/libraryoflibrary.iml" filepath="$PROJECT_DIR$/libraryoflibrary/libraryoflibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/test01library/test01library.iml" filepath="$PROJECT_DIR$/test01library/test01library.iml" />
     </modules>
   </component>
