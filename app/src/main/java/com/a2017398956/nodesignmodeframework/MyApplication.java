@@ -2,6 +2,7 @@ package com.a2017398956.nodesignmodeframework;
 
 import android.app.Application;
 
+import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 
 /**
@@ -12,5 +13,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        ApplicationContext.applicationContext = this ;
     }
 }
