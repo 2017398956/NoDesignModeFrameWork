@@ -2,12 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.a2017398956.nodesignmodeframework.MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tv_test_info"
@@ -15,10 +10,89 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/bn_exception"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="next"
         android:layout_below="@id/tv_test_info"
         android:layout_marginTop="5dp"
+        android:onClick="next"
         android:text="测试ResultInfo异常" />
+
+    <!--<include layout="@layout/view_custom_horizontal_left_sliding"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/bn_exception">-->
+    <!--</include>-->
+    <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bn_exception">
+
+        <LinearLayout
+            android:id="@+id/ll_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="hello_world"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_hidden"
+            android:layout_width="150dp"
+            android:layout_height="50dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_delete"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#ff0000"
+                android:clickable="true">
+
+                <View
+                    android:id="@+id/v_delete"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/lol_img_trash" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_search"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#c2c2c2"
+                android:clickable="true">
+
+                <View
+                    android:id="@+id/v_search"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/lol_img_search" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_star"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#aaffff"
+                android:clickable="true">
+
+                <View
+                    android:id="@+id/v_star"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/lol_img_star" />
+            </RelativeLayout>
+        </LinearLayout>
+    </com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView>
 </RelativeLayout>
