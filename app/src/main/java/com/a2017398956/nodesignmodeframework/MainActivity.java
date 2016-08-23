@@ -8,6 +8,7 @@ import android.support.v4.widget.ViewDragHelper;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,13 +18,16 @@ import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
 import com.nfl.libraryoflibrary.utils.LogTool;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
+import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetector;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
-
 public class MainActivity extends BaseActivity {
 
     private LinearLayout ll_root_view ;
@@ -49,6 +53,7 @@ public class MainActivity extends BaseActivity {
         ll_root_view = (LinearLayout) findViewById(R.id.ll_root_view) ;
         tv_test_info = (TextView) findViewById(R.id.tv_test_info);
         tv_test_info.setText("手机是否root：" + new RootDetector().isDeviceRooted());
+
         bn_result_exception = (Button) findViewById(R.id.bn_result_exception) ;
         bn_recycler = (Button) findViewById(R.id.bn_recycler) ;
         bn_test = (Button) findViewById(R.id.bn_test) ;
@@ -70,6 +75,7 @@ public class MainActivity extends BaseActivity {
         bn_test.setOnClickListener(onClickListener);
         tv_02.setOnClickListener(onClickListener);
         ll_left_sliding.setOnTouchListener(onTouchListener);
+
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
