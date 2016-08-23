@@ -1,98 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_test_info"
+    <LinearLayout
+        android:id="@+id/ll_root_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bn_exception"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_test_info"
-        android:layout_marginTop="5dp"
-        android:onClick="next"
-        android:text="测试ResultInfo异常" />
-
-    <!--<include layout="@layout/view_custom_horizontal_left_sliding"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@id/bn_exception">-->
-    <!--</include>-->
-    <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bn_exception">
-
-        <LinearLayout
-            android:id="@+id/ll_content"
+        <TextView
+            android:id="@+id/tv_test_info"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#ffffff">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="info" />
 
-            <TextView
-                android:id="@+id/tv_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:text="hello_world"
-                android:textSize="20sp" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/bn_result_exception"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试ResultInfo异常" />
 
-        <LinearLayout
-            android:id="@+id/ll_hidden"
-            android:layout_width="150dp"
-            android:layout_height="50dp">
+        <Button
+            android:id="@+id/bn_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="测试RecyclerView" />
 
-            <RelativeLayout
-                android:id="@+id/rl_delete"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#ff0000"
-                android:clickable="true">
+        <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
+            android:id="@+id/ll_left_sliding"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
 
-                <View
-                    android:id="@+id/v_delete"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/lol_img_trash" />
-            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/ll_displayed"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
 
-            <RelativeLayout
-                android:id="@+id/rl_search"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#c2c2c2"
-                android:clickable="true">
+                <TextView
+                    android:id="@+id/tv_01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#353212"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="水平滑动"
+                    android:textColor="#FFF" />
+            </LinearLayout>
 
-                <View
-                    android:id="@+id/v_search"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/lol_img_search" />
-            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/ll_hidden"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
 
-            <RelativeLayout
-                android:id="@+id/rl_star"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#aaffff"
-                android:clickable="true">
+                <TextView
+                    android:id="@+id/tv_02"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:background="#808080"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="置顶"
+                    android:textColor="#FFF" />
 
-                <View
-                    android:id="@+id/v_star"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/lol_img_star" />
-            </RelativeLayout>
-        </LinearLayout>
-    </com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView>
-</RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_03"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:background="#F00"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="删除"
+                    android:textColor="#FFF" />
+            </LinearLayout>
+        </com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView>
+
+        <Button
+            android:id="@+id/bn_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试"
+            android:visibility="gone" />
+    </LinearLayout>
+</ScrollView>
