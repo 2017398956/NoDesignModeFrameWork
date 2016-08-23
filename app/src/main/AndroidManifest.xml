@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".exception.test.ResultInfoExceptionActivity" />
-        <activity android:name=".exception.test.CreateResultInfoActivity"></activity>
+        <activity android:name=".exception.test.CreateResultInfoActivity" />
+        <activity android:name=".TestActivity"></activity>
     </application>
 
 </manifest>
