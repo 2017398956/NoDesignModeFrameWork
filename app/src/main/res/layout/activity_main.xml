@@ -90,5 +90,17 @@
             android:layout_height="wrap_content"
             android:text="测试"
             android:visibility="gone" />
+
+        <Button
+            android:id="@+id/bn_bottom_sheet_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试底部弹出sheet" />
+
+        <Button
+            android:id="@+id/bn_ptrsml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="下拉刷新和侧滑删除" />
     </LinearLayout>
 </ScrollView>

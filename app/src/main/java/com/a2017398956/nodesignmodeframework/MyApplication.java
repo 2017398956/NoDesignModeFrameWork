@@ -17,7 +17,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ApplicationContext.applicationContext = this ;
-        registerActivityLifecycleCallbacks(new CustomActivityLifecycleCallbacks());
+//        registerActivityLifecycleCallbacks(new CustomActivityLifecycleCallbacks());
     }
 
     @Override

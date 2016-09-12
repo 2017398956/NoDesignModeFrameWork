@@ -1,9 +1,12 @@
-package com.a2017398956.nodesignmodeframework;
+package com.a2017398956.nodesignmodeframework.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class TestActivity extends AppCompatActivity {
+import com.a2017398956.nodesignmodeframework.R;
+import com.nfl.libraryoflibrary.view.BaseActivity;
+
+public class TestActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

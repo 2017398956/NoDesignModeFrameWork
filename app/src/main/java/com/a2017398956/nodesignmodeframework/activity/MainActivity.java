@@ -1,32 +1,23 @@
-package com.a2017398956.nodesignmodeframework;
+package com.a2017398956.nodesignmodeframework.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.widget.ListViewAutoScrollHelper;
-import android.support.v4.widget.ViewDragHelper;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
+import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
 import com.nfl.libraryoflibrary.utils.LogTool;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
-import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetector;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
-import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
 public class MainActivity extends BaseActivity {
 
@@ -35,11 +26,13 @@ public class MainActivity extends BaseActivity {
     private Button bn_result_exception ;
     private Button bn_recycler ;
     private Button bn_test ;
+    private Button bn_ptrsml ;
     private LinearLayout ll_left_sliding ;
     private LinearLayout ll_displayed ;
     private LinearLayout ll_hidden ;
     private TextView tv_01 , tv_02 , tv_03;
     private int tv_02_width , tv_03_width;
+    private Button bn_bottom_sheet_behavior ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +58,8 @@ public class MainActivity extends BaseActivity {
         tv_03 = (TextView) findViewById(R.id.tv_03) ;
         tv_02_width = tv_02.getWidth() ;
         tv_03_width = tv_03.getWidth() ;
+        bn_bottom_sheet_behavior = (Button) findViewById(R.id.bn_bottom_sheet_behavior) ;
+        bn_ptrsml = (Button) findViewById(R.id.bn_ptrsml) ;
         LogTool.i("a:" + tv_03_width + " , b:" + tv_02_width + ",c:" + tv_01.getWidth());
         addLeftSlidingView();
     }
@@ -73,9 +68,10 @@ public class MainActivity extends BaseActivity {
         bn_result_exception.setOnClickListener(onClickListener);
         bn_recycler.setOnClickListener(onClickListener);
         bn_test.setOnClickListener(onClickListener);
+        bn_ptrsml.setOnClickListener(onClickListener);
         tv_02.setOnClickListener(onClickListener);
         ll_left_sliding.setOnTouchListener(onTouchListener);
-
+        bn_bottom_sheet_behavior.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -101,6 +97,12 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.bn_test:
                     intent =  new Intent(MainActivity.this , TestActivity.class) ;
+                    break;
+                case R.id.bn_bottom_sheet_behavior :
+                    intent = new Intent(MainActivity.this , BottomSheetBehaviorTestActivity.class) ;
+                    break;
+                case R.id.bn_ptrsml :
+                    intent = new Intent(MainActivity.this , PullToRefreshSwipeMenuListViewActivity.class) ;
                     break;
                 case R.id.ll_displayed :
                     ToastTool.showShortToast("ll_displayed");
