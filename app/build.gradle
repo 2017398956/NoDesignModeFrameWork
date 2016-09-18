@@ -4,27 +4,79 @@ def COMPILESDK_VERSION = Integer.parseInt(file('../COMPILESDK_VERSION.txt').text
 def BUILDTOOLS_VERSION = file('../BUILDTOOLS_VERSION.txt').text
 
 android {
-
     compileSdkVersion COMPILESDK_VERSION
     buildToolsVersion BUILDTOOLS_VERSION
-
     defaultConfig {
         applicationId "com.a2017398956.nodesignmodeframework"
         minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        multiDexEnabled = true // 开启Dex分割
+    }
+
+//    sourceSets {
+//        main {
+//            manifest.srcFile 'src/main/AndroidManifest.xml'
+//            java.srcDirs = ['src/main/java']
+//            resources.srcDirs = ['src/main/java']
+//            res.srcDirs = ['src/main/res']
+//            assets.srcDirs = ['src/main/assets']
+//            jniLibs.srcDirs = ['src/main/libs']//这一行是没有的，如果我们有.so文件就需要加上这一行代码
+//        }
+//    }
+
+    //签名
+    signingConfigs {
+        release {
+            storeFile file('keystore/key.jks')
+            storePassword "1qaz2wsxE"
+            keyAlias "TestKey"
+            keyPassword "1qaz2wsxE"
+        }
     }
     buildTypes {
         release {
+            zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release//不要忘了要在release的时候加入我么的签名配置信息
+        }
+        debug {
+            // ZipAlign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            // 混淆,由于需要配置大量第三方包，所以暂时关闭混淆
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        flavorTest {
+            // 不显示Log(配置不正确，待测试)
+            // buildConfigField("boolean" , "LOG_DEBUG" , "false")
+            // 混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //这个是解决lint报错的代码
+//    lintOptions {
+//        abortOnError false
+//        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+//        disable 'MissingTranslation'
+//    }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g" // 解决java堆内存不够的问题，参考http://blog.csdn.net/niuzhucedenglu/article/details/51781618  第五条
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile project(":test01library")
+    compile project(':test01library')
 }

@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
+import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 
 public class BottomSheetBehaviorTestActivity extends BaseActivity {
@@ -35,18 +36,17 @@ public class BottomSheetBehaviorTestActivity extends BaseActivity {
         public void onClick(View v) {
             super.onClick(v);
             BottomSheetBehavior behavior = BottomSheetBehavior.from(nsv_list_view) ;
+            behavior.setHideable(true);
+            behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             switch (v.getId()){
                 case R.id.bn_open :
-                    if(behavior.getState() == BottomSheetBehavior.STATE_HIDDEN){
-                        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                    }
+                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                     break;
                 case R.id.bn_hide :
-                    if(behavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
-                        behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                    }
+                    behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                     break;
             }
+            ToastTool.showShortToast(behavior.getState() + "" + behavior.isHideable());
         }
     } ;
 }
