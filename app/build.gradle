@@ -71,12 +71,14 @@ android {
 
     dexOptions {
         incremental true
-        javaMaxHeapSize "4g" // 解决java堆内存不够的问题，参考http://blog.csdn.net/niuzhucedenglu/article/details/51781618  第五条
+        javaMaxHeapSize "4g"
+        // 解决java堆内存不够的问题，参考http://blog.csdn.net/niuzhucedenglu/article/details/51781618  第五条
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
     compile project(':test01library')
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    testCompile 'junit:junit:4.12'
 }
