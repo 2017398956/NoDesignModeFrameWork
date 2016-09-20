@@ -124,6 +124,7 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.bn_value_animator :
                     intent = new Intent(MainActivity.this , ValueAnimatorTestActivity.class) ;
+                    break ;
                 case R.id.bn_imitation_win10 :
                     intent = new Intent(MainActivity.this , ImitationWin10ProgressBarActivity.class) ;
                     break;
