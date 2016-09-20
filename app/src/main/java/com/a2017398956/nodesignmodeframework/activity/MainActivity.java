@@ -27,6 +27,7 @@ public class MainActivity extends BaseActivity {
     private Button bn_recycler ;
     private Button bn_test ;
     private Button bn_ptrsml ;
+    private Button bn_value_animator ;
     private LinearLayout ll_left_sliding ;
     private LinearLayout ll_displayed ;
     private LinearLayout ll_hidden ;
@@ -62,6 +63,8 @@ public class MainActivity extends BaseActivity {
         bn_ptrsml = (Button) findViewById(R.id.bn_ptrsml) ;
         LogTool.i("a:" + tv_03_width + " , b:" + tv_02_width + ",c:" + tv_01.getWidth());
         addLeftSlidingView();
+
+        bn_value_animator = (Button) findViewById(R.id.bn_value_animator) ;
     }
 
     private void setListenerss(){
@@ -72,6 +75,7 @@ public class MainActivity extends BaseActivity {
         tv_02.setOnClickListener(onClickListener);
         ll_left_sliding.setOnTouchListener(onTouchListener);
         bn_bottom_sheet_behavior.setOnClickListener(onClickListener);
+        bn_value_animator.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -112,6 +116,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_02:
                     ToastTool.showShortToast("tv_02");
+                    break;
+                case R.id.bn_value_animator :
+                    intent = new Intent(MainActivity.this , ValueAnimatorTestActivity.class) ;
                     break;
             }
             if(null != intent){

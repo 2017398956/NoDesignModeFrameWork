@@ -20,7 +20,8 @@
         <activity android:name=".exception.test.CreateResultInfoActivity" />
         <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.BottomSheetBehaviorTestActivity" />
-        <activity android:name=".activity.PullToRefreshSwipeMenuListViewActivity"></activity>
+        <activity android:name=".activity.PullToRefreshSwipeMenuListViewActivity" />
+        <activity android:name=".activity.ValueAnimatorTestActivity"></activity>
     </application>
 
 </manifest>
