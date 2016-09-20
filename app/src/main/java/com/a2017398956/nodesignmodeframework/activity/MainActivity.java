@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity {
     private TextView tv_01 , tv_02 , tv_03;
     private int tv_02_width , tv_03_width;
     private Button bn_bottom_sheet_behavior ;
+    private Button bn_imitation_win10 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +63,9 @@ public class MainActivity extends BaseActivity {
         bn_ptrsml = (Button) findViewById(R.id.bn_ptrsml) ;
         LogTool.i("a:" + tv_03_width + " , b:" + tv_02_width + ",c:" + tv_01.getWidth());
         addLeftSlidingView();
+
+        //
+        bn_imitation_win10 = (Button) findViewById(R.id.bn_imitation_win10) ;
     }
 
     private void setListenerss(){
@@ -72,6 +76,7 @@ public class MainActivity extends BaseActivity {
         tv_02.setOnClickListener(onClickListener);
         ll_left_sliding.setOnTouchListener(onTouchListener);
         bn_bottom_sheet_behavior.setOnClickListener(onClickListener);
+        bn_imitation_win10.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -112,6 +117,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_02:
                     ToastTool.showShortToast("tv_02");
+                    break;
+                case R.id.bn_imitation_win10 :
+                    intent = new Intent(MainActivity.this , ImitationWin10ProgressBarActivity.class) ;
                     break;
             }
             if(null != intent){
