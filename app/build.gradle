@@ -70,7 +70,10 @@ android {
 //    }
 
     dexOptions {
-        // incremental true// as2.2后需要注释掉
+        // incremental true
+        // jumboMode = true
+        // By default incremental is turned on Java compilation in 2.1.0-rc1 (2016/4/22) or later.
+        // So its redundant to declare it in build.gradle file.
         javaMaxHeapSize "4g"
         // 解决java堆内存不够的问题，参考http://blog.csdn.net/niuzhucedenglu/article/details/51781618  第五条
     }
