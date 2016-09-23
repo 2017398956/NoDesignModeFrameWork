@@ -113,5 +113,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="仿Win10进度条" />
+
+        <Button
+            android:id="@+id/bn_imitation_wechat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="仿微信" />
     </LinearLayout>
 </ScrollView>

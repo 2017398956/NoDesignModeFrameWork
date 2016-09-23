@@ -26,7 +26,6 @@
         <activity android:name=".activity.ValueAnimatorTestActivity"></activity>
 
         <activity android:name=".activity.ImitationWin10ProgressBarActivity"></activity>
-
     </application>
 
 </manifest>

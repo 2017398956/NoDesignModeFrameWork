@@ -19,6 +19,8 @@ import com.nfl.libraryoflibrary.utils.RootDetector;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
+import com.nfl.libraryoflibrary.view.imitationwechat.ImitatationWeChatActivity;
+
 public class MainActivity extends BaseActivity {
 
     private LinearLayout ll_root_view ;
@@ -35,6 +37,7 @@ public class MainActivity extends BaseActivity {
     private int tv_02_width , tv_03_width;
     private Button bn_bottom_sheet_behavior ;
     private Button bn_imitation_win10 ;
+    private Button bn_imitation_wechat ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,7 @@ public class MainActivity extends BaseActivity {
 
         bn_value_animator = (Button) findViewById(R.id.bn_value_animator) ;
         bn_imitation_win10 = (Button) findViewById(R.id.bn_imitation_win10) ;
+        bn_imitation_wechat = (Button) findViewById(R.id.bn_imitation_wechat) ;
 
     }
 
@@ -81,6 +85,7 @@ public class MainActivity extends BaseActivity {
         bn_bottom_sheet_behavior.setOnClickListener(onClickListener);
         bn_value_animator.setOnClickListener(onClickListener);
         bn_imitation_win10.setOnClickListener(onClickListener);
+        bn_imitation_wechat.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -127,6 +132,9 @@ public class MainActivity extends BaseActivity {
                     break ;
                 case R.id.bn_imitation_win10 :
                     intent = new Intent(MainActivity.this , ImitationWin10ProgressBarActivity.class) ;
+                    break;
+                case R.id.bn_imitation_wechat :
+                    intent = new Intent(MainActivity.this , ImitatationWeChatActivity.class) ;
                     break;
             }
             if(null != intent){
