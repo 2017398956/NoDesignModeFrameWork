@@ -3,7 +3,9 @@ package com.a2017398956.nodesignmodeframework.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
+import com.nfl.libraryoflibrary.utils.DateTool;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetector;
@@ -44,7 +47,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         initView() ;
         setListenerss() ;
-//        CustomBroadcastSender.sendAppStartBroadCast(this);
+        // CustomBroadcastSender.sendAppStartBroadCast(this);
     }
 
     private void initView() {
