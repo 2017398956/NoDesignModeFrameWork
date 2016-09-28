@@ -48,6 +48,26 @@ public class MainActivity extends BaseActivity {
         initView() ;
         setListenerss() ;
         // CustomBroadcastSender.sendAppStartBroadCast(this);
+//        ToastTool.showCustomShortToast("custom");
+//        ToastTool.showLongToast("LongToast===============");
+//        ToastTool.showLongToast("LongToast---------------");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ToastTool.showLongToast("LongToast===============");
+                ToastTool.showLongToast("LongToast---------------");
+            }
+
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                Looper.prepare();
+//                ToastTool.showLongToast("LongToast===============");
+//                ToastTool.showLongToast("LongToast---------------");
+//                Looper.loop();
+            }
+        }).start();
     }
 
     private void initView() {
