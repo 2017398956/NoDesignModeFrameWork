@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+
+ext {
+    final def pom = new XmlSlurper().parse(new File(projectDir, "pom.xml"))
+    acraVersion = pom.version.toString()
+    supportVersion = pom.depthFirst().find { it.name() == 'support.version' }.toString()
+    androidVersion = pom.depthFirst().find { it.name() == 'android.version' }.toInteger()
+    proguardFile = pom.depthFirst().find { it.name() == 'consumerProguardFile' }.toString()
+    println("building ACRA $acraVersion for android $androidVersion with support version $supportVersion")
+}
+
+android {
+    compileSdkVersion androidVersion
+    buildToolsVersion "23.0.3"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion androidVersion
+        versionName acraVersion
+        consumerProguardFile proguardFile
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+}
+
+dependencies {
+    compile "com.android.support:support-v4:$supportVersion"
+    compile "com.android.support:support-annotations:$supportVersion"
+}
