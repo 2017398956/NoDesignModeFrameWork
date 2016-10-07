@@ -119,5 +119,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="仿微信" />
+
+        <Button
+            android:id="@+id/bn_float_window"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="内存悬浮窗" />
+
+        <Button
+            android:id="@+id/bn_liu_lang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="流量悬浮窗" />
     </LinearLayout>
 </ScrollView>

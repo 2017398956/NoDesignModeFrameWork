@@ -22,7 +22,9 @@ import com.nfl.libraryoflibrary.utils.RootDetector;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
+import com.nfl.libraryoflibrary.view.floatwindow.FloatWindowActivity;
 import com.nfl.libraryoflibrary.view.imitationwechat.ImitatationWeChatActivity;
+import com.nfl.libraryoflibrary.view.liuliang.phonemanager.LiuLiangActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -41,6 +43,8 @@ public class MainActivity extends BaseActivity {
     private Button bn_bottom_sheet_behavior ;
     private Button bn_imitation_win10 ;
     private Button bn_imitation_wechat ;
+    private Button bn_float_window ;
+    private Button bn_liu_lang ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +99,8 @@ public class MainActivity extends BaseActivity {
         bn_value_animator = (Button) findViewById(R.id.bn_value_animator) ;
         bn_imitation_win10 = (Button) findViewById(R.id.bn_imitation_win10) ;
         bn_imitation_wechat = (Button) findViewById(R.id.bn_imitation_wechat) ;
+        bn_float_window = (Button) findViewById(R.id.bn_float_window) ;
+        bn_liu_lang = (Button) findViewById(R.id.bn_liu_lang) ;
 
     }
 
@@ -109,6 +115,8 @@ public class MainActivity extends BaseActivity {
         bn_value_animator.setOnClickListener(onClickListener);
         bn_imitation_win10.setOnClickListener(onClickListener);
         bn_imitation_wechat.setOnClickListener(onClickListener);
+        bn_float_window.setOnClickListener(onClickListener);
+        bn_liu_lang.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -158,6 +166,12 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.bn_imitation_wechat :
                     intent = new Intent(MainActivity.this , ImitatationWeChatActivity.class) ;
+                    break;
+                case R.id.bn_float_window :
+                    intent = new Intent(MainActivity.this , FloatWindowActivity.class) ;
+                    break;
+                case R.id.bn_liu_lang :
+                    intent = new Intent(MainActivity.this , LiuLiangActivity.class) ;
                     break;
             }
             if(null != intent){
