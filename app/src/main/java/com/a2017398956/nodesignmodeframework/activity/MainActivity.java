@@ -3,19 +3,15 @@ package com.a2017398956.nodesignmodeframework.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Looper;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
-import com.nfl.libraryoflibrary.utils.DateTool;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetector;
@@ -24,7 +20,8 @@ import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
 import com.nfl.libraryoflibrary.view.floatwindow.FloatWindowActivity;
 import com.nfl.libraryoflibrary.view.imitationwechat.ImitatationWeChatActivity;
-import com.nfl.libraryoflibrary.view.liuliang.phonemanager.LiuLiangActivity;
+import com.nfl.libraryoflibrary.view.traffic_float_window.TrafficFloatWindowActivity;
+import com.nfl.libraryoflibrary.view.traffic_float_window.TrafficFloatWindowService;
 
 public class MainActivity extends BaseActivity {
 
@@ -171,7 +168,7 @@ public class MainActivity extends BaseActivity {
                     intent = new Intent(MainActivity.this , FloatWindowActivity.class) ;
                     break;
                 case R.id.bn_liu_lang :
-                    intent = new Intent(MainActivity.this , LiuLiangActivity.class) ;
+                    intent = new Intent(MainActivity.this , TrafficFloatWindowActivity.class) ;
                     break;
             }
             if(null != intent){
