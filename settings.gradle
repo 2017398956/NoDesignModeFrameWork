@@ -1,1 +1,1 @@
-include ':app', ':test01library', ':libraryoflibrary', ':acra-master'
+include ':app', ':test01library', ':libraryoflibrary'

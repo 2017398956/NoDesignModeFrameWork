@@ -7,13 +7,13 @@ import android.support.multidex.MultiDex;
 
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
-import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 
 import org.acra.ACRA;
-import org.acra.ReportField;
-import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 import org.acra.collector.CrashReportData;
+import org.acra.config.ACRAConfiguration;
+import org.acra.config.ACRAConfigurationException;
+import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderException;
 
@@ -114,7 +114,7 @@ public class MyApplication extends Application {
 //        removeReportSenders(Class): 移除实现某个接口的所有发送器
 //        removeAllReportSenders(): 移除所有发送器
 
-        ApplicationContext.applicationContext = this ;
+        ApplicationContext.applicationContext = this;
         registerActivityLifecycleCallbacks(new CustomActivityLifecycleCallbacks());
     }
 
@@ -131,7 +131,17 @@ public class MyApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this) ;
+        MultiDex.install(this);
+        // Create an ConfigurationBuilder. It is prepopulated with values specified via annotation.
+        // Set any additional value of the builder and then use it to construct an ACRAConfiguration.
+        ACRAConfiguration config = null;
+        try {
+            config = new ConfigurationBuilder(this).build();
+            // Initialise ACRA
+            ACRA.init(this, config);
+        } catch (ACRAConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 
 }
