@@ -1,4 +1,20 @@
 apply plugin: 'com.android.application'
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Android Lint :: NoDesignModeFrameWork :: SonarQube Scanner for Gradle"
+        property "sonar.projectKey", "org.sonarqube:android-ndmfw-sq-scanner-gradle"
+
+        property "sonar.sourceEncoding","UTF-8"
+        property "sonar.sources","."
+        property "sonar.exclusions","build/**,**/*.png"
+
+        property "sonar.import_unknown_files", true
+
+        property "sonar.android.lint.report", "./build/outputs/lint-results.xml"
+    }
+}
 
 def COMPILESDK_VERSION = Integer.parseInt(file('../COMPILESDK_VERSION.txt').text)
 def BUILDTOOLS_VERSION = file('../BUILDTOOLS_VERSION.txt').text
@@ -63,11 +79,11 @@ android {
     }
 
     //这个是解决lint报错的代码
-//    lintOptions {
-//        abortOnError false
-//        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+    lintOptions {
+        abortOnError false
+        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
 //        disable 'MissingTranslation'
-//    }
+    }
 
     dexOptions {
         // incremental true

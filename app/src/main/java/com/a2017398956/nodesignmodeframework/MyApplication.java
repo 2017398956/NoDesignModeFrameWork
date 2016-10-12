@@ -7,6 +7,7 @@ import android.support.multidex.MultiDex;
 
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
+import com.nfl.libraryoflibrary.utils.LogTool;
 
 import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
@@ -140,7 +141,7 @@ public class MyApplication extends Application {
             // Initialise ACRA
             ACRA.init(this, config);
         } catch (ACRAConfigurationException e) {
-            e.printStackTrace();
+            LogTool.i(e.toString()) ;
         }
     }
 
