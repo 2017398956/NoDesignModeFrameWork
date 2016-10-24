@@ -131,5 +131,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="流量悬浮窗" />
+
+        <Button
+            android:id="@+id/bn_translate_animator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="转场动画" />
+
+        <Button
+            android:id="@+id/bn_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RecyclerView"/>
     </LinearLayout>
 </ScrollView>
