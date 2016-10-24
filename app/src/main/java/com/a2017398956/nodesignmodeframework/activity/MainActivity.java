@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
+import com.a2017398956.nodesignmodeframework.activity.ActivityTranslateAnimator.AActivity;
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
@@ -28,7 +29,6 @@ public class MainActivity extends BaseActivity {
     private LinearLayout ll_root_view ;
     private TextView tv_test_info ;
     private Button bn_result_exception ;
-    private Button bn_recycler ;
     private Button bn_test ;
     private Button bn_ptrsml ;
     private Button bn_value_animator ;
@@ -42,6 +42,9 @@ public class MainActivity extends BaseActivity {
     private Button bn_imitation_wechat ;
     private Button bn_float_window ;
     private Button bn_liu_lang ;
+    private Button bn_translate_animator ;
+    private Button bn_recyclerView ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +80,6 @@ public class MainActivity extends BaseActivity {
         tv_test_info.setText("手机是否root：" + new RootDetector().isDeviceRooted());
 
         bn_result_exception = (Button) findViewById(R.id.bn_result_exception) ;
-        bn_recycler = (Button) findViewById(R.id.bn_recycler) ;
         bn_test = (Button) findViewById(R.id.bn_test) ;
         ll_left_sliding = (LinearLayout) findViewById(R.id.ll_left_sliding) ;
         ll_displayed = (LinearLayout) findViewById(R.id.ll_displayed) ;
@@ -98,12 +100,12 @@ public class MainActivity extends BaseActivity {
         bn_imitation_wechat = (Button) findViewById(R.id.bn_imitation_wechat) ;
         bn_float_window = (Button) findViewById(R.id.bn_float_window) ;
         bn_liu_lang = (Button) findViewById(R.id.bn_liu_lang) ;
-
+        bn_translate_animator = (Button) findViewById(R.id.bn_translate_animator) ;
+        bn_recyclerView = (Button) findViewById(R.id.bn_recyclerView) ;
     }
 
     private void setListenerss(){
         bn_result_exception.setOnClickListener(onClickListener);
-        bn_recycler.setOnClickListener(onClickListener);
         bn_test.setOnClickListener(onClickListener);
         bn_ptrsml.setOnClickListener(onClickListener);
         tv_02.setOnClickListener(onClickListener);
@@ -114,6 +116,8 @@ public class MainActivity extends BaseActivity {
         bn_imitation_wechat.setOnClickListener(onClickListener);
         bn_float_window.setOnClickListener(onClickListener);
         bn_liu_lang.setOnClickListener(onClickListener);
+        bn_translate_animator.setOnClickListener(onClickListener);
+        bn_recyclerView.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -134,8 +138,6 @@ public class MainActivity extends BaseActivity {
             switch (view.getId()){
                 case R.id.bn_result_exception:
                     intent = new Intent(MainActivity.this, ResultInfoExceptionActivity.class);
-                    break;
-                case R.id.bn_recycler:
                     break;
                 case R.id.bn_test:
                     intent =  new Intent(MainActivity.this , TestActivity.class) ;
@@ -169,6 +171,12 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.bn_liu_lang :
                     intent = new Intent(MainActivity.this , TrafficFloatWindowActivity.class) ;
+                    break;
+                case R.id.bn_translate_animator :
+                    intent = new Intent(MainActivity.this , AActivity.class) ;
+                    break;
+                case R.id.bn_recyclerView :
+                    intent = new Intent(MainActivity.this , RecyclerViewActivity.class) ;
                     break;
             }
             if(null != intent){

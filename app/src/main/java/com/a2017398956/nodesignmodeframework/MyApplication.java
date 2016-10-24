@@ -135,14 +135,14 @@ public class MyApplication extends Application {
         MultiDex.install(this);
         // Create an ConfigurationBuilder. It is prepopulated with values specified via annotation.
         // Set any additional value of the builder and then use it to construct an ACRAConfiguration.
-        ACRAConfiguration config = null;
-        try {
-            config = new ConfigurationBuilder(this).build();
-            // Initialise ACRA
-            ACRA.init(this, config);
-        } catch (ACRAConfigurationException e) {
-            LogTool.i(e.toString()) ;
-        }
+//        ACRAConfiguration config = null;
+//        try {
+//            config = new ConfigurationBuilder(this).build();
+//            // Initialise ACRA
+//            ACRA.init(this, config);
+//        } catch (ACRAConfigurationException e) {
+//            LogTool.i(e.toString()) ;
+//        }
     }
 
 }

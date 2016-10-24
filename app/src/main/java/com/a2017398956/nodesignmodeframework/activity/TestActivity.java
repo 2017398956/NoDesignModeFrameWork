@@ -1,6 +1,5 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.a2017398956.nodesignmodeframework.R;

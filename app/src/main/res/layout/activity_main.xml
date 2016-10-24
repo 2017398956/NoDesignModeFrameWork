@@ -23,13 +23,6 @@
             android:layout_height="wrap_content"
             android:text="测试ResultInfo异常" />
 
-        <Button
-            android:id="@+id/bn_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="测试RecyclerView" />
-
         <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
             android:id="@+id/ll_left_sliding"
             android:layout_width="match_parent"
@@ -131,5 +124,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="流量悬浮窗" />
+
+        <Button
+            android:id="@+id/bn_translate_animator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="转场动画" />
+
+        <Button
+            android:id="@+id/bn_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RecyclerView"/>
     </LinearLayout>
 </ScrollView>
