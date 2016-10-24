@@ -1,6 +1,5 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -19,13 +18,14 @@ import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.utils.ConvertTool;
+import com.nfl.libraryoflibrary.view.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RecyclerViewActivity extends Activity {
+public class RecyclerViewActivity extends BaseActivity {
 
     private RecyclerView recyclerView ;
     private MyRecyclerViewDivider myRecyclerViewDivider ;
