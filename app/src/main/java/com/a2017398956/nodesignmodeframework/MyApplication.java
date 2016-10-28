@@ -10,6 +10,8 @@ import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
 import com.nfl.libraryoflibrary.utils.LogTool;
 
 import org.acra.ACRA;
+import org.acra.ReportField;
+import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 import org.acra.collector.CrashReportData;
 import org.acra.config.ACRAConfiguration;
@@ -54,17 +56,17 @@ import org.acra.sender.ReportSenderException;
 //        formUriBasicAuthLogin = "yourlogin", // 可选
 //        formUriBasicAuthPassword = "y0uRpa$$w0rd", // 可选
 //        5-2.提交到邮箱
-//        mailTo = "2017398956@qq.com",
+        mailTo = "2017398956@qq.com" ,
 //        因为数据长度的原因,提交到邮箱可能需要配置customReportContent参数:
-//        customReportContent = { ReportField.APP_VERSION_CODE,
-//                                  ReportField.USER_COMMENT,
-//                                  ReportField.BRAND,
-//                                  ReportField.APP_VERSION_NAME,
-//                                  ReportField.ANDROID_VERSION,
-//                                  ReportField.PHONE_MODEL,
-//                                  ReportField.CUSTOM_DATA,
-//                                  ReportField.STACK_TRACE,
-//                                  ReportField.LOGCAT }
+        customReportContent = { ReportField.APP_VERSION_CODE,
+                                  ReportField.USER_COMMENT,
+                                  ReportField.BRAND,
+                                  ReportField.APP_VERSION_NAME,
+                                  ReportField.ANDROID_VERSION,
+                                  ReportField.PHONE_MODEL,
+                                  ReportField.CUSTOM_DATA,
+                                  ReportField.STACK_TRACE,
+                                  ReportField.LOGCAT }
 //        6.提交方式的配置
 //        httpMethod = org.acra.sender.HttpSender.Method.POST
 //        或者
@@ -135,14 +137,14 @@ public class MyApplication extends Application {
         MultiDex.install(this);
         // Create an ConfigurationBuilder. It is prepopulated with values specified via annotation.
         // Set any additional value of the builder and then use it to construct an ACRAConfiguration.
-//        ACRAConfiguration config = null;
-//        try {
-//            config = new ConfigurationBuilder(this).build();
-//            // Initialise ACRA
-//            ACRA.init(this, config);
-//        } catch (ACRAConfigurationException e) {
-//            LogTool.i(e.toString()) ;
-//        }
+        ACRAConfiguration config = null;
+        try {
+            config = new ConfigurationBuilder(this).build();
+            // Initialise ACRA
+            ACRA.init(this, config);
+        } catch (ACRAConfigurationException e) {
+            LogTool.i(e.toString()) ;
+        }
     }
 
 }

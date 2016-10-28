@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity {
     private Button bn_liu_lang ;
     private Button bn_translate_animator ;
     private Button bn_recyclerView ;
+    private Button bn_webView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +103,7 @@ public class MainActivity extends BaseActivity {
         bn_liu_lang = (Button) findViewById(R.id.bn_liu_lang) ;
         bn_translate_animator = (Button) findViewById(R.id.bn_translate_animator) ;
         bn_recyclerView = (Button) findViewById(R.id.bn_recyclerView) ;
+        bn_webView = (Button) findViewById(R.id.bn_webView) ;
     }
 
     private void setListenerss(){
@@ -118,6 +120,7 @@ public class MainActivity extends BaseActivity {
         bn_liu_lang.setOnClickListener(onClickListener);
         bn_translate_animator.setOnClickListener(onClickListener);
         bn_recyclerView.setOnClickListener(onClickListener);
+        bn_webView.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -164,7 +167,7 @@ public class MainActivity extends BaseActivity {
                     intent = new Intent(MainActivity.this , ImitationWin10ProgressBarActivity.class) ;
                     break;
                 case R.id.bn_imitation_wechat :
-                    intent = new Intent(MainActivity.this , ImitatationWeChatActivity.class) ;
+                    intent = new Intent(MainActivity.this , TestImitatationWeChatActivity.class) ;
                     break;
                 case R.id.bn_float_window :
                     intent = new Intent(MainActivity.this , FloatWindowActivity.class) ;
@@ -177,6 +180,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.bn_recyclerView :
                     intent = new Intent(MainActivity.this , RecyclerViewActivity.class) ;
+                    break;
+                case R.id.bn_webView :
+                    intent = new Intent(MainActivity.this , WebViewActivity.class) ;
                     break;
             }
             if(null != intent){

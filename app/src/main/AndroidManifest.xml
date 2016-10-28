@@ -37,7 +37,9 @@
             android:name=".activity.ActivityTranslateAnimator.BActivity"
             android:launchMode="singleInstance"
             android:theme="@style/customAnimationActivity" />
-        <activity android:name=".activity.RecyclerViewActivity"></activity>
+        <activity android:name=".activity.RecyclerViewActivity" />
+        <activity android:name=".activity.TestImitatationWeChatActivity" />
+        <activity android:name=".activity.WebViewActivity"></activity>
     </application>
 
 </manifest>
