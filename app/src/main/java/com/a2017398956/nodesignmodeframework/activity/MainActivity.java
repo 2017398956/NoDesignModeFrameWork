@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity {
     private Button bn_translate_animator ;
     private Button bn_recyclerView ;
     private Button bn_webView ;
+    private Button bn_fingerprint ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,7 @@ public class MainActivity extends BaseActivity {
         bn_translate_animator = (Button) findViewById(R.id.bn_translate_animator) ;
         bn_recyclerView = (Button) findViewById(R.id.bn_recyclerView) ;
         bn_webView = (Button) findViewById(R.id.bn_webView) ;
+        bn_fingerprint = (Button) findViewById(R.id.bn_fingerprint) ;
     }
 
     private void setListenerss(){
@@ -121,6 +123,7 @@ public class MainActivity extends BaseActivity {
         bn_translate_animator.setOnClickListener(onClickListener);
         bn_recyclerView.setOnClickListener(onClickListener);
         bn_webView.setOnClickListener(onClickListener);
+        bn_fingerprint.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -183,6 +186,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.bn_webView :
                     intent = new Intent(MainActivity.this , WebViewActivity.class) ;
+                    break;
+                case R.id.bn_fingerprint :
+                    intent = new Intent(MainActivity.this , FingerprintTestActivity.class) ;
                     break;
             }
             if(null != intent){
