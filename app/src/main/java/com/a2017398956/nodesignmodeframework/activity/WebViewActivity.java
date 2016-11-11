@@ -29,7 +29,7 @@ public class WebViewActivity extends AppCompatActivity {
         wv_testJs = (WebView) findViewById(R.id.wv_testJs) ;
         wv_testJs.loadUrl("http://haoma.baidu.com/query");
         WebSettings webSettings = wv_testJs.getSettings() ;
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+//        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setJavaScriptEnabled(true);
         wv_testJs.setWebViewClient(new WebViewClient(){
             @Override
