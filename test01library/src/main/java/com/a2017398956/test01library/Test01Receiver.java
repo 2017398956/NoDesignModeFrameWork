@@ -15,10 +15,10 @@ public class Test01Receiver extends BroadcastReceiver {
         String actionTemp = intent.getAction() ;
         LogTool.i(actionTemp);
         if("cn.bill.app.gw.startapp".equals(actionTemp)){
-            Intent nextActivity = new Intent() ;
-            nextActivity.setClass(context , Test01MainActivity.class) ;
-            nextActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK) ;
-            context.startActivity(nextActivity);
+//            Intent nextActivity = new Intent() ;
+//            nextActivity.setClass(context , Test01MainActivity.class) ;
+//            nextActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK) ;
+//            context.startActivity(nextActivity);
         }
     }
 }

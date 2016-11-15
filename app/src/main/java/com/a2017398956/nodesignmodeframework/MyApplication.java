@@ -7,6 +7,7 @@ import android.support.multidex.MultiDex;
 
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
+import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 import com.nfl.libraryoflibrary.utils.LogTool;
 
 import org.acra.ACRA;
@@ -119,6 +120,7 @@ public class MyApplication extends Application {
 
         ApplicationContext.applicationContext = this;
         registerActivityLifecycleCallbacks(new CustomActivityLifecycleCallbacks());
+        CustomBroadcastSender.sendAppStartBroadCast(this);
     }
 
 //    如果想让异常报告中的日志按时间顺序显示, 那么Activity需要做如下配置
