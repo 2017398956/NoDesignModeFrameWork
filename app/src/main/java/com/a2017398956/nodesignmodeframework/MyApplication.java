@@ -12,7 +12,6 @@ import com.nfl.libraryoflibrary.utils.LogTool;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
-import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 import org.acra.collector.CrashReportData;
 import org.acra.config.ACRAConfiguration;

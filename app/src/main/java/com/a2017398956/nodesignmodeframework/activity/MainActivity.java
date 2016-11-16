@@ -14,6 +14,7 @@ import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.activity.ActivityTranslateAnimator.AActivity;
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
 import com.nfl.libraryoflibrary.utils.LogTool;
+import com.nfl.libraryoflibrary.utils.PackageInfoProvider;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetector;
 import com.nfl.libraryoflibrary.utils.ToastTool;
@@ -50,6 +51,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PackageInfoProvider packageInfoProvider = new PackageInfoProvider(this) ;
         setContentView(R.layout.activity_main);
         initView() ;
         setListenerss() ;
