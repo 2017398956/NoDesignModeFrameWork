@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         filterInfos = new ArrayList<>() ;
-        filterInfos.add("bluetooth") ;
+        filterInfos.add("root") ;
         initView() ;
         setListenerss() ;
         // CustomBroadcastSender.sendAppStartBroadCast(this);
