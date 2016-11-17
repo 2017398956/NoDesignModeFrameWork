@@ -3,6 +3,7 @@ package com.a2017398956.nodesignmodeframework.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,17 +14,18 @@ import android.widget.TextView;
 import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.activity.ActivityTranslateAnimator.AActivity;
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
+import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.LogTool;
-import com.nfl.libraryoflibrary.utils.PackageInfoProvider;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
-import com.nfl.libraryoflibrary.utils.RootDetector;
+import com.nfl.libraryoflibrary.utils.RootDetectorTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
 import com.nfl.libraryoflibrary.view.floatwindow.FloatWindowActivity;
-import com.nfl.libraryoflibrary.view.imitationwechat.ImitatationWeChatActivity;
 import com.nfl.libraryoflibrary.view.traffic_float_window.TrafficFloatWindowActivity;
-import com.nfl.libraryoflibrary.view.traffic_float_window.TrafficFloatWindowService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
@@ -47,12 +49,14 @@ public class MainActivity extends BaseActivity {
     private Button bn_recyclerView ;
     private Button bn_webView ;
     private Button bn_fingerprint ;
+    private List<String> filterInfos ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PackageInfoProvider packageInfoProvider = new PackageInfoProvider(this) ;
         setContentView(R.layout.activity_main);
+        filterInfos = new ArrayList<>() ;
+        filterInfos.add("bluetooth") ;
         initView() ;
         setListenerss() ;
         // CustomBroadcastSender.sendAppStartBroadCast(this);
@@ -74,6 +78,12 @@ public class MainActivity extends BaseActivity {
 //                ToastTool.showLongToast("LongToast===============");
 //                ToastTool.showLongToast("LongToast---------------");
 //                Looper.loop();
+//                PackageInfoProvider packageInfoProvider = new PackageInfoProvider(ApplicationContext.applicationContext) ;
+
+                String rootDetailInfo = new RootDetectorTool(ApplicationContext.applicationContext , filterInfos).getRootDetailInfo() ;
+                Looper.prepare();
+                tv_test_info.setText(rootDetailInfo);
+                Looper.loop();
             }
         }).start();
     }
@@ -81,7 +91,6 @@ public class MainActivity extends BaseActivity {
     private void initView() {
         ll_root_view = (LinearLayout) findViewById(R.id.ll_root_view) ;
         tv_test_info = (TextView) findViewById(R.id.tv_test_info);
-        tv_test_info.setText("手机是否root：" + new RootDetector().isDeviceRooted());
 
         bn_result_exception = (Button) findViewById(R.id.bn_result_exception) ;
         bn_test = (Button) findViewById(R.id.bn_test) ;
