@@ -44,7 +44,7 @@ public class TestImitatationWeChatActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imitation_wechat);
-        getActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
         setOverflowButtonAlways();
 
         initView();

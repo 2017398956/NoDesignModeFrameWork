@@ -1,6 +1,7 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -13,11 +14,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompatApi23;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.utils.LogTool;
@@ -28,7 +31,6 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 
-@TargetApi(Build.VERSION_CODES.M)
 public class FingerprintTestActivity extends AppCompatActivity {
 
     private FingerprintManager fingerprintManager;
@@ -37,12 +39,17 @@ public class FingerprintTestActivity extends AppCompatActivity {
     private CancellationSignal cancellationSignal;
     private FingerprintManager.AuthenticationCallback authenticationCallback;
     private Handler handler;
+    private TextView tv_info ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint_test);
-
+        tv_info = (TextView) findViewById(R.id.tv_info) ;
+        tv_info.setText(Build.VERSION_CODES.M + "");
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            return;
+        }
         authenticationCallback = new FingerprintManager.AuthenticationCallback() {
 
             /**
