@@ -1,11 +1,11 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.SimpleAdapter;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.utils.ToastTool;
+import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.PullToRefreshSwipeMenuListView;
 import com.nfl.libraryoflibrary.view.pulltorefresh.interfaces.IXListViewListener;
 
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PullToRefreshSwipeMenuListViewActivity extends AppCompatActivity {
+public class PullToRefreshSwipeMenuListViewActivity extends BaseActivity {
 
     private PullToRefreshSwipeMenuListView ptrsm_list_view;
     private SimpleAdapter adapter;
@@ -27,11 +27,11 @@ public class PullToRefreshSwipeMenuListViewActivity extends AppCompatActivity {
         ptrsm_list_view = (PullToRefreshSwipeMenuListView) findViewById(R.id.ptrsm_list_view);
         ptrsm_list_view.setPullLoadEnable(true);
         ptrsm_list_view.setPullRefreshEnable(true);
-        data = new ArrayList<Map<String, String>>() ;
-        Map<String , String> map ;
-        for(int i = 0 ; i < 20 ;i++){
-            map = new HashMap<String , String>() ;
-            map.put("title" , i + "") ;
+        data = new ArrayList<>();
+        Map<String, String> map;
+        for (int i = 0; i < 20; i++) {
+            map = new HashMap<>();
+            map.put("title", i + "");
             data.add(map);
         }
         adapter = new SimpleAdapter(this, data,
@@ -45,25 +45,25 @@ public class PullToRefreshSwipeMenuListViewActivity extends AppCompatActivity {
     private IXListViewListener ixListViewListener = new IXListViewListener() {
         @Override
         public void onRefresh() {
-            ptrsm_list_view.canLoadMore = true ;
+            ptrsm_list_view.canLoadMore = true;
             ptrsm_list_view.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     ToastTool.showCustomShortToast("onRefresh");
                     ptrsm_list_view.stopRefresh();
                 }
-            } , 2000) ;
+            }, 2000);
         }
 
         @Override
         public void onLoadMore() {
-            ToastTool.showCustomShortToast("footerViewsCount" + ptrsm_list_view.getFooterViewsCount() );
+            ToastTool.showCustomShortToast("footerViewsCount" + ptrsm_list_view.getFooterViewsCount());
             ptrsm_list_view.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     ptrsm_list_view.stopLoadMore();
                 }
-            } , 5000) ;
+            }, 5000);
         }
-    } ;
+    };
 }

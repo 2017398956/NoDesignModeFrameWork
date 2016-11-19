@@ -1,37 +1,30 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompatApi23;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
+import com.nfl.libraryoflibrary.view.BaseActivity;
 
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 
-public class FingerprintTestActivity extends AppCompatActivity {
+public class FingerprintTestActivity extends BaseActivity {
 
     private FingerprintManager fingerprintManager;
     private FingerprintManager.CryptoObject cryptoObject;
@@ -48,7 +41,7 @@ public class FingerprintTestActivity extends AppCompatActivity {
         tv_info = (TextView) findViewById(R.id.tv_info) ;
         tv_info.setText(Build.VERSION_CODES.M + "");
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            return;
+            return ;
         }
         authenticationCallback = new FingerprintManager.AuthenticationCallback() {
 

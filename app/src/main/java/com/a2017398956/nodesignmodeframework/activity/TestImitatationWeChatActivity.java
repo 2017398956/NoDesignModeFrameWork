@@ -31,7 +31,7 @@ import java.util.List;
 public class TestImitatationWeChatActivity extends BaseActivity {
 
     private ViewPager mViewPager;
-    private List<Fragment> mTabs = new ArrayList<Fragment>();
+    private List<Fragment> mTabs = new ArrayList() ;
     private String[] mTitles = new String[]{"1", "2", "3", "4"};
     private FragmentPagerAdapter mAdapter;
     private FragmentManager mFragmentManager;

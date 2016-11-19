@@ -1,6 +1,5 @@
 package com.a2017398956.nodesignmodeframework.activity.ActivityTranslateAnimator;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +8,11 @@ import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.utils.ToastTool;
-
-import org.w3c.dom.Text;
+import com.nfl.libraryoflibrary.view.BaseActivity;
 
 import java.util.Random;
 
-public class AActivity extends Activity {
+public class AActivity extends BaseActivity {
 
     private Button bn_a;
     private TextView tv_info ;

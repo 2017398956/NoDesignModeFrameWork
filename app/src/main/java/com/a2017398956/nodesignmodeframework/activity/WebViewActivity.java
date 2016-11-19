@@ -1,7 +1,6 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
 import android.content.res.AssetManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -10,16 +9,14 @@ import android.webkit.WebViewClient;
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
+import com.nfl.libraryoflibrary.view.BaseActivity;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.nio.ByteBuffer;
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends BaseActivity {
 
     private WebView wv_testJs ;
     @Override
