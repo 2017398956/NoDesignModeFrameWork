@@ -2,6 +2,7 @@ package com.a2017398956.nodesignmodeframework;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
@@ -9,6 +10,7 @@ import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
 import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 import com.nfl.libraryoflibrary.utils.LogTool;
+import com.nfl.libraryoflibrary.view.db_insight.DBInsightService;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
@@ -120,6 +122,7 @@ public class MyApplication extends Application {
         ApplicationContext.applicationContext = this;
         registerActivityLifecycleCallbacks(new CustomActivityLifecycleCallbacks());
         CustomBroadcastSender.sendAppStartBroadCast(this);
+        startService(new Intent(this , DBInsightService.class)) ;
     }
 
 //    如果想让异常报告中的日志按时间顺序显示, 那么Activity需要做如下配置
