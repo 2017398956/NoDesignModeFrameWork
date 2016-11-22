@@ -3,7 +3,9 @@ package com.a2017398956.nodesignmodeframework.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,6 +52,13 @@ public class MainActivity extends BaseActivity {
     private Button bn_webView ;
     private Button bn_fingerprint ;
     private List<String> filterInfos ;
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            tv_test_info.setText(msg.what + "");
+        }
+    } ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +93,9 @@ public class MainActivity extends BaseActivity {
                 Looper.prepare();
                 tv_test_info.setText(rootDetailInfo);
                 Looper.loop();
+//                Message message = new Message() ;
+//                message.what = new RootDetectorTool(ApplicationContext.applicationContext , filterInfos).isDeviceRootedCheckedByPath() ? 1 : 0 ;
+//                handler.sendMessage(message) ;
             }
         }).start();
     }
