@@ -10,6 +10,7 @@ import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
 import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 import com.nfl.libraryoflibrary.utils.LogTool;
+import com.nfl.libraryoflibrary.utils.pedometer.SensorListener;
 import com.nfl.libraryoflibrary.view.db_insight.DBInsightService;
 
 import org.acra.ACRA;
@@ -122,7 +123,8 @@ public class MyApplication extends Application {
         ApplicationContext.applicationContext = this;
         registerActivityLifecycleCallbacks(new CustomActivityLifecycleCallbacks());
         CustomBroadcastSender.sendAppStartBroadCast(this);
-        startService(new Intent(this , DBInsightService.class)) ;
+        // startService(new Intent(this , DBInsightService.class)) ;
+        startService(new Intent(this , SensorListener.class)) ;
     }
 
 //    如果想让异常报告中的日志按时间顺序显示, 那么Activity需要做如下配置

@@ -51,6 +51,7 @@ public class MainActivity extends BaseActivity {
     private Button bn_recyclerView ;
     private Button bn_webView ;
     private Button bn_fingerprint ;
+    private Button bn_pedometer ;
     private List<String> filterInfos ;
     private Handler handler = new Handler(){
         @Override
@@ -129,6 +130,7 @@ public class MainActivity extends BaseActivity {
         bn_recyclerView = (Button) findViewById(R.id.bn_recyclerView) ;
         bn_webView = (Button) findViewById(R.id.bn_webView) ;
         bn_fingerprint = (Button) findViewById(R.id.bn_fingerprint) ;
+        bn_pedometer = (Button) findViewById(R.id.bn_pedometer) ;
     }
 
     private void setListenerss(){
@@ -147,6 +149,7 @@ public class MainActivity extends BaseActivity {
         bn_recyclerView.setOnClickListener(onClickListener);
         bn_webView.setOnClickListener(onClickListener);
         bn_fingerprint.setOnClickListener(onClickListener);
+        bn_pedometer.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -213,6 +216,9 @@ public class MainActivity extends BaseActivity {
                 case R.id.bn_fingerprint :
                     intent = new Intent(MainActivity.this , FingerprintTestActivity.class) ;
                     break;
+                case R.id.bn_pedometer :
+                    intent = new Intent(MainActivity.this , PedometerActivity.class) ;
+                    break; 
             }
             if(null != intent){
                 startActivity(intent);
