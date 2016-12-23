@@ -52,6 +52,7 @@ public class MainActivity extends BaseActivity {
     private Button bn_webView ;
     private Button bn_fingerprint ;
     private Button bn_pedometer ;
+    private Button bn_tinker ;
     private List<String> filterInfos ;
     private Handler handler = new Handler(){
         @Override
@@ -131,6 +132,7 @@ public class MainActivity extends BaseActivity {
         bn_webView = (Button) findViewById(R.id.bn_webView) ;
         bn_fingerprint = (Button) findViewById(R.id.bn_fingerprint) ;
         bn_pedometer = (Button) findViewById(R.id.bn_pedometer) ;
+        bn_tinker = (Button) findViewById(R.id.bn_tinker) ;
     }
 
     private void setListenerss(){
@@ -150,6 +152,7 @@ public class MainActivity extends BaseActivity {
         bn_webView.setOnClickListener(onClickListener);
         bn_fingerprint.setOnClickListener(onClickListener);
         bn_pedometer.setOnClickListener(onClickListener);
+        bn_tinker.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -218,7 +221,10 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.bn_pedometer :
                     intent = new Intent(MainActivity.this , PedometerActivity.class) ;
-                    break; 
+                    break;
+                case R.id.bn_tinker :
+                    intent = new Intent(MainActivity.this , TinkerTestActivity.class) ;
+                    break;
             }
             if(null != intent){
                 startActivity(intent);
