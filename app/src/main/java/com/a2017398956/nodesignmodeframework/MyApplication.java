@@ -1,17 +1,24 @@
 package com.a2017398956.nodesignmodeframework;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
+import com.a2017398956.nodesignmodeframework.utils.tinker.Log.MyLogImp;
+import com.a2017398956.nodesignmodeframework.utils.tinker.util.TinkerManager;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
 import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.pedometer.SensorListener;
-import com.nfl.libraryoflibrary.view.db_insight.DBInsightService;
+import com.tencent.tinker.lib.tinker.TinkerInstaller;
+import com.tencent.tinker.loader.app.DefaultApplicationLike;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
@@ -59,17 +66,17 @@ import org.acra.sender.ReportSenderException;
 //        formUriBasicAuthLogin = "yourlogin", // 可选
 //        formUriBasicAuthPassword = "y0uRpa$$w0rd", // 可选
 //        5-2.提交到邮箱
-        mailTo = "2017398956@qq.com" ,
+        mailTo = "2017398956@qq.com",
 //        因为数据长度的原因,提交到邮箱可能需要配置customReportContent参数:
-        customReportContent = { ReportField.APP_VERSION_CODE,
-                                  ReportField.USER_COMMENT,
-                                  ReportField.BRAND,
-                                  ReportField.APP_VERSION_NAME,
-                                  ReportField.ANDROID_VERSION,
-                                  ReportField.PHONE_MODEL,
-                                  ReportField.CUSTOM_DATA,
-                                  ReportField.STACK_TRACE,
-                                  ReportField.LOGCAT }
+        customReportContent = {ReportField.APP_VERSION_CODE,
+                ReportField.USER_COMMENT,
+                ReportField.BRAND,
+                ReportField.APP_VERSION_NAME,
+                ReportField.ANDROID_VERSION,
+                ReportField.PHONE_MODEL,
+                ReportField.CUSTOM_DATA,
+                ReportField.STACK_TRACE,
+                ReportField.LOGCAT}
 //        6.提交方式的配置
 //        httpMethod = org.acra.sender.HttpSender.Method.POST
 //        或者
@@ -101,11 +108,25 @@ class YourOwnSender implements ReportSender {
     }
 }
 
-public class MyApplication extends Application {
+public class MyApplication extends DefaultApplicationLike {
+    private Context context;
+    private Application application;
+
+    public MyApplication(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent, Resources[] resources, ClassLoader[] classLoader, AssetManager[] assetManager) {
+        super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent, resources, classLoader, assetManager);
+        this.application = application;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        // LogTool.i("application is Creating");
+        /**
+         * 这里获取 context 会为 null ，详见：https://github.com/Tencent/tinker/issues/55
+         * {@link #onBaseContextAttached(Context)} 会先于{@link #onCreate()} 执行且其 context 不为 null
+         * 所以，context 的初始化应该在{@link #onBaseContextAttached(Context)}处理。
+         */
+        // this.context = application.getApplicationContext();
 //        初始化ACRA
 //        ACRA.init(this);
 //        YourOwnSender yourSender = new YourOwnSender(whatever, parameters, needed);
@@ -120,14 +141,14 @@ public class MyApplication extends Application {
 //        removeReportSenders(Class): 移除实现某个接口的所有发送器
 //        removeAllReportSenders(): 移除所有发送器
 
-        ApplicationContext.applicationContext = this;
-        registerActivityLifecycleCallbacks(new CustomActivityLifecycleCallbacks());
-        CustomBroadcastSender.sendAppStartBroadCast(this);
+        ApplicationContext.applicationContext = context;
+        application.registerActivityLifecycleCallbacks(new CustomActivityLifecycleCallbacks());
+        CustomBroadcastSender.sendAppStartBroadCast(context);
         // startService(new Intent(this , DBInsightService.class)) ;
-        startService(new Intent(this , SensorListener.class)) ;
+        application.startService(new Intent(context, SensorListener.class));
     }
 
-//    如果想让异常报告中的日志按时间顺序显示, 那么Activity需要做如下配置
+    //    如果想让异常报告中的日志按时间顺序显示, 那么Activity需要做如下配置
 //    public static void trackBreadcrumb(String event) {
 //        ACRA.getErrorReporter().putCustomData("Event at " + System.currentTimeMillis(), event);
 //    }
@@ -136,21 +157,37 @@ public class MyApplication extends Application {
 //        trackBreadcrumb("MyActivity.onCreate()");
 //        ...
 //    }
-
     @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
+    public void onBaseContextAttached(Context base) {
+        super.onBaseContextAttached(base);
+        this.context = base ;
+        LogTool.i("base:" + base + ",context:" + context + ",application:" + application);
+        MultiDex.install(base);
         // Create an ConfigurationBuilder. It is prepopulated with values specified via annotation.
         // Set any additional value of the builder and then use it to construct an ACRAConfiguration.
         ACRAConfiguration config = null;
         try {
-            config = new ConfigurationBuilder(this).build();
+            config = new ConfigurationBuilder(application).build();
             // Initialise ACRA
-            ACRA.init(this, config);
+            ACRA.init(application, config);
         } catch (ACRAConfigurationException e) {
-            LogTool.i(e.toString()) ;
+            LogTool.i(e.toString());
         }
+        TinkerManager.setTinkerApplicationLike(this);
+        TinkerManager.initFastCrashProtect();
+        //should set before tinker is installed
+        TinkerManager.setUpgradeRetryEnable(true);
+
+        // optional set logIml, or you can use default debug log
+        TinkerInstaller.setLogIml(new MyLogImp());
+
+        // installTinker after load multiDex
+        // or you can put com.tencent.tinker.** to main dex
+        TinkerManager.installTinker(this);
     }
 
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
+        application.registerActivityLifecycleCallbacks(callback);
+    }
 }
