@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
@@ -31,6 +32,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
+    private ScrollView sv ;
     private LinearLayout ll_root_view ;
     private TextView tv_test_info ;
     private Button bn_result_exception ;
@@ -53,6 +55,7 @@ public class MainActivity extends BaseActivity {
     private Button bn_fingerprint ;
     private Button bn_pedometer ;
     private Button bn_tinker ;
+    private Button bn_picture_selector ;
     private List<String> filterInfos ;
     private Handler handler = new Handler(){
         @Override
@@ -103,6 +106,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+        sv = (ScrollView) findViewById(R.id.sv) ;
+
         ll_root_view = (LinearLayout) findViewById(R.id.ll_root_view) ;
         tv_test_info = (TextView) findViewById(R.id.tv_test_info);
 
@@ -133,6 +138,7 @@ public class MainActivity extends BaseActivity {
         bn_fingerprint = (Button) findViewById(R.id.bn_fingerprint) ;
         bn_pedometer = (Button) findViewById(R.id.bn_pedometer) ;
         bn_tinker = (Button) findViewById(R.id.bn_tinker) ;
+        bn_picture_selector = (Button) findViewById(R.id.bn_picture_selector) ;
     }
 
     private void setListenerss(){
@@ -153,6 +159,7 @@ public class MainActivity extends BaseActivity {
         bn_fingerprint.setOnClickListener(onClickListener);
         bn_pedometer.setOnClickListener(onClickListener);
         bn_tinker.setOnClickListener(onClickListener);
+        bn_picture_selector.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -225,12 +232,16 @@ public class MainActivity extends BaseActivity {
                 case R.id.bn_tinker :
                     intent = new Intent(MainActivity.this , TinkerTestActivity.class) ;
                     break;
+                case R.id.bn_picture_selector :
+                    intent = new Intent(MainActivity.this , PictureSelectorActivity.class) ;
+                    break;
             }
             if(null != intent){
                 startActivity(intent);
             }
         }
     } ;
+
 
     private void addLeftSlidingView(){
         LinearLayout ll01 = new LinearLayout(this) ;

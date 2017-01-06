@@ -83,7 +83,7 @@ public class TinkerTestActivity extends BaseActivity {
             }
         });
         alert = (Button) findViewById(R.id.alert);
-        alert.setText("bug已修复");
+        alert.setText("第二次bug已修复");
 //        alert.setText("bug未修复");
     }
 

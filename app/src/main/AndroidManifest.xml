@@ -56,7 +56,9 @@
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
 
-        <activity android:name=".activity.TinkerTestActivity"></activity>
+        <activity android:name=".activity.TinkerTestActivity" />
+        <activity android:name=".activity.PictureSelectorActivity"></activity>
+        <activity android:name="com.yuyh.library.imgsel.ImgSelActivity"/>
     </application>
 
 </manifest>
