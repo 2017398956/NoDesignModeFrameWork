@@ -5,12 +5,11 @@ def BUILDTOOLS_VERSION = file('../BUILDTOOLS_VERSION.txt').text
 
 android {
 
-    compileSdkVersion COMPILESDK_VERSION
-    buildToolsVersion BUILDTOOLS_VERSION
-
+    compileSdkVersion "${COMPILE_SDK_VERSION}" as int
+    buildToolsVersion "${BUILD_TOOLS_VERSION}"
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion "${MIN_SDK_VERSION}" as int
+        targetSdkVersion "${TARGET_SDK_VERSION}" as int
         versionCode 1
         versionName "1.0"
     }
@@ -24,6 +23,5 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile project(":libraryoflibrary")
 }

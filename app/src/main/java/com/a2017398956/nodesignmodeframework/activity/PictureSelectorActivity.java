@@ -13,8 +13,6 @@ import com.yuyh.library.imgsel.ImageLoader;
 import com.yuyh.library.imgsel.ImgSelActivity;
 import com.yuyh.library.imgsel.ImgSelConfig;
 
-import static com.a2017398956.nodesignmodeframework.utils.tinker.util.SampleApplicationContext.context;
-
 public class PictureSelectorActivity extends BaseActivity {
 
     private ImageView iv_test;
@@ -35,7 +33,7 @@ public class PictureSelectorActivity extends BaseActivity {
         iv_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImgSelConfig config = new ImgSelConfig.Builder(PictureSelectorActivity.this , loader)
+                ImgSelConfig config = new ImgSelConfig.Builder(PictureSelectorActivity.this, loader)
                         // 是否多选
                         .multiSelect(true)
                         // “确定”按钮背景色

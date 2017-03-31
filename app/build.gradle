@@ -25,15 +25,17 @@ def VERSION_CODE = 2
 def VERSION_NAME = '2.0.0.0'
 // 打包最新发布版本后修改这里为最新版本，此时可将${bakPath} 目录下之前版本相关文件删除
 // 从 ${bakPath} 目录下选择基文件的文件名，基文件为当前最新版本
-def oldApkName = 'app-1223-14-38-42'
+def oldApkName = 'app-0331-10-47-45'//app-1223-14-38-42
 // 获得基准APK所在的路径，这里使用默认的即可
 def bakPath = file("${buildDir}/bakApk/")
 // 定义JDK版本
 def javaVersion = JavaVersion.VERSION_1_7
 
 android {
-    compileSdkVersion COMPILESDK_VERSION
-    buildToolsVersion BUILDTOOLS_VERSION
+
+    compileSdkVersion "${COMPILE_SDK_VERSION}" as int
+    buildToolsVersion "${BUILD_TOOLS_VERSION}"
+
     compileOptions {
         sourceCompatibility javaVersion
         targetCompatibility javaVersion
@@ -43,8 +45,8 @@ android {
     }
     defaultConfig {
         applicationId "com.a2017398956.nodesignmodeframework"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion "${MIN_SDK_VERSION}" as int
+        targetSdkVersion "${TARGET_SDK_VERSION}" as int
         versionCode VERSION_CODE
         versionName VERSION_NAME
         multiDexEnabled = true // 开启Dex分割
@@ -126,9 +128,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
     compile project(':test01library')
-    compile 'com.android.support:appcompat-v7:24.2.0'
     //tinker的核心库
     compile('com.tencent.tinker:tinker-android-lib:1.7.5')
 }
