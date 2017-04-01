@@ -129,6 +129,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':test01library')
+    compile project(':androidart')
     //tinker的核心库
     compile('com.tencent.tinker:tinker-android-lib:1.7.5')
 }

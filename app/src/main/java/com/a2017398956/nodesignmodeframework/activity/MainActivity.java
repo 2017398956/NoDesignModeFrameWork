@@ -1,5 +1,6 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.activity.ActivityTranslateAnimator.AActivity;
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
+import com.nfl.libraryoflibrary.utils.ActivityLauncher;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetectorTool;
@@ -32,6 +34,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
+    private Activity thiz ;
     private ScrollView sv ;
     private LinearLayout ll_root_view ;
     private TextView tv_test_info ;
@@ -56,6 +59,7 @@ public class MainActivity extends BaseActivity {
     private Button bn_pedometer ;
     private Button bn_tinker ;
     private Button bn_picture_selector ;
+    private Button bn_android_art ;
     private List<String> filterInfos ;
     private Handler handler = new Handler(){
         @Override
@@ -69,6 +73,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        thiz = this ;
         filterInfos = new ArrayList<>() ;
         filterInfos.add("root") ;
         initView() ;
@@ -139,6 +144,7 @@ public class MainActivity extends BaseActivity {
         bn_pedometer = (Button) findViewById(R.id.bn_pedometer) ;
         bn_tinker = (Button) findViewById(R.id.bn_tinker) ;
         bn_picture_selector = (Button) findViewById(R.id.bn_picture_selector) ;
+        bn_android_art = (Button) findViewById(R.id.bn_android_art) ;
     }
 
     private void setListenerss(){
@@ -160,6 +166,7 @@ public class MainActivity extends BaseActivity {
         bn_pedometer.setOnClickListener(onClickListener);
         bn_tinker.setOnClickListener(onClickListener);
         bn_picture_selector.setOnClickListener(onClickListener);
+        bn_android_art.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -234,6 +241,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.bn_picture_selector :
                     intent = new Intent(MainActivity.this , PictureSelectorActivity.class) ;
+                    break;
+                case R.id.bn_android_art :
+                    nfl.com.androidart.utils.ActivityLauncher.launchContentsActivity(thiz);
                     break;
             }
             if(null != intent){

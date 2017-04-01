@@ -164,5 +164,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="图片选择器"/>
+
+        <Button
+            android:id="@+id/bn_android_art"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Android 开发艺术探索"/>
     </LinearLayout>
 </ScrollView>
