@@ -124,6 +124,10 @@ android {
         javaMaxHeapSize "4g"
         // 解决java堆内存不够的问题，参考http://blog.csdn.net/niuzhucedenglu/article/details/51781618  第五条
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
