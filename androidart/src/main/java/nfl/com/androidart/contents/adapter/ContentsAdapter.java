@@ -35,9 +35,8 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LogTool.i("这里应该只执行一次");
-//        if (null == itemContentsBindingTemp)
-            itemContentsBindingTemp = DataBindingUtil.inflate(LayoutInflater.from(context),
-                    R.layout.item_contents, parent, false);
+        itemContentsBindingTemp = DataBindingUtil.inflate(LayoutInflater.from(context),
+                R.layout.item_contents, parent, false);
         myViewHolder = new MyViewHolder(itemContentsBindingTemp);
         LogTool.i("parent:" + parent.toString());
         LogTool.i("myViewHolder01:" + myViewHolder.toString());
