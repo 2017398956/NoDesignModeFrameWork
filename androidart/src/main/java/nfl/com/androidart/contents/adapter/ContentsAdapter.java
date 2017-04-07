@@ -2,12 +2,12 @@ package nfl.com.androidart.contents.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.nfl.libraryoflibrary.utils.LogTool;
+import com.nfl.libraryoflibrary.view.recyclerview.RecyclereViewBaseAdapter;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import nfl.com.androidart.databinding.ItemContentsBinding;
  * Created by fuli.niu on 2017/4/5.
  */
 
-public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.MyViewHolder> {
+public class ContentsAdapter extends RecyclereViewBaseAdapter<ContentsAdapter.MyViewHolder> {
 
     private Context context;
     private List<Contents> contentsList;
@@ -34,7 +34,8 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.MyView
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LogTool.i("这里应该只执行一次");
+        super.onCreateViewHolder(parent, viewType);
+        LogTool.i("这里应该只执行一次" + parent.toString());
         itemContentsBindingTemp = DataBindingUtil.inflate(LayoutInflater.from(context),
                 R.layout.item_contents, parent, false);
         myViewHolder = new MyViewHolder(itemContentsBindingTemp);
@@ -44,7 +45,7 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder2(MyViewHolder holder, int position) {
         LogTool.i("myViewHolder02:" + holder.toString());
         LogTool.i("position:" + position);
         itemContentsBinding = holder.getItemContentsBinding();
@@ -56,7 +57,7 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.MyView
         return null == contentsList ? 0 : contentsList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclereViewBaseAdapter.BaseViewHolder {
 
         private ItemContentsBinding itemContentsBinding;
 
@@ -77,4 +78,5 @@ public class ContentsAdapter extends RecyclerView.Adapter<ContentsAdapter.MyView
             this.itemContentsBinding = itemContentsBinding;
         }
     }
+
 }
