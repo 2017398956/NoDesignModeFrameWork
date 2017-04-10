@@ -12,14 +12,14 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_chapter_name"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
             android:background="@color/ripple_material_light"
             android:text="@={contents.chapter}" />
-
     </LinearLayout>
 </layout>
