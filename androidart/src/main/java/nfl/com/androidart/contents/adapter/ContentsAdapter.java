@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.view.recyclerview.RecyclereViewBaseAdapter;
 
 import java.util.List;
@@ -35,19 +34,15 @@ public class ContentsAdapter extends RecyclereViewBaseAdapter<ContentsAdapter.My
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         super.onCreateViewHolder(parent, viewType);
-        LogTool.i("这里应该只执行一次" + parent.toString());
         itemContentsBindingTemp = DataBindingUtil.inflate(LayoutInflater.from(context),
                 R.layout.item_contents, parent, false);
         myViewHolder = new MyViewHolder(itemContentsBindingTemp);
-        LogTool.i("parent:" + parent.toString());
-        LogTool.i("myViewHolder01:" + myViewHolder.toString());
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder2(MyViewHolder holder, int position) {
-        LogTool.i("myViewHolder02:" + holder.toString());
-        LogTool.i("position:" + position);
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
         itemContentsBinding = holder.getItemContentsBinding();
         itemContentsBinding.setContents(contentsList.get(position));
     }

@@ -2,7 +2,6 @@ package nfl.com.androidart.contents.activity;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
 
@@ -29,6 +28,8 @@ public class ContentsActivity extends CommonActionBarActivity {
     private Contents contents;
 
     private Button bn_test;
+
+    private ContentsAdapter contentsAdapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,20 +97,16 @@ public class ContentsActivity extends CommonActionBarActivity {
         contents.setChapter("第十六章");
         data.add(contents);
 
-//        LinearLayoutManager manager = new LinearLayoutManager(this);
-//        binding.rvContents.setLayoutManager(manager);
-//        binding.rvContents.setHasFixedSize(true);
-
-        ContentsAdapter contentsAdapter = new ContentsAdapter(this, data);
-        CustomRecyclerView.OnItemClickListener onItemClickListener = new CustomRecyclerView.OnItemClickListener(){
+        contentsAdapter = new ContentsAdapter(this, data);
+        CustomRecyclerView.OnItemClickListener onItemClickListener = new CustomRecyclerView.OnItemClickListener() {
             @Override
             public void onClick(View view, int position) {
                 super.onClick(view, position);
                 ToastTool.showShortToast(position + "");
             }
-        } ;
-        binding.rvContents.setOnItemClickListener(onItemClickListener);
+        };
         binding.rvContents.setAdapter(contentsAdapter);
+        binding.rvContents.addOnItemClickListener(onItemClickListener);
 
         // Contents2Adapter contents2Adapter = new Contents2Adapter(this , data) ;
         // binding.lvContents.setAdapter(contents2Adapter);
@@ -126,6 +123,9 @@ public class ContentsActivity extends CommonActionBarActivity {
             int i = v.getId();
             if (i == R.id.bn_test) {
                 contents.setChapter("新的标题");
+                if(contentsAdapter != null){
+                    contentsAdapter.notifyItemChanged(contentsAdapter.getItemCount() - 1);
+                }
             }
         }
     };
