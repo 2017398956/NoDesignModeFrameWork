@@ -33,8 +33,12 @@ public class ContentsAdapter extends RecyclereViewBaseAdapter<ContentsAdapter.My
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        super.onCreateViewHolder(parent, viewType);
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return super.onCreateViewHolder(parent, viewType);
+    }
+
+    @Override
+    public MyViewHolder onCreateViewHolder2(ViewGroup parent, int viewType) {
         LogTool.i("这里应该只执行一次" + parent.toString());
         itemContentsBindingTemp = DataBindingUtil.inflate(LayoutInflater.from(context),
                 R.layout.item_contents, parent, false);
