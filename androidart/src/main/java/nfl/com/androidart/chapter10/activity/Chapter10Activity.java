@@ -2,6 +2,7 @@ package nfl.com.androidart.chapter10.activity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.view.View;
@@ -19,6 +20,13 @@ import nfl.com.androidart.R;
 public class Chapter10Activity extends CommonActionBarActivity {
 
     private Button bn_test;
+    private Handler handlerActivity = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            bn_test.setText("handlerActivity");
+        }
+    } ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +49,13 @@ public class Chapter10Activity extends CommonActionBarActivity {
     private Thread interactiveWithUIThread = new Thread(new Runnable() {
 
         private Looper myLooper;
+
         private android.os.Handler handler = new android.os.Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 LogTool.i("接收到 Handler 发送的信息");
-                LogTool.i("Looper.myLooper(): " + Looper.myLooper());
+                LogTool.i("handler Looper.myLooper(): " + Looper.myLooper());
                 // 这里得到的是 UI 线程的 Looper 即：MainLooper ; MainLooper 不能 quit
                 if (Looper.myLooper() != null && Looper.myLooper() != Looper.getMainLooper()) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -73,14 +82,38 @@ public class Chapter10Activity extends CommonActionBarActivity {
             try {
                 LogTool.i("Before Looper.loop()");
                 LogTool.i("Looper.myLooper(): " + Looper.myLooper() + " , Looper.getMainLooper(): " + Looper.getMainLooper());
-                Looper.prepare();
+//                looperPrepare();
                 LogTool.i("Looper.myLooper(): " + Looper.myLooper() + " , Looper.getMainLooper(): " + Looper.getMainLooper());
-                myLooper = Looper.myLooper();
+//                final Handler handler02 = new Handler(){
+//                    @Override
+//                    public void handleMessage(Message msg) {
+//                        super.handleMessage(msg);
+//                        LogTool.i("handler02 Looper.myLooper(): " + Looper.myLooper()) ;
+//                    }
+//                } ;
+                // handler02.sendEmptyMessage(10) ;
                 handler.sendEmptyMessage(10);
-                Looper.loop();
+//                Looper.loop();
                 LogTool.i("After Looper.loop()");
             } catch (Exception e) {
                 LogTool.i(ExceptionTool.getExceptionTraceString(e));
+            }
+        }
+
+        /**
+         * 有时 myLooper 为 null 但 ，已经执行过 Looper.prepare() ;
+         * TODO 找出造成这种现象的原因
+         */
+        private void looperPrepare() {
+            try {
+                if(null == myLooper){
+                    Looper.prepare();
+                    myLooper = Looper.myLooper();
+                }
+            } catch (Exception e) {
+                LogTool.i("Looper 初始化异常:" + ExceptionTool.getExceptionTraceString(e));
+            } finally {
+                myLooper = Looper.myLooper();
             }
         }
     });
