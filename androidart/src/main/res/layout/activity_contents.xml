@@ -6,7 +6,11 @@
         <variable
             name="contents"
             type="nfl.com.androidart.contents.databinding.Contents"></variable>
+        <variable
+            name="controller"
+            type="nfl.com.androidart.contents.handing.ContentsViewController"/>
     </data>
+
 
     <LinearLayout
         android:id="@+id/ll_contents"
@@ -18,7 +22,9 @@
             android:id="@+id/bn_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={contents.chapter}" />
+            android:text="@={contents.chapter}"
+            android:onClick="@{controller.onClick}"
+            android:visibility="visible"/>
 
         <com.nfl.libraryoflibrary.view.recyclerview.CustomRecyclerView
             android:id="@+id/rv_contents"

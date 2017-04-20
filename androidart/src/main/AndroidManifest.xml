@@ -11,7 +11,8 @@
             android:theme="@style/androidArtStyle" />
         <activity
             android:name=".contents.activity.ContentsActivity"
-            android:theme="@style/androidArtStyle"></activity>
+            android:theme="@style/androidArtStyle" />
+        <activity android:name=".chapter10.activity.Chapter10Activity"></activity>
     </application>
 
 </manifest>
