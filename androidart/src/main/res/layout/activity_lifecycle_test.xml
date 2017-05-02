@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nfl.com.androidart.chapter01.activity.ActivityLifecycleTestActivity">
+    android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/bn_transparent_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:onClick="onClick"
+        android:text="透明 Activity" />
+
+    <Button
+        android:id="@+id/bn_dialog_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:onClick="onClick"
+        android:text="Dialog Activity" />
+
+    <Button
+        android:id="@+id/bn_normal_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:onClick="onClick"
+        android:text="Normal Activity" />
+
+</LinearLayout>

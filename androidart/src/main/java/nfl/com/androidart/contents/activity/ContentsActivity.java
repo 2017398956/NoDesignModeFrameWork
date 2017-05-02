@@ -53,7 +53,7 @@ public class ContentsActivity extends CommonActionBarActivity {
         binding.setController(contentsViewController);
 
         // 添加目录
-        String[] titles = {"第 1 章", "第 2 章", "第 3 章", "第 4 章",
+        String[] titles = {"第 1 章 Activity 的生命周期和启动模式", "第 2 章", "第 3 章", "第 4 章",
                 "第 5 章", "第 6 章", "第 7 章",
                 "第 8 章", "第 9 章", "第 10 章 Android 的消息机制",
                 "第 11 章", "第 12 章", "第 13 章",

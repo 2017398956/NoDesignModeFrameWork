@@ -12,7 +12,14 @@
         <activity
             android:name=".contents.activity.ContentsActivity"
             android:theme="@style/androidArtStyle" />
-        <activity android:name=".chapter10.activity.Chapter10Activity"></activity>
+        <activity android:name=".chapter10.activity.Chapter10Activity" />
+        <activity
+            android:name=".chapter01.activity.TransparentActivity"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name=".chapter01.activity.DialogActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".chapter01.activity.NormalActivity"></activity>
     </application>
 
 </manifest>
