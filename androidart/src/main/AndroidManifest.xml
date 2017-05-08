@@ -18,8 +18,9 @@
             android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name=".chapter01.activity.DialogActivity"
-            android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".chapter01.activity.NormalActivity"></activity>
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name=".chapter01.activity.NormalActivity" />
+        <activity android:name=".chapter02.activity.Chapter02Activity"></activity>
     </application>
 
 </manifest>
