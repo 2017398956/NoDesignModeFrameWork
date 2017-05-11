@@ -21,8 +21,13 @@
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".chapter01.activity.NormalActivity" />
         <activity
-            android:name=".chapter02.activity.Chapter02Activity"
-            android:process="com.nfl.chapter02"></activity>
+            android:name=".chapter02.activity.Chapter02Activity"/>
+
+        <service
+            android:name=".chapter02.service.BookManagerService"
+            android:process=":remote"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
