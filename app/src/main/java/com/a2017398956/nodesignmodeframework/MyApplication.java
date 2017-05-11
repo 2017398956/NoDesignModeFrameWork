@@ -111,6 +111,7 @@ class YourOwnSender implements ReportSender {
 public class MyApplication extends DefaultApplicationLike {
     private Context context;
     private Application application;
+    private static int sharedNumber = 1;
 
     public MyApplication(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent, Resources[] resources, ClassLoader[] classLoader, AssetManager[] assetManager) {
         super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent, resources, classLoader, assetManager);
@@ -120,7 +121,9 @@ public class MyApplication extends DefaultApplicationLike {
     @Override
     public void onCreate() {
         super.onCreate();
-        // LogTool.i("application is Creating");
+        LogTool.i("application is Creating");
+        LogTool.i("sharedNumber:" + sharedNumber);
+        sharedNumber++;
         /**
          * 这里获取 context 会为 null ，详见：https://github.com/Tencent/tinker/issues/55
          * {@link #onBaseContextAttached(Context)} 会先于{@link #onCreate()} 执行且其 context 不为 null
@@ -160,7 +163,7 @@ public class MyApplication extends DefaultApplicationLike {
     @Override
     public void onBaseContextAttached(Context base) {
         super.onBaseContextAttached(base);
-        this.context = base ;
+        this.context = base;
         LogTool.i("base:" + base + ",context:" + context + ",application:" + application);
         MultiDex.install(base);
         // Create an ConfigurationBuilder. It is prepopulated with values specified via annotation.

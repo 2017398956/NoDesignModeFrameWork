@@ -20,7 +20,9 @@
             android:name=".chapter01.activity.DialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".chapter01.activity.NormalActivity" />
-        <activity android:name=".chapter02.activity.Chapter02Activity"></activity>
+        <activity
+            android:name=".chapter02.activity.Chapter02Activity"
+            android:process="com.nfl.chapter02"></activity>
     </application>
 
 </manifest>
