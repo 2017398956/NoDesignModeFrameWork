@@ -6,6 +6,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.view.activity.CommonActionBarActivity;
@@ -22,7 +23,24 @@ public class Chapter02Activity extends CommonActionBarActivity {
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            if(!service.isBinderAlive()){
+                // 如果服务端 Binder 死亡这里直接退出
+                LogTool.i("BookManagerServie dead") ;
+                // TODO 重新绑定远程 Service
+                return ;
+            }
             IBookManager bookManager = IBookManager.Stub.asInterface(service) ;
+
+//            IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
+//                @Override
+//                public void binderDied() {
+//                }
+//            } ;
+//            if(null == bookManager){
+//                bookManager.asBinder().unlinkToDeath(mDeathRecipient , 0) ;
+//                return;
+//            }
+
             try {
                 List<Book> list = bookManager.getBookList() ;
                 LogTool.i("query book list , list type: " + list.getClass()) ;
@@ -43,7 +61,8 @@ public class Chapter02Activity extends CommonActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter02);
-        bindService(new Intent(this , BookManagerService.class) , mConnection , BIND_AUTO_CREATE) ;
+        Intent mService = new Intent(this , BookManagerService.class) ;
+        bindService(mService , mConnection , BIND_AUTO_CREATE) ;
     }
 
     @Override

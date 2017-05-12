@@ -21,11 +21,6 @@ public class BookManagerService extends Service {
     private Binder mBinder = new IBookManager.Stub() {
 
         @Override
-        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
-
-        }
-
-        @Override
         public List<Book> getBookList() throws RemoteException {
             return mBookList;
         }
