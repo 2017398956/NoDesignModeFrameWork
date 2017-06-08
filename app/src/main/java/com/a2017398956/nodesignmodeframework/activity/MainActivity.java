@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.activity.ActivityTranslateAnimator.AActivity;
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
+import com.a2017398956.nodesignmodeframework.pushtoloadmore.PushLoadMoreActivity;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.ActivityLauncher;
 import com.nfl.libraryoflibrary.utils.LogTool;
@@ -28,6 +29,7 @@ import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
 import com.nfl.libraryoflibrary.view.floatwindow.FloatWindowActivity;
 import com.nfl.libraryoflibrary.view.traffic_float_window.TrafficFloatWindowActivity;
+import com.squareup.haha.perflib.Main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +62,7 @@ public class MainActivity extends BaseActivity {
     private Button bn_tinker ;
     private Button bn_picture_selector ;
     private Button bn_android_art ;
+    private Button bn_crv ;
     private List<String> filterInfos ;
     private Handler handler = new Handler(){
         @Override
@@ -145,6 +148,7 @@ public class MainActivity extends BaseActivity {
         bn_tinker = (Button) findViewById(R.id.bn_tinker) ;
         bn_picture_selector = (Button) findViewById(R.id.bn_picture_selector) ;
         bn_android_art = (Button) findViewById(R.id.bn_android_art) ;
+        bn_crv = (Button) findViewById(R.id.bn_crv) ;
     }
 
     private void setListenerss(){
@@ -167,6 +171,7 @@ public class MainActivity extends BaseActivity {
         bn_tinker.setOnClickListener(onClickListener);
         bn_picture_selector.setOnClickListener(onClickListener);
         bn_android_art.setOnClickListener(onClickListener);
+        bn_crv.setOnClickListener(onClickListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -244,6 +249,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.bn_android_art :
                     nfl.com.androidart.utils.ActivityLauncher.launchContentsActivity(thiz);
+                    break;
+                case R.id.bn_crv :
+                    intent = new Intent(MainActivity.this , PushLoadMoreActivity.class) ;
                     break;
             }
             if(null != intent){
