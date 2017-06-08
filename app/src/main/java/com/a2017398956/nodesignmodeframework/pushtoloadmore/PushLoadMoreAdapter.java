@@ -17,9 +17,9 @@ import java.util.List;
 public class PushLoadMoreAdapter extends RecyclereViewBaseAdapter<PushLoadMoreAdapter.ViewHolder> {
 
     private Context context;
-    private List<String> data;
+    private List<PushLoadMoreActivity.TextBean> data;
 
-    public PushLoadMoreAdapter(Context context, List<String> data) {
+    public PushLoadMoreAdapter(Context context, List<PushLoadMoreActivity.TextBean> data) {
         this.context = context;
         this.data = data;
     }
@@ -60,7 +60,7 @@ public class PushLoadMoreAdapter extends RecyclereViewBaseAdapter<PushLoadMoreAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         if (position != data.size()) {
-            holder.text1.setText(data.get(position));
+            holder.text1.setText(data.get(position).getText());
         } else {
 
         }
