@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import nfl.com.androidart.chapter01.activity.ActivityLifecycleTestActivity;
 import nfl.com.androidart.chapter02.activity.Chapter02Activity;
+import nfl.com.androidart.chapter08.activity.Chapter08Activity;
 import nfl.com.androidart.chapter10.activity.Chapter10Activity;
 import nfl.com.androidart.contents.activity.ContentsActivity;
 
@@ -32,6 +33,8 @@ public class ActivityLauncher {
             intent = new Intent(activity, ActivityLifecycleTestActivity.class);
         } else if (position == 1) {
             intent = new Intent(activity, Chapter02Activity.class);
+        } else if (position == 7) {
+            intent = new Intent(activity, Chapter08Activity.class);
         } else if (position == 9) {
             intent = new Intent(activity, Chapter10Activity.class);
         }

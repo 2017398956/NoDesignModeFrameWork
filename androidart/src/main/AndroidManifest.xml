@@ -20,14 +20,15 @@
             android:name=".chapter01.activity.DialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".chapter01.activity.NormalActivity" />
-        <activity
-            android:name=".chapter02.activity.Chapter02Activity"/>
+        <activity android:name=".chapter02.activity.Chapter02Activity" />
 
         <service
             android:name=".chapter02.service.BookManagerService"
-            android:process=":remote"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            android:process=":remote" />
+
+        <activity android:name=".chapter08.activity.Chapter08Activity"></activity>
     </application>
 
 </manifest>
