@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetectorTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
+import com.nfl.libraryoflibrary.utils.image.ImageLoadTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
 import com.nfl.libraryoflibrary.view.floatwindow.FloatWindowActivity;
@@ -149,6 +151,10 @@ public class MainActivity extends BaseActivity {
         bn_picture_selector = (Button) findViewById(R.id.bn_picture_selector) ;
         bn_android_art = (Button) findViewById(R.id.bn_android_art) ;
         bn_crv = (Button) findViewById(R.id.bn_crv) ;
+        String imageUrl = "http://img.my.csdn.net/uploads/201309/01/1378037235_7476.jpg";
+        String imageUrl2 = "http://10.11.18.40/demo/38F843A7BE1AC297250F88FBF79D8DF3.png" ;
+        ImageLoadTool.loadImage(this , imageUrl ,(ImageView) findViewById(R.id.iv_01) , 0 , null);
+        ImageLoadTool.loadImage(this , imageUrl ,(ImageView) findViewById(R.id.iv_02) , 0 , null);
     }
 
     private void setListenerss(){

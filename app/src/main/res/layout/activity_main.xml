@@ -24,6 +24,19 @@
             android:layout_height="wrap_content"
             android:text="测试ResultInfo异常" />
 
+        <ImageView
+            android:id="@+id/iv_01"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp" />
+
+        <ImageView
+            android:id="@+id/iv_02"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:scaleType="matrix"
+            android:layout_margin="10dp" />
+
         <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
             android:id="@+id/ll_left_sliding"
             android:layout_width="match_parent"
@@ -108,7 +121,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="属性动画" />
-		<Button
+
+        <Button
             android:id="@+id/bn_imitation_win10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -142,39 +156,42 @@
             android:id="@+id/bn_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RecyclerView"/>
+            android:text="RecyclerView" />
 
         <Button
             android:id="@+id/bn_webView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="WebView"/>
+            android:text="WebView" />
 
         <Button
             android:id="@+id/bn_fingerprint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="指纹测试"/>
+            android:text="指纹测试" />
+
         <Button
             android:id="@+id/bn_pedometer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="计步器"/>
+            android:text="计步器" />
+
         <Button
             android:id="@+id/bn_tinker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tinker测试"/>
+            android:text="Tinker测试" />
+
         <Button
             android:id="@+id/bn_picture_selector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="图片选择器"/>
+            android:text="图片选择器" />
 
         <Button
             android:id="@+id/bn_android_art"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Android 开发艺术探索"/>
+            android:text="Android 开发艺术探索" />
     </LinearLayout>
 </ScrollView>
