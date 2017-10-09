@@ -17,6 +17,7 @@ import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
 import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.pedometer.SensorListener;
+import com.squareup.leakcanary.LeakCanary;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 
@@ -145,6 +146,13 @@ public class MyApplication extends DefaultApplicationLike {
 //        removeAllReportSenders(): 移除所有发送器
 
         ApplicationContext.applicationContext = context;
+        if (LeakCanary.isInAnalyzerProcess(context)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        // LeakCanary.install((Application) context);
+        // Normal app init code...
         application.registerActivityLifecycleCallbacks(new CustomActivityLifecycleCallbacks());
         CustomBroadcastSender.sendAppStartBroadCast(context);
         // startService(new Intent(this , DBInsightService.class)) ;

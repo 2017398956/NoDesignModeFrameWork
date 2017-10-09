@@ -1,279 +1,81 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
-import com.a2017398956.nodesignmodeframework.activity.ActivityTranslateAnimator.AActivity;
-import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
-import com.a2017398956.nodesignmodeframework.pushtoloadmore.PushLoadMoreActivity;
+import com.a2017398956.nodesignmodeframework.databinding.ActivityMainBinding;
+import com.a2017398956.nodesignmodeframework.databinding.MainActivityHanding;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
-import com.nfl.libraryoflibrary.utils.ActivityLauncher;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetectorTool;
-import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
-import com.nfl.libraryoflibrary.view.floatwindow.FloatWindowActivity;
-import com.nfl.libraryoflibrary.view.traffic_float_window.TrafficFloatWindowActivity;
-import com.squareup.haha.perflib.Main;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
-    private Activity thiz ;
-    private ScrollView sv ;
-    private LinearLayout ll_root_view ;
-    private TextView tv_test_info ;
-    private Button bn_result_exception ;
-    private Button bn_test ;
-    private Button bn_ptrsml ;
-    private Button bn_value_animator ;
-    private LinearLayout ll_left_sliding ;
-    private LinearLayout ll_displayed ;
-    private LinearLayout ll_hidden ;
-    private TextView tv_01 , tv_02 , tv_03;
-    private int tv_02_width , tv_03_width;
-    private Button bn_bottom_sheet_behavior ;
-    private Button bn_imitation_win10 ;
-    private Button bn_imitation_wechat ;
-    private Button bn_float_window ;
-    private Button bn_liu_lang ;
-    private Button bn_translate_animator ;
-    private Button bn_recyclerView ;
-    private Button bn_webView ;
-    private Button bn_fingerprint ;
-    private Button bn_pedometer ;
-    private Button bn_tinker ;
-    private Button bn_picture_selector ;
-    private Button bn_android_art ;
-    private Button bn_crv ;
-    private List<String> filterInfos ;
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            tv_test_info.setText(msg.what + "");
-        }
-    } ;
+    private ActivityMainBinding binding;
+    private MainActivityHanding mainActivityHanding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        thiz = this ;
-        filterInfos = new ArrayList<>() ;
-        filterInfos.add("root") ;
-        initView() ;
-        setListenerss() ;
-        // CustomBroadcastSender.sendAppStartBroadCast(this);
-//        ToastTool.showCustomShortToast("custom");
-//        ToastTool.showLongToast("LongToast===============");
-//        ToastTool.showLongToast("LongToast---------------");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ToastTool.showLongToast("LongToast===============");
-                ToastTool.showLongToast("LongToast---------------");
-            }
-
-        }).start();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-//                Looper.prepare();
-//                ToastTool.showLongToast("LongToast===============");
-//                ToastTool.showLongToast("LongToast---------------");
-//                Looper.loop();
-//                PackageInfoProvider packageInfoProvider = new PackageInfoProvider(ApplicationContext.applicationContext) ;
-
-                String rootDetailInfo = new RootDetectorTool(ApplicationContext.applicationContext , filterInfos).getRootDetailInfo() ;
-                Looper.prepare();
-                tv_test_info.setText(rootDetailInfo);
-                Looper.loop();
-//                Message message = new Message() ;
-//                message.what = new RootDetectorTool(ApplicationContext.applicationContext , filterInfos).isDeviceRootedCheckedByPath() ? 1 : 0 ;
-//                handler.sendMessage(message) ;
-            }
-        }).start();
+        setContentView(null);
+        hiddenBackIcon();
+        setActionBarTitle("主页");
+        initDataBinding();
+        addAnotherLeftSlidingView();
+        setListeners();
+        printRootInfo();
     }
 
-    private void initView() {
-        sv = (ScrollView) findViewById(R.id.sv) ;
-
-        ll_root_view = (LinearLayout) findViewById(R.id.ll_root_view) ;
-        tv_test_info = (TextView) findViewById(R.id.tv_test_info);
-
-        bn_result_exception = (Button) findViewById(R.id.bn_result_exception) ;
-        bn_test = (Button) findViewById(R.id.bn_test) ;
-        ll_left_sliding = (LinearLayout) findViewById(R.id.ll_left_sliding) ;
-        ll_displayed = (LinearLayout) findViewById(R.id.ll_displayed) ;
-        ll_hidden = (LinearLayout) findViewById(R.id.ll_hidden) ;
-        tv_01 = (TextView) findViewById(R.id.tv_01) ;
-        tv_02 = (TextView) findViewById(R.id.tv_02) ;
-        tv_03 = (TextView) findViewById(R.id.tv_03) ;
-        tv_02_width = tv_02.getWidth() ;
-        tv_03_width = tv_03.getWidth() ;
-        bn_bottom_sheet_behavior = (Button) findViewById(R.id.bn_bottom_sheet_behavior) ;
-        bn_ptrsml = (Button) findViewById(R.id.bn_ptrsml) ;
-        LogTool.i("a:" + tv_03_width + " , b:" + tv_02_width + ",c:" + tv_01.getWidth());
-        addLeftSlidingView();
-
-
-        bn_value_animator = (Button) findViewById(R.id.bn_value_animator) ;
-        bn_imitation_win10 = (Button) findViewById(R.id.bn_imitation_win10) ;
-        bn_imitation_wechat = (Button) findViewById(R.id.bn_imitation_wechat) ;
-        bn_float_window = (Button) findViewById(R.id.bn_float_window) ;
-        bn_liu_lang = (Button) findViewById(R.id.bn_liu_lang) ;
-        bn_translate_animator = (Button) findViewById(R.id.bn_translate_animator) ;
-        bn_recyclerView = (Button) findViewById(R.id.bn_recyclerView) ;
-        bn_webView = (Button) findViewById(R.id.bn_webView) ;
-        bn_fingerprint = (Button) findViewById(R.id.bn_fingerprint) ;
-        bn_pedometer = (Button) findViewById(R.id.bn_pedometer) ;
-        bn_tinker = (Button) findViewById(R.id.bn_tinker) ;
-        bn_picture_selector = (Button) findViewById(R.id.bn_picture_selector) ;
-        bn_android_art = (Button) findViewById(R.id.bn_android_art) ;
-        bn_crv = (Button) findViewById(R.id.bn_crv) ;
+    private void initDataBinding() {
+        binding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.activity_main, ll_data_binding, true);
+        ll_data_binding.setVisibility(View.VISIBLE);
+        mainActivityHanding = new MainActivityHanding(this, binding);
+        binding.setMainActivityHanding(mainActivityHanding);
     }
 
-    private void setListenerss(){
-        bn_result_exception.setOnClickListener(onClickListener);
-        bn_test.setOnClickListener(onClickListener);
-        bn_ptrsml.setOnClickListener(onClickListener);
-        tv_02.setOnClickListener(onClickListener);
-        ll_left_sliding.setOnTouchListener(onTouchListener);
-        bn_bottom_sheet_behavior.setOnClickListener(onClickListener);
-        bn_value_animator.setOnClickListener(onClickListener);
-        bn_imitation_win10.setOnClickListener(onClickListener);
-        bn_imitation_wechat.setOnClickListener(onClickListener);
-        bn_float_window.setOnClickListener(onClickListener);
-        bn_liu_lang.setOnClickListener(onClickListener);
-        bn_translate_animator.setOnClickListener(onClickListener);
-        bn_recyclerView.setOnClickListener(onClickListener);
-        bn_webView.setOnClickListener(onClickListener);
-        bn_fingerprint.setOnClickListener(onClickListener);
-        bn_pedometer.setOnClickListener(onClickListener);
-        bn_tinker.setOnClickListener(onClickListener);
-        bn_picture_selector.setOnClickListener(onClickListener);
-        bn_android_art.setOnClickListener(onClickListener);
-        bn_crv.setOnClickListener(onClickListener);
+    private void setListeners() {
+        binding.llLeftSliding.setOnTouchListener(onTouchListener);
     }
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
-            if(motionEvent.getAction() == MotionEvent.ACTION_UP){
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 LogTool.i("ACTION_UP");
             }
-            LogTool.i("ACTION_UP" + motionEvent.getAction()) ;
+            LogTool.i("ACTION_UP" + motionEvent.getAction());
             return false;
         }
-    } ;
+    };
 
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = null ;
-            switch (view.getId()){
-                case R.id.bn_result_exception:
-                    intent = new Intent(MainActivity.this, ResultInfoExceptionActivity.class);
-                    break;
-                case R.id.bn_test:
-                    intent =  new Intent(MainActivity.this , TestActivity.class) ;
-                    break;
-                case R.id.bn_bottom_sheet_behavior :
-                    intent = new Intent(MainActivity.this , BottomSheetBehaviorTestActivity.class) ;
-                    break;
-                case R.id.bn_ptrsml :
-                    intent = new Intent(MainActivity.this , PullToRefreshSwipeMenuListViewActivity.class) ;
-                    break;
-                case R.id.ll_displayed :
-                    ToastTool.showShortToast("ll_displayed");
-                    break;
-                case R.id.tv_01:
-                    ToastTool.showShortToast("tv_01");
-                    break;
-                case R.id.tv_02:
-                    ToastTool.showShortToast("tv_02");
-                    break;
-                case R.id.bn_value_animator :
-                    intent = new Intent(MainActivity.this , ValueAnimatorTestActivity.class) ;
-                    break ;
-                case R.id.bn_imitation_win10 :
-                    intent = new Intent(MainActivity.this , ImitationWin10ProgressBarActivity.class) ;
-                    break;
-                case R.id.bn_imitation_wechat :
-                    intent = new Intent(MainActivity.this , TestImitatationWeChatActivity.class) ;
-                    break;
-                case R.id.bn_float_window :
-                    intent = new Intent(MainActivity.this , FloatWindowActivity.class) ;
-                    break;
-                case R.id.bn_liu_lang :
-                    intent = new Intent(MainActivity.this , TrafficFloatWindowActivity.class) ;
-                    break;
-                case R.id.bn_translate_animator :
-                    intent = new Intent(MainActivity.this , AActivity.class) ;
-                    break;
-                case R.id.bn_recyclerView :
-                    intent = new Intent(MainActivity.this , RecyclerViewActivity.class) ;
-                    break;
-                case R.id.bn_webView :
-                    intent = new Intent(MainActivity.this , WebViewActivity.class) ;
-                    break;
-                case R.id.bn_fingerprint :
-                    intent = new Intent(MainActivity.this , FingerprintTestActivity.class) ;
-                    break;
-                case R.id.bn_pedometer :
-                    intent = new Intent(MainActivity.this , PedometerActivity.class) ;
-                    break;
-                case R.id.bn_tinker :
-                    intent = new Intent(MainActivity.this , TinkerTestActivity.class) ;
-                    break;
-                case R.id.bn_picture_selector :
-                    intent = new Intent(MainActivity.this , PictureSelectorActivity.class) ;
-                    break;
-                case R.id.bn_android_art :
-                    nfl.com.androidart.utils.ActivityLauncher.launchContentsActivity(thiz);
-                    break;
-                case R.id.bn_crv :
-                    intent = new Intent(MainActivity.this , PushLoadMoreActivity.class) ;
-                    break;
-            }
-            if(null != intent){
-                startActivity(intent);
-            }
-        }
-    } ;
-
-
-    private void addLeftSlidingView(){
-        LinearLayout ll01 = new LinearLayout(this) ;
-        Button t01 = new Button(this) ;
+    private void addAnotherLeftSlidingView() {
+        LinearLayout ll01 = new LinearLayout(this);
+        Button t01 = new Button(this);
         t01.setWidth(PhoneInfoTool.getScreenWidth(this));
         t01.setText("test");
         t01.setGravity(Gravity.CENTER);
         t01.setHeight(180);
         t01.setClickable(false);
-//        t01.setBackgroundColor(Color.CYAN);
         ll01.addView(t01);
 
-        LinearLayout ll02 = new LinearLayout(this) ;
-        TextView t02 = new TextView(this) ;
+        LinearLayout ll02 = new LinearLayout(this);
+        TextView t02 = new TextView(this);
         t02.setWidth(180);
         t02.setText("yes");
         t02.setHeight(180);
@@ -281,7 +83,21 @@ public class MainActivity extends BaseActivity {
         t02.setGravity(Gravity.CENTER);
         t02.setBackgroundColor(Color.RED);
         ll02.addView(t02);
-        CustomHorizontalLeftSlidingView2 customHorizontalLeftSlidingView2 = new CustomHorizontalLeftSlidingView2(this , ll01 , ll02) ;
-        ll_root_view.addView(customHorizontalLeftSlidingView2.getView());
+        CustomHorizontalLeftSlidingView2 customHorizontalLeftSlidingView2 = new CustomHorizontalLeftSlidingView2(this, ll01, ll02);
+        binding.llRootView.addView(customHorizontalLeftSlidingView2.getView());
+    }
+
+    private void printRootInfo() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<String> filterInfos = new ArrayList<>();// 判断是否有 root 可能的关键词
+                filterInfos.add("root");
+                String rootDetailInfo = new RootDetectorTool(ApplicationContext.applicationContext, filterInfos).getRootDetailInfo();
+                Looper.prepare();
+                binding.tvTestInfo.setText(rootDetailInfo);
+                Looper.loop();
+            }
+        }).start();
     }
 }
