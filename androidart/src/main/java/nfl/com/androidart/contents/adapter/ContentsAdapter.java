@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nfl.libraryoflibrary.view.recyclerview.RecyclereViewBaseAdapter;
+import com.nfl.libraryoflibrary.view.recyclerview.RecyclerViewBaseAdapter;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import nfl.com.androidart.databinding.ItemContentsBinding;
  * Created by fuli.niu on 2017/4/5.
  */
 
-public class ContentsAdapter extends RecyclereViewBaseAdapter<ContentsAdapter.MyViewHolder> {
+public class ContentsAdapter extends RecyclerViewBaseAdapter<ContentsAdapter.MyViewHolder> {
 
     private Context context;
     private List<Contents> contentsList;
@@ -52,7 +52,7 @@ public class ContentsAdapter extends RecyclereViewBaseAdapter<ContentsAdapter.My
         return null == contentsList ? 0 : contentsList.size();
     }
 
-    public class MyViewHolder extends RecyclereViewBaseAdapter.BaseViewHolder {
+    public class MyViewHolder extends RecyclerViewBaseAdapter.BaseViewHolder {
 
         private ItemContentsBinding itemContentsBinding;
 

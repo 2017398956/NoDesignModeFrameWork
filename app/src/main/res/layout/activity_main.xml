@@ -27,12 +27,33 @@
                 android:layout_marginLeft="5dp"
                 android:text="info" />
 
+<<<<<<< HEAD
             <Button
                 android:id="@+id/bn_result_exception"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{mainActivityHanding.onClick}"
                 android:text="测试ResultInfo异常" />
+=======
+        <ImageView
+            android:id="@+id/iv_01"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp" />
+
+        <ImageView
+            android:id="@+id/iv_02"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:scaleType="matrix"
+            android:layout_margin="10dp" />
+
+        <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
+            android:id="@+id/ll_left_sliding"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+>>>>>>> d90c67ae3a6af1614e0f013acad935c4686bbea7
 
             <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
                 android:id="@+id/ll_left_sliding"
@@ -123,12 +144,26 @@
                 android:onClick="@{mainActivityHanding.onClick}"
                 android:text="属性动画" />
 
+<<<<<<< HEAD
             <Button
                 android:id="@+id/bn_imitation_win10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{mainActivityHanding.onClick}"
                 android:text="仿Win10进度条" />
+=======
+        <Button
+            android:id="@+id/bn_value_animator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="属性动画" />
+
+        <Button
+            android:id="@+id/bn_imitation_win10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="仿Win10进度条" />
+>>>>>>> d90c67ae3a6af1614e0f013acad935c4686bbea7
 
             <Button
                 android:id="@+id/bn_imitation_wechat"
@@ -158,6 +193,7 @@
                 android:onClick="@{mainActivityHanding.onClick}"
                 android:text="转场动画" />
 
+<<<<<<< HEAD
             <Button
                 android:id="@+id/bn_recyclerView"
                 android:layout_width="match_parent"
@@ -209,3 +245,48 @@
         </LinearLayout>
     </ScrollView>
 </layout>
+=======
+        <Button
+            android:id="@+id/bn_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RecyclerView" />
+
+        <Button
+            android:id="@+id/bn_webView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WebView" />
+
+        <Button
+            android:id="@+id/bn_fingerprint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="指纹测试" />
+
+        <Button
+            android:id="@+id/bn_pedometer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="计步器" />
+
+        <Button
+            android:id="@+id/bn_tinker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tinker测试" />
+
+        <Button
+            android:id="@+id/bn_picture_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="图片选择器" />
+
+        <Button
+            android:id="@+id/bn_android_art"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Android 开发艺术探索" />
+    </LinearLayout>
+</ScrollView>
+>>>>>>> d90c67ae3a6af1614e0f013acad935c4686bbea7

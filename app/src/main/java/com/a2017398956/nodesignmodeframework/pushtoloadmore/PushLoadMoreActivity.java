@@ -29,7 +29,7 @@ public class PushLoadMoreActivity extends CommonActionBarActivity {
             data.add(textBean);
         }
         crv = (CustomRecyclerView) findViewById(R.id.crv);
-        crv.setOnPushListener(onPushListener);
+        // crv.setOnPushListener(onPushListener);
         adapter = new PushLoadMoreAdapter(this, data);
         crv.setAdapter(adapter);
 
