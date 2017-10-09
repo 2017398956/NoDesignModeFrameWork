@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nfl.libraryoflibrary.view.recyclerview.RecyclereViewBaseAdapter;
+import com.nfl.libraryoflibrary.view.recyclerview.RecyclerViewBaseAdapter;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * Created by fuli.niu on 2017/6/8.
  */
 
-public class PushLoadMoreAdapter extends RecyclereViewBaseAdapter<PushLoadMoreAdapter.ViewHolder> {
+public class PushLoadMoreAdapter extends RecyclerViewBaseAdapter<PushLoadMoreAdapter.ViewHolder> {
 
     private Context context;
     private List<PushLoadMoreActivity.TextBean> data;
@@ -66,7 +66,7 @@ public class PushLoadMoreAdapter extends RecyclereViewBaseAdapter<PushLoadMoreAd
         }
     }
 
-    public class ViewHolder extends RecyclereViewBaseAdapter.BaseViewHolder {
+    public class ViewHolder extends RecyclerViewBaseAdapter.BaseViewHolder {
 
         private TextView text1;
 
