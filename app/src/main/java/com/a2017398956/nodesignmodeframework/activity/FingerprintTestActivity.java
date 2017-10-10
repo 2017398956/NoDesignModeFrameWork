@@ -11,10 +11,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Handler;
+import android.support.design.widget.TabItem;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
+import com.a2017398956.nodesignmodeframework.fragment.Fragment01;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
@@ -32,16 +38,39 @@ public class FingerprintTestActivity extends BaseActivity {
     private CancellationSignal cancellationSignal;
     private FingerprintManager.AuthenticationCallback authenticationCallback;
     private Handler handler;
-    private TextView tv_info ;
+    private TextView tv_info;
+    private TabLayout tab_layout;
+    private ViewPager view_pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint_test);
-        tv_info = (TextView) findViewById(R.id.tv_info) ;
+        tv_info = (TextView) findViewById(R.id.tv_info);
         tv_info.setText(Build.VERSION_CODES.M + "");
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            return ;
+        tab_layout = (TabLayout) findViewById(R.id.tab_layout);
+        view_pager = (ViewPager) findViewById(R.id.view_pager);
+        view_pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return new Fragment01();
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
+            }
+        });
+        tab_layout.setupWithViewPager(view_pager);
+        tab_layout.getTabAt(0).setText("Tab01") ;
+        tab_layout.getTabAt(1).setText("Tab02") ;
+//        tab_layout.addTab(tab_layout.getTabAt(0).setText("Tab01"), true);
+//        tab_layout.addTab(tab_layout.getTabAt(1).setText("Tab02"));
+//        tab_layout.addTab(tab_layout.newTab().setText("Tab01"), 0 , true);
+//        tab_layout.addTab(tab_layout.newTab().setText("Tab02") , 1 );
+//        tab_layout.addTab(tab_layout.newTab().setText("Tab03") , 2);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return;
         }
         authenticationCallback = new FingerprintManager.AuthenticationCallback() {
 
@@ -91,9 +120,9 @@ public class FingerprintTestActivity extends BaseActivity {
         };
 
         try {
-            cipher = Cipher.getInstance("DES") ;
+            cipher = Cipher.getInstance("DES");
             cryptoObject = new FingerprintManager.CryptoObject(cipher);
-            LogTool.i("加密成功") ;
+            LogTool.i("加密成功");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
@@ -120,7 +149,7 @@ public class FingerprintTestActivity extends BaseActivity {
                 }
                 // 进行指纹验证
 //                fingerprintManager.authenticate(cryptoObject , cancellationSignal , 0 , authenticationCallback, handler);
-                fingerprintManager.authenticate(null , null, 0, authenticationCallback, null);
+                fingerprintManager.authenticate(null, null, 0, authenticationCallback, null);
             } else {
                 ToastTool.showShortToast("您的设备不支持指纹识别");
             }
@@ -128,7 +157,7 @@ public class FingerprintTestActivity extends BaseActivity {
         }
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if(null != locationManager){
+        if (null != locationManager) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 1, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
@@ -137,17 +166,17 @@ public class FingerprintTestActivity extends BaseActivity {
 
                 @Override
                 public void onStatusChanged(String provider, int status, Bundle extras) {
-                    ToastTool.showShortToast("onStatusChanged") ;
+                    ToastTool.showShortToast("onStatusChanged");
                 }
 
                 @Override
                 public void onProviderEnabled(String provider) {
-                    ToastTool.showShortToast("onProviderEnabled") ;
+                    ToastTool.showShortToast("onProviderEnabled");
                 }
 
                 @Override
                 public void onProviderDisabled(String provider) {
-                    ToastTool.showShortToast("onProviderDisabled") ;
+                    ToastTool.showShortToast("onProviderDisabled");
                 }
             });
         }
