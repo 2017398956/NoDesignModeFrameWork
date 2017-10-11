@@ -11,12 +11,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Handler;
-import android.support.design.widget.TabItem;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
@@ -40,12 +41,22 @@ public class FingerprintTestActivity extends BaseActivity {
     private Handler handler;
     private TextView tv_info;
     private TabLayout tab_layout;
+    private CollapsingToolbarLayout collapsing_tool_bar_layout;
+    private Toolbar tool_bar;
     private ViewPager view_pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint_test);
+        tool_bar = (Toolbar) findViewById(R.id.tool_bar);
+//        tool_bar.setTitle("Title");
+        tool_bar.setNavigationIcon(R.drawable.lol_icon_back_drawable);
+//        tool_bar.setLogo(R.mipmap.ic_launcher);
+
+        collapsing_tool_bar_layout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_tool_bar_layout);
+        collapsing_tool_bar_layout.setTitle("Title");
+
         tv_info = (TextView) findViewById(R.id.tv_info);
         tv_info.setText(Build.VERSION_CODES.M + "");
         tab_layout = (TabLayout) findViewById(R.id.tab_layout);
@@ -62,8 +73,8 @@ public class FingerprintTestActivity extends BaseActivity {
             }
         });
         tab_layout.setupWithViewPager(view_pager);
-        tab_layout.getTabAt(0).setText("Tab01") ;
-        tab_layout.getTabAt(1).setText("Tab02") ;
+        tab_layout.getTabAt(0).setText("Tab01");
+        tab_layout.getTabAt(1).setText("Tab02");
 //        tab_layout.addTab(tab_layout.getTabAt(0).setText("Tab01"), true);
 //        tab_layout.addTab(tab_layout.getTabAt(1).setText("Tab02"));
 //        tab_layout.addTab(tab_layout.newTab().setText("Tab01"), 0 , true);
