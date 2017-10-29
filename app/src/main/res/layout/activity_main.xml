@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -14,211 +15,222 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/ll_root_view"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_test_info"
+            <LinearLayout
+                android:id="@+id/ll_root_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="info" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_01"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp" />
+                <TextView
+                    android:id="@+id/tv_test_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="info" />
 
-            <ImageView
-                android:id="@+id/iv_02"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:scaleType="matrix" />
+                <ImageView
+                    android:id="@+id/iv_01"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp" />
 
-            <Button
-                android:id="@+id/bn_result_exception"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="测试ResultInfo异常" />
+                <ImageView
+                    android:id="@+id/iv_02"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:scaleType="matrix" />
 
-            <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
-                android:id="@+id/ll_left_sliding"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/bn_result_exception"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="测试ResultInfo异常" />
 
-                <LinearLayout
-                    android:id="@+id/ll_displayed"
+                <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
+                    android:id="@+id/ll_left_sliding"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_01"
+                    <LinearLayout
+                        android:id="@+id/ll_displayed"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#353212"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="水平滑动"
-                        android:textColor="#FFF" />
-                </LinearLayout>
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/ll_hidden"
-                    android:layout_width="120dp"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tv_01"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#353212"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="水平滑动"
+                            android:textColor="#FFF" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_02"
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"
-                        android:background="#808080"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="置顶"
-                        android:textColor="#FFF" />
+                    <LinearLayout
+                        android:id="@+id/ll_hidden"
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_03"
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"
-                        android:background="#F00"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="删除"
-                        android:textColor="#FFF" />
-                </LinearLayout>
-            </com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView>
+                        <TextView
+                            android:id="@+id/tv_02"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:background="#808080"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="置顶"
+                            android:textColor="#FFF" />
 
-            <Button
-                android:id="@+id/bn_test"
+                        <TextView
+                            android:id="@+id/tv_03"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:background="#F00"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="删除"
+                            android:textColor="#FFF" />
+                    </LinearLayout>
+                </com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView>
+
+                <Button
+                    android:id="@+id/bn_test"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="测试"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/bn_bottom_sheet_behavior"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="测试底部弹出sheet" />
+
+                <Button
+                    android:id="@+id/bn_ptrsml"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="下拉刷新和侧滑删除" />
+
+                <Button
+                    android:id="@+id/bn_crv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="My RecyclerView" />
+
+                <Button
+                    android:id="@+id/bn_value_animator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="属性动画" />
+
+                <Button
+                    android:id="@+id/bn_imitation_win10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="仿Win10进度条" />
+
+                <Button
+                    android:id="@+id/bn_imitation_wechat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="仿微信" />
+
+                <Button
+                    android:id="@+id/bn_float_window"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="内存悬浮窗" />
+
+                <Button
+                    android:id="@+id/bn_liu_lang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="流量悬浮窗" />
+
+                <Button
+                    android:id="@+id/bn_translate_animator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="转场动画" />
+
+                <Button
+                    android:id="@+id/bn_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="RecyclerView" />
+
+                <Button
+                    android:id="@+id/bn_webView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="WebView" />
+
+                <Button
+                    android:id="@+id/bn_fingerprint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="指纹测试" />
+
+                <Button
+                    android:id="@+id/bn_pedometer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="计步器" />
+
+                <Button
+                    android:id="@+id/bn_tinker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="Tinker测试" />
+
+                <Button
+                    android:id="@+id/bn_picture_selector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="图片选择器" />
+
+                <Button
+                    android:id="@+id/bn_android_art"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding.onClick}"
+                    android:text="Android 开发艺术探索" />
+            </LinearLayout>
+
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/constraint_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="测试"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/bn_bottom_sheet_behavior"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="测试底部弹出sheet" />
-
-            <Button
-                android:id="@+id/bn_ptrsml"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="下拉刷新和侧滑删除" />
-
-            <Button
-                android:id="@+id/bn_crv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="My RecyclerView" />
-
-            <Button
-                android:id="@+id/bn_value_animator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="属性动画" />
-
-            <Button
-                android:id="@+id/bn_imitation_win10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="仿Win10进度条" />
-
-            <Button
-                android:id="@+id/bn_imitation_wechat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="仿微信" />
-
-            <Button
-                android:id="@+id/bn_float_window"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="内存悬浮窗" />
-
-            <Button
-                android:id="@+id/bn_liu_lang"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="流量悬浮窗" />
-
-            <Button
-                android:id="@+id/bn_translate_animator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="转场动画" />
-
-            <Button
-                android:id="@+id/bn_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="RecyclerView" />
-
-            <Button
-                android:id="@+id/bn_webView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="WebView" />
-
-            <Button
-                android:id="@+id/bn_fingerprint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="指纹测试" />
-
-            <Button
-                android:id="@+id/bn_pedometer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="计步器" />
-
-            <Button
-                android:id="@+id/bn_tinker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="Tinker测试" />
-
-            <Button
-                android:id="@+id/bn_picture_selector"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="图片选择器" />
-
-            <Button
-                android:id="@+id/bn_android_art"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{mainActivityHanding.onClick}"
-                android:text="Android 开发艺术探索" />
-        </LinearLayout>
+                android:layout_alignParentBottom="true"></android.support.design.widget.CoordinatorLayout>
+        </RelativeLayout>
     </ScrollView>
 </layout>
