@@ -51,7 +51,7 @@ public class TinkerTestActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 // for lib/armeabi, just use TinkerInstaller.loadLibrary
-                TinkerInstaller.loadArmLibrary(getApplicationContext(), "stlport_shared");
+                // TinkerInstaller.loadArmLibrary(getApplicationContext(), "stlport_shared");
                 // TinkerInstaller.loadLibraryFromTinker(getApplicationContext(), "assets/x86", "stlport_shared");
             }
         });

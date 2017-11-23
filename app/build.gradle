@@ -1,20 +1,20 @@
 apply plugin: 'com.android.application'
-apply plugin: "org.sonarqube"
-
-sonarqube {
-    properties {
-        property "sonar.projectName", "Android Lint :: NoDesignModeFrameWork :: SonarQube Scanner for Gradle"
-        property "sonar.projectKey", "org.sonarqube:android-ndmfw-sq-scanner-gradle"
-
-        property "sonar.sourceEncoding", "UTF-8"
-        property "sonar.sources", "."
-        property "sonar.exclusions", "build/**,**/*.png"
-
-        property "sonar.import_unknown_files", true
-
-        property "sonar.android.lint.report", "./build/outputs/lint-results.xml"
-    }
-}
+//apply plugin: "org.sonarqube"
+//
+//sonarqube {
+//    properties {
+//        property "sonar.projectName", "Android Lint :: NoDesignModeFrameWork :: SonarQube Scanner for Gradle"
+//        property "sonar.projectKey", "org.sonarqube:android-ndmfw-sq-scanner-gradle"
+//
+//        property "sonar.sourceEncoding", "UTF-8"
+//        property "sonar.sources", "."
+//        property "sonar.exclusions", "build/**,**/*.png"
+//
+//        property "sonar.import_unknown_files", true
+//
+//        property "sonar.android.lint.report", "./build/outputs/lint-results.xml"
+//    }
+//}
 
 def COMPILESDK_VERSION = Integer.parseInt(file('../COMPILESDK_VERSION.txt').text)
 def BUILDTOOLS_VERSION = file('../BUILDTOOLS_VERSION.txt').text
@@ -32,9 +32,9 @@ def bakPath = file("${buildDir}/bakApk/")
 def javaVersion = JavaVersion.VERSION_1_7
 
 android {
-
     compileSdkVersion "${COMPILE_SDK_VERSION}" as int
     buildToolsVersion "${BUILD_TOOLS_VERSION}"
+    flavorDimensions "nfl"
 
     compileOptions {
         sourceCompatibility javaVersion
@@ -106,6 +106,7 @@ android {
             // buildConfigField("boolean" , "LOG_DEBUG" , "false")
             // 混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            dimension "nfl"
         }
     }
 
@@ -132,12 +133,12 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    // optional, help to generate the final application
+    // provided("com.tencent.tinker:tinker-android-anno:$TINKER")
+    // tinker's main Android lib
+    compile("com.tencent.tinker:tinker-android-lib:$TINKER")
     compile project(':test01library')
     compile project(':androidart')
-    //tinker的核心库
-    compile 'com.tencent.tinker:tinker-android-lib:1.7.5'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 ext {
@@ -255,6 +256,32 @@ if (buildWithTinker()) {
             // 这里放弃使用 git 版本号的方法，直接使用 app 版本名称
             // tinkerId = getTinkerIdValue()
             tinkerId = VERSION_NAME
+
+            /**
+             * if keepDexApply is true, class in which dex refer to the old apk.
+             * open this can reduce the dex diff file size.
+             */
+            keepDexApply = false
+
+            /**
+             * optional, default 'false'
+             * Whether tinker should treat the base apk as the one being protected by app
+             * protection tools.
+             * If this attribute is true, the generated patch package will contain a
+             * dex including all changed classes instead of any dexdiff patch-info files.
+             */
+            isProtectedApp = false
+
+            /**
+             * optional, default 'false'
+             * Whether tinker should support component hotplug (add new component dynamically).
+             * If this attribute is true, the component added in new apk will be available after
+             * patch is successfully loaded. Otherwise an error would be announced when generating patch
+             * on compile-time.
+             *
+             * <b>Notice that currently this feature is incubating and only support NON-EXPORTED Activity</b>
+             */
+            supportHotplugComponent = false
         }
         // dex相关的配置项
         dex {
@@ -284,7 +311,7 @@ if (buildWithTinker()) {
              * 但是这套方案需要插桩，会造成Dalvik下性能损耗以及Art补丁包可能过大的问题，务必谨慎使用。
              * 另外一方面，这种方案在Android N之后可能会产生问题，建议过滤N之后的用户。
              */
-            usePreGeneratedPatchDex = false
+            // usePreGeneratedPatchDex = false
             /**
              * necessary，default '[]'
              * what dexes in apk are expected to deal with tinkerPatch
@@ -408,11 +435,12 @@ if (buildWithTinker()) {
         }
     }
 
-    List<String> flavors = new ArrayList<>();
+    List<String> flavors = new ArrayList<>()
     project.android.productFlavors.each { flavor ->
         flavors.add(flavor.name)
     }
     boolean hasFlavors = flavors.size() > 0
+    def date = new Date().format("MMdd-HH-mm-ss")
 
     /**
      * bak apk and mapping
@@ -422,16 +450,17 @@ if (buildWithTinker()) {
          * task type, you want to bak
          */
         def taskName = variant.name
-        def date = new Date().format("MMdd-HH-mm-ss")
+
         tasks.all {
             if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
+
                 it.doLast {
                     copy {
                         def fileNamePrefix = "${project.name}-${variant.baseName}"
                         def newFileNamePrefix = hasFlavors ? "${fileNamePrefix}" : "${fileNamePrefix}-${date}"
 
                         def destPath = hasFlavors ? file("${bakPath}/${project.name}-${date}/${variant.flavorName}") : bakPath
-                        from variant.outputs.outputFile
+                        from variant.outputs.first().outputFile
                         into destPath
                         rename { String fileName ->
                             fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
@@ -453,6 +482,7 @@ if (buildWithTinker()) {
             }
         }
     }
+
     project.afterEvaluate {
         //sample use for build all flavor for one time
         if (hasFlavors) {
@@ -493,4 +523,3 @@ if (buildWithTinker()) {
         }
     }
 }
-
