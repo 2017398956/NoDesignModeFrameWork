@@ -1,8 +1,9 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
-
+// This module will be used in Android projects, need to be
+// compatible with Java 1.7
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"

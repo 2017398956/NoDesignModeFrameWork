@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@={contents.chapter}"
-            android:onClick="@{controller.onClick}"
+            android:onClick="@{controller::onClick}"
             android:visibility="visible"/>
 
         <com.nfl.libraryoflibrary.view.recyclerview.CustomRecyclerView
