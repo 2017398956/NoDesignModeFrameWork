@@ -36,10 +36,6 @@ public class BindViewProcessor extends AbstractProcessor {
     private Messager mMessager;
     private Elements mElementUtils;
 
-    public BindViewProcessor() {
-        super();
-    }
-
     @Override
     public Set<String> getSupportedOptions() {
         return super.getSupportedOptions();

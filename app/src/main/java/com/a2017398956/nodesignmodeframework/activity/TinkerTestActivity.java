@@ -33,8 +33,8 @@ public class TinkerTestActivity extends BaseActivity {
         setContentView(R.layout.activity_tinker_test);
         LogTool.e(TAG, "I'm on onCreate classloader:" + TinkerTestActivity.class.getClassLoader().toString());
         // test resource change
-        LogTool.e(TAG, "I'm on onCreate string:" + getResources().getString(R.string.test_resource));
-        // LogTool.e(TAG, "i am on patch onCreate");
+//        LogTool.e(TAG, "I'm on onCreate string:" + getResources().getString(R.string.test_resource));
+         LogTool.e(TAG, "i am on patch onCreate");
 
         Button loadPatchButton = (Button) findViewById(R.id.loadPatch);
 
