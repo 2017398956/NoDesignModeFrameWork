@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by nfl on 2017/11/29.
+ * Created by fuli.niu on 2017/11/24.
  */
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.FIELD)
-public @interface BindView {
-    int value() ;
+public @interface TestAnnotation {
+//    int value() default -1 ;
 }

@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
-import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.view.Gravity;
@@ -18,13 +17,15 @@ import android.widget.TextView;
 import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.databinding.ActivityMainBinding;
 import com.a2017398956.nodesignmodeframework.databinding.MainActivityHanding;
-import com.nfl.apt.annotation.BindView;
+import com.nfl.apt.annotation.OnClick;
+import com.nfl.apt.annotation.TestAnnotation;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetectorTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
+import com.nfl.libraryoflibrary.utils.annotation.ViewFinder;
 import com.nfl.libraryoflibrary.utils.image.ImageLoadTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
@@ -36,8 +37,13 @@ public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding binding;
     private MainActivityHanding mainActivityHanding;
-    @BindView
-    private ConstraintLayout constraint_layout ;
+    @TestAnnotation
+    private ConstraintLayout constraint_layout;
+
+    @OnClick(R.id.iv_01)
+    public void onButtonClick() {
+        ToastTool.showShortToast("onButtonClick");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +55,17 @@ public class MainActivity extends BaseActivity {
         addAnotherLeftSlidingView();
         setListeners();
         printRootInfo();
-        Snackbar snackbar = Snackbar.make(binding.constraintLayout , "Test snackbar" , Snackbar.LENGTH_LONG).setAction("action" ,
-                new CustomOnClickListener(){
+        Snackbar snackbar = Snackbar.make(binding.constraintLayout, "Test snackbar", Snackbar.LENGTH_LONG).setAction("action",
+                new CustomOnClickListener() {
                     @Override
                     public void onClick(View v) {
                         super.onClick(v);
                         ToastTool.showShortToast("Action");
                     }
-                }) ;
+                });
 
         snackbar.show();
+        ViewFinder.inject(this);
     }
 
     private void initDataBinding() {

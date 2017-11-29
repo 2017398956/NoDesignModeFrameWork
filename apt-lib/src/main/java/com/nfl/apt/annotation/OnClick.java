@@ -8,8 +8,8 @@ import java.lang.annotation.Target;
 /**
  * Created by nfl on 2017/11/29.
  */
-@Retention(RetentionPolicy.CLASS)
-@Target(ElementType.FIELD)
-public @interface BindView {
-    int value() ;
+@Retention(RetentionPolicy.SOURCE)
+@Target(ElementType.METHOD)
+public @interface OnClick {
+    int[] value() ;
 }
