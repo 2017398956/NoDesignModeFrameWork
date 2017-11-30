@@ -5,6 +5,7 @@ dependencies {
     compile project(':apt-lib')
     compile 'com.google.auto.service:auto-service:1.0-rc3'
     compile 'com.squareup:javapoet:1.9.0'
+    api "org.aspectj:aspectjrt:${ASPECTJ}"
 }
 
 sourceCompatibility = "1.7"

@@ -54,9 +54,6 @@ public class BindViewProcessor extends AbstractProcessor {
         return types;
     }
 
-    /**
-     * @return 指定使用的 Java 版本。通常返回 SourceVersion.latestSupported()。
-     */
     @Override
     public SourceVersion getSupportedSourceVersion() {
         return SourceVersion.latestSupported();
@@ -90,7 +87,7 @@ public class BindViewProcessor extends AbstractProcessor {
 
     private void processBindView(RoundEnvironment roundEnv) throws IllegalArgumentException {
         for (Element element : roundEnv.getElementsAnnotatedWith(BindView.class)) {
-            // TODO: 16/8/4 检查 字段 的修饰符
+            // TODO: 16/8/4 check field's modifier
             AnnotatedClass annotatedClass = getAnnotatedClass(element);
             BindViewField field = new BindViewField(element);
             annotatedClass.addField(field);

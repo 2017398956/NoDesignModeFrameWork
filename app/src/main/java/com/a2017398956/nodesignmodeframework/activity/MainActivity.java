@@ -1,9 +1,12 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
+import android.Manifest;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresPermission;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.view.Gravity;
@@ -13,10 +16,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.databinding.ActivityMainBinding;
 import com.a2017398956.nodesignmodeframework.databinding.MainActivityHanding;
+import com.nfl.apt.annotation.GetPermissions;
 import com.nfl.apt.annotation.OnClick;
 import com.nfl.apt.annotation.TestAnnotation;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
@@ -40,9 +45,11 @@ public class MainActivity extends BaseActivity {
     @TestAnnotation
     private ConstraintLayout constraint_layout;
 
-    @OnClick(R.id.iv_01)
+    @OnClick(R.id.bn_test)
     public void onButtonClick() {
-        ToastTool.showShortToast("onButtonClick");
+        // ToastTool.showShortToast("onButtonClick");
+        Toast.makeText(context, "onButtonClick", Toast.LENGTH_SHORT).show();
+        readContacts("fuli.niu");
     }
 
     @Override
@@ -130,5 +137,10 @@ public class MainActivity extends BaseActivity {
                 Looper.loop();
             }
         }).start();
+    }
+
+    @GetPermissions({Manifest.permission.READ_CONTACTS , Manifest.permission.BATTERY_STATS})
+    private String readContacts(String contact){
+        return "sfdjl" ;
     }
 }

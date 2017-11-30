@@ -1,1 +1,1 @@
-include ':app', ':test01library', ':libraryoflibrary', ':androidart', ':apt-lib', ':apt-compiler'
+include ':app', ':test01library', ':libraryoflibrary', ':androidart', ':apt-lib', ':apt-compiler', ':aop'
