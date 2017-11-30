@@ -33,7 +33,7 @@
                     android:text="info" />
 
                 <Button
-                    android:id="@+id/bn_test"
+                    android:id="@+id/bn_test_aop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Test"/>
