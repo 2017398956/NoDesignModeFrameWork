@@ -1,13 +1,13 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresPermission;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -32,6 +32,7 @@ import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetectorTool;
+import com.nfl.libraryoflibrary.utils.SharePreferenceTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.utils.annotation.ViewFinder;
 import com.nfl.libraryoflibrary.utils.image.ImageLoadTool;
@@ -45,37 +46,61 @@ public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding binding;
     private MainActivityHanding mainActivityHanding;
-    private final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 10 ;
+    private final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 10;
     @TestAnnotation
     private ConstraintLayout constraint_layout;
+
+    String[] permissions = {Manifest.permission.READ_CONTACTS};
+    Context applicationContext = ApplicationContext.applicationContext;
+    Activity activity = this;
 
     @OnClick(R.id.bn_test_aop)
     public void onButtonClick() {
         // ToastTool.showShortToast("onButtonClick");
         Toast.makeText(context, "onButtonClick", Toast.LENGTH_SHORT).show();
         readContacts("fuli.niu");
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(ApplicationContext.applicationContext , Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
-                    Manifest.permission.READ_CONTACTS)) {
-                ToastTool.showShortToast("shouldShowRequestPermissionRationale");
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
 
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                ActivityCompat.requestPermissions(MainActivity.this,
-                        new String[]{Manifest.permission.READ_CONTACTS},
-                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-                ToastTool.showShortToast("requestPermissions");
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
+        List<String> permissionList = new ArrayList<>();// 用于保存未通过的权限
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(applicationContext, permission) != PackageManager.PERMISSION_GRANTED) {
+                permissionList.add(permission);
+            }
+        }
+        if (permissionList.size() == 0) {
+            // TODO : 执行被注解的方法
+        } else {
+            for (int i = 0; i < permissionList.size(); i++) {
+                if (ContextCompat.checkSelfPermission(applicationContext, permissionList.get(i)) != PackageManager.PERMISSION_GRANTED) {
+                    // 没有得到授权
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permissionList.get(i))) {
+                        // 没有权限，被拒绝过至少一次且没有点击 再不提醒
+                        ActivityCompat.requestPermissions(activity, (String[]) permissionList.toArray(), 0);
+                        break;
+                    } else {
+                        // 情景一：没有权限且没有被拒绝过
+                        // 情景二：没有权限且点击了 再不提醒 ，权限申请会直接返回失败
+                        if (SharePreferenceTool.get(this, permissionList.get(i), null) != null) {
+                            if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permissionList.get(i))) {
+                                // 选择不再询问，并点击过拒绝
+                                // TODO :根据 permissionList 弹出提示框，以手动授权
+                                // showAlertDialog("为了正常使用某些功能,请开启联系人权限", "取消", "手动授权", new DialogInterface.OnClickListener() {
+                                // @Override
+                                // public void onClick(DialogInterface dialog, int which) {
+                                // Uri uri = Uri.parse("package:" + getPackageName());//包名
+                                // Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS", uri);
+                                // startActivity(intent);
+                                // }
+                                // });
+                                break;
+                            }
+                        } else {
+                            if (permissionList.size() - 1 == i) {
+                                ActivityCompat.requestPermissions(activity, (String[]) permissionList.toArray(), 0);
+                            }
+                            SharePreferenceTool.saveObject(false, permissionList.get(i));
+                        }
+                    }
+                }
             }
         }
     }
@@ -104,23 +129,34 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode , permissions , grantResults);
+    public void onRequestPermissionsResult(int requestCode, String permissions[],
+                                           int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    ToastTool.showShortToast("PERMISSION_GRANTED");
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
-                } else {
-                    ToastTool.showShortToast("permission denied, boo! Disable the");
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                if (grantResults.length > 0) {
+                    List<String> permissionList = new ArrayList<>();
+                    for (int i = 0; i < grantResults.length; i++) {
+                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                            permissionList.add(permissions[i]);
+                        }
+                    }
+                    if (0 == permissionList.size()) {
+                        // TODO : 被注解的方法
+                    } else {
+                        for (int i = 0; i < permissionList.size(); i++) {
+                            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permissionList.get(i))) {
+                                // 没有权限，被拒绝过至少一次且没有点击 再不提醒
+                                ActivityCompat.requestPermissions(activity, (String[]) permissionList.toArray(), 0);
+                                break;
+                            } else {
+                                // TODO :根据 permissionList 弹出提示框，以手动授权
+                                break;
+                            }
+                        }
+                    }
                 }
-                return;
+                break;
             }
         }
     }
@@ -189,8 +225,8 @@ public class MainActivity extends BaseActivity {
         }).start();
     }
 
-    @GetPermissions({Manifest.permission.READ_CONTACTS , Manifest.permission.BATTERY_STATS})
-    private String readContacts(String contact){
-        return "sfdjl" ;
+    @GetPermissions({Manifest.permission.READ_CONTACTS, Manifest.permission.BATTERY_STATS})
+    private String readContacts(String contact) {
+        return "sfdjl";
     }
 }
