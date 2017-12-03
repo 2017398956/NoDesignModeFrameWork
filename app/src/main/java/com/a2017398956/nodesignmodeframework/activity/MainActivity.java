@@ -24,7 +24,6 @@ import android.widget.Toast;
 import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.databinding.ActivityMainBinding;
 import com.a2017398956.nodesignmodeframework.databinding.MainActivityHanding;
-import com.nfl.apt.annotation.GetPermissions;
 import com.nfl.apt.annotation.OnClick;
 import com.nfl.apt.annotation.TestAnnotation;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
@@ -59,6 +58,9 @@ public class MainActivity extends BaseActivity {
         // ToastTool.showShortToast("onButtonClick");
         Toast.makeText(context, "onButtonClick", Toast.LENGTH_SHORT).show();
         readContacts("fuli.niu");
+        if(true){
+            return;
+        }
 
         List<String> permissionList = new ArrayList<>();// 用于保存未通过的权限
         for (String permission : permissions) {
@@ -225,7 +227,6 @@ public class MainActivity extends BaseActivity {
         }).start();
     }
 
-    @GetPermissions({Manifest.permission.READ_CONTACTS, Manifest.permission.BATTERY_STATS})
     private String readContacts(String contact) {
         return "sfdjl";
     }

@@ -9,5 +9,6 @@
     <string name="crash_notif_title">CrashTest has crashed...</string>
     <string name="crash_notif_text">Please click here to help fix the issue.</string>
     <string name="test_resource">I am in the base apk</string>
+    <string name="title_activity_replaced">ReplacedActivity</string>
     <!--<string name="test_resource">I am in the patch apk</string>-->
 </resources>

@@ -6,10 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by fuli.niu on 2017/11/30.
+ * Created by nfl on 2017/12/3.
  */
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.METHOD)
-public @interface GetPermissions {
-    String[] value() ;
+public @interface Repalce {
 }

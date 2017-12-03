@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.a2017398956.nodesignmodeframework">
 
-    <uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS" />
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -62,7 +62,11 @@
         <activity android:name=".activity.TinkerTestActivity" />
         <activity android:name=".activity.PictureSelectorActivity" />
         <activity android:name="com.yuyh.library.imgsel.ImgSelActivity" />
-        <activity android:name=".pushtoloadmore.PushLoadMoreActivity"></activity>
+        <activity android:name=".pushtoloadmore.PushLoadMoreActivity" />
+        <activity
+            android:name=".activity.ReplacedActivity"
+            android:label="@string/title_activity_replaced"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
