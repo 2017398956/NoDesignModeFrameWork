@@ -1,11 +1,10 @@
 package com.a2017398956.nodesignmodeframework;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
@@ -15,7 +14,9 @@ import com.a2017398956.nodesignmodeframework.utils.tinker.util.TinkerManager;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
 import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
+import com.nfl.libraryoflibrary.utils.ExceptionTool;
 import com.nfl.libraryoflibrary.utils.LogTool;
+import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.utils.pedometer.SensorListener;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
@@ -30,6 +31,8 @@ import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderException;
+
+import personal.nfl.permission.support.util.AbcPermission;
 
 /**
  * Created by fuli.niu on 2016/8/15.
@@ -115,7 +118,7 @@ public class MyApplication extends DefaultApplicationLike {
     private static int sharedNumber = 1;
 
     public MyApplication(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag,
-                                 long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent) {
+                         long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent) {
         super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
         this.application = application;
     }
@@ -126,6 +129,18 @@ public class MyApplication extends DefaultApplicationLike {
         LogTool.i("application is Creating");
         LogTool.i("sharedNumber:" + sharedNumber);
         sharedNumber++;
+        AbcPermission.install(application);
+        AbcPermission.permissionListener = new AbcPermission.GetPermissionListener() {
+            @Override
+            public void cannotRequestAgain(Activity activity, String[] permissions) {
+                super.cannotRequestAgain(activity, permissions);
+            }
+
+            @Override
+            public void exeException(Throwable throwable) {
+                ToastTool.showShortToast(throwable.getMessage());
+            }
+        };
         /**
          * 这里获取 context 会为 null ，详见：https://github.com/Tencent/tinker/issues/55
          * {@link #onBaseContextAttached(Context)} 会先于{@link #onCreate()} 执行且其 context 不为 null
