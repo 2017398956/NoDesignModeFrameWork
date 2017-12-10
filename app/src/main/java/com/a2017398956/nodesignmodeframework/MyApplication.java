@@ -14,7 +14,6 @@ import com.a2017398956.nodesignmodeframework.utils.tinker.util.TinkerManager;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
 import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
-import com.nfl.libraryoflibrary.utils.ExceptionTool;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.utils.pedometer.SensorListener;
@@ -132,7 +131,7 @@ public class MyApplication extends DefaultApplicationLike {
         AbcPermission.install(application);
         AbcPermission.permissionListener = new AbcPermission.GetPermissionListener() {
             @Override
-            public void cannotRequestAgain(Activity activity, String[] permissions) {
+            public void cannotRequestAgain(final Activity activity, String[] permissions) {
                 super.cannotRequestAgain(activity, permissions);
             }
 
