@@ -28,6 +28,7 @@ import com.nfl.apt.annotation.OnClick;
 import com.nfl.apt.annotation.TestAnnotation;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
+import com.nfl.libraryoflibrary.utils.ExecShell;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
 import com.nfl.libraryoflibrary.utils.RootDetectorTool;
@@ -111,6 +112,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(null);
+        LogTool.i("cmd: " + new ExecShell().executeCommand(new String[]{"ls"}));
         hiddenBackIcon();
         setActionBarTitle("主页");
         initDataBinding();
