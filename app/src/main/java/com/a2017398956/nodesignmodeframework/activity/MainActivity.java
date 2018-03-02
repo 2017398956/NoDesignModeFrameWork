@@ -7,7 +7,9 @@ import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -59,7 +61,7 @@ public class MainActivity extends BaseActivity {
         // ToastTool.showShortToast("onButtonClick");
         Toast.makeText(context, "onButtonClick", Toast.LENGTH_SHORT).show();
         readContacts("fuli.niu");
-        if(true){
+        if (true) {
             return;
         }
 
@@ -108,11 +110,24 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 2:
+//                    constraint_layout.sendAccessibilityEvent();
+                    break;
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(null);
         LogTool.i("cmd: " + new ExecShell().executeCommand(new String[]{"ls"}));
+        handler.sendEmptyMessageDelayed(2, 2000);
         hiddenBackIcon();
         setActionBarTitle("主页");
         initDataBinding();
