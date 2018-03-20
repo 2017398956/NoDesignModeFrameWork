@@ -157,6 +157,7 @@ dependencies {
     provided project(':apt-lib')
     annotationProcessor project(':apt-compiler')
     implementation project(':aop')
+    compile "com.facebook.react:react-native:+"
 }
 
 /**

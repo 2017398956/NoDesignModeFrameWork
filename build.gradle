@@ -31,6 +31,10 @@ allprojects {
         mavenCentral()
         maven { url 'https://maven.google.com' }
         maven { url 'https://jitpack.io' }
+        maven {
+            //添加react native依赖，url路径根据实际的来写，本文的如下：
+            url "$rootDir/node_modules/react-native/android"
+        }
     }
 }
 
