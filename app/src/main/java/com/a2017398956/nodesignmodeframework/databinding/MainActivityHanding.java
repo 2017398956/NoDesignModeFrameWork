@@ -20,6 +20,8 @@ import com.a2017398956.nodesignmodeframework.activity.ValueAnimatorTestActivity;
 import com.a2017398956.nodesignmodeframework.activity.WebViewActivity;
 import com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity;
 import com.a2017398956.nodesignmodeframework.pushtoloadmore.PushLoadMoreActivity;
+import com.a2017398956.nodesignmodeframework.rn.MyReactActivity;
+import com.a2017398956.nodesignmodeframework.rn.MyReactNativeActivity;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.floatwindow.FloatWindowActivity;
@@ -110,6 +112,12 @@ public class MainActivityHanding extends CustomOnClickListener {
                 break;
             case R.id.bn_crv:
                 intent = new Intent(mainActivity, PushLoadMoreActivity.class);
+                break;
+            case R.id.bn_react_native_test_01:
+                intent = new Intent(mainActivity , MyReactActivity.class) ;
+                break;
+            case R.id.bn_react_native_test_02:
+                intent = new Intent(mainActivity , MyReactNativeActivity.class) ;
                 break;
         }
         if (null != intent) {

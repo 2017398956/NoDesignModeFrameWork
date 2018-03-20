@@ -231,6 +231,20 @@
                     android:layout_height="wrap_content"
                     android:onClick="@{mainActivityHanding::onClick}"
                     android:text="Android 开发艺术探索" />
+
+                <Button
+                    android:id="@+id/bn_react_native_test_01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding::onClick}"
+                    android:text="ReactNativeTest01" />
+
+                <Button
+                    android:id="@+id/bn_react_native_test_02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding::onClick}"
+                    android:text="ReactNativeTest02" />
             </LinearLayout>
 
             <android.support.design.widget.CoordinatorLayout
