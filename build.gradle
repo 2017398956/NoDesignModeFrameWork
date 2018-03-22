@@ -33,7 +33,11 @@ allprojects {
         maven { url 'https://jitpack.io' }
         maven {
             //添加react native依赖，url路径根据实际的来写，本文的如下：
-            url "$rootDir/node_modules/react-native/android"
+            url "$rootDir\\node_modules\\react-native\\android"
+            File file = new File('D:\\360\\test5.txt')
+            FileWriter fileWriter = new FileWriter(file)
+            fileWriter.write("$rootDir\\node_modules\\react-native\\android")
+            fileWriter.flush()
         }
     }
 }

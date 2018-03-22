@@ -1,5 +1,18 @@
+import com.android.build.OutputFile
+
 apply plugin: 'com.android.application'
 apply plugin: 'abcpermission.plugin'
+apply from: "../node_modules/react-native/react.gradle"
+
+/**
+ * Set this to true to create two separate APKs instead of one:
+ *   - An APK that only works on ARM devices
+ *   - An APK that only works on x86 devices
+ * The advantage is the size of the APK is reduced by about 4MB.
+ * Upload all the APKs to the Play Store and people will download
+ * the correct one based on the CPU architecture of their device.
+ */
+def enableSeparateBuildPerCPUArchitecture = false
 
 //apply plugin: "org.sonarqube"
 //
@@ -68,6 +81,33 @@ android {
          */
         buildConfigField "String", "TINKER_ID", "\"$VERSION_NAME\""
         buildConfigField "String", "PLATFORM", "\"all\""
+
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+    }
+
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk false  // If true, also generate a universal APK
+            include "armeabi-v7a", "x86"
+        }
+    }
+
+    // applicationVariants are e.g. debug, release
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            // For each separate APK per architecture, set a unique version code as described here:
+            // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def abi = output.getFilter(OutputFile.ABI)
+            if (abi != null) {  // null for the universal-debug, universal-release variants
+                output.versionCodeOverride =
+                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+            }
+        }
     }
 
 //    sourceSets {
@@ -158,6 +198,7 @@ dependencies {
     annotationProcessor project(':apt-compiler')
     implementation project(':aop')
     compile "com.facebook.react:react-native:+"
+    compile project(':react-native-update')
 }
 
 /**
@@ -546,4 +587,11 @@ if (buildWithTinker()) {
             }
         }
     }
+}
+
+// Run this once to be able to run the application with BUCK
+// puts all compile dependencies into folder libs for BUCK to use
+task copyDownloadableDepsToLibs(type: Copy) {
+    from configurations.compile
+    into 'libs'
 }

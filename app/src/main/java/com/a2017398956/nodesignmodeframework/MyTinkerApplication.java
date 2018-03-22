@@ -1,15 +1,21 @@
 package com.a2017398956.nodesignmodeframework;
 
+import android.widget.Toast;
+
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.nfl.libraryoflibrary.utils.LogTool;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 import java.util.Arrays;
 import java.util.List;
+
+import cn.reactnative.modules.update.UpdateContext;
+import cn.reactnative.modules.update.UpdatePackage;
 
 /**
  * Created by fuli.niu on 2016/12/23.
@@ -25,9 +31,9 @@ public class MyTinkerApplication extends TinkerApplication implements ReactAppli
 
         @Override
         protected List<ReactPackage> getPackages() {
-            return Arrays.<ReactPackage>asList(
+            return Arrays.asList(
                     new MainReactPackage()
-                    //,new UpdatePackage()
+                    ,new UpdatePackage()
             );
         }
 
@@ -38,8 +44,9 @@ public class MyTinkerApplication extends TinkerApplication implements ReactAppli
 
         @Override
         protected String getJSBundleFile() {
-//            return UpdateContext.getBundleUrl(MainApplication.this);
-            return null;
+            LogTool.i("bundle:" + UpdateContext.getBundleUrl(MyTinkerApplication.this));
+            return UpdateContext.getBundleUrl(MyTinkerApplication.this);
+//            return null;
         }
     };
 

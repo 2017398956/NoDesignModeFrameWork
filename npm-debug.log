@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\nodejs\\node.exe',
+1 verbose cli   'D:\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'start' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.0
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle nodesignmodeframework@1.0.0~prestart: nodesignmodeframework@1.0.0
+6 silly lifecycle nodesignmodeframework@1.0.0~prestart: no script for prestart, continuing
+7 info lifecycle nodesignmodeframework@1.0.0~start: nodesignmodeframework@1.0.0
+8 verbose lifecycle nodesignmodeframework@1.0.0~start: unsafe-perm in lifecycle true
+9 verbose lifecycle nodesignmodeframework@1.0.0~start: PATH: D:\nodejs\node_modules\npm\bin\node-gyp-bin;F:\Android\workplace\NoDesignModeFrameWork\node_modules\.bin;D:\Python27\;D:\Python27\Scripts;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;D:\nodejs\;D:\MySQL\MySQL Server 5.5\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\TortoiseGit\bin;D:\Git\cmd;C:\Users\nfl\AppData\Local\Microsoft\WindowsApps;C:\Users\nfl\AppData\Roaming\npm;F:\Android\sdk\platform-tools;D:\java\jre\bin;D:\java\bin;C:\Users\nfl\AppData\Local\atom\bin;D:\apache-maven-3.5.0\bin;F:\Android\Android Studio\gradle\gradle-3.2\bin;D:\Fiddler;F:\Android\sdk\tools;D:\学习资料\FFmpeg\ffmpeg-latest-win64-static\bin;;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps
+10 verbose lifecycle nodesignmodeframework@1.0.0~start: CWD: F:\Android\workplace\NoDesignModeFrameWork
+11 silly lifecycle nodesignmodeframework@1.0.0~start: Args: [ '/d /s /c',
+11 silly lifecycle   'node node_modules/react-native/local-cli/cli.js start' ]
+12 silly lifecycle nodesignmodeframework@1.0.0~start: Returned: code: 3221225786  signal: null
+13 info lifecycle nodesignmodeframework@1.0.0~start: Failed to exec start script
+14 verbose stack Error: nodesignmodeframework@1.0.0 start: `node node_modules/react-native/local-cli/cli.js start`
+14 verbose stack Exit status 3221225786
+14 verbose stack     at EventEmitter.<anonymous> (D:\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (D:\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:891:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid nodesignmodeframework@1.0.0
+16 verbose cwd F:\Android\workplace\NoDesignModeFrameWork
+17 error Windows_NT 10.0.16299
+18 error argv "D:\\nodejs\\node.exe" "D:\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+19 error node v6.11.0
+20 error npm  v3.10.10
+21 error code ELIFECYCLE
+22 error nodesignmodeframework@1.0.0 start: `node node_modules/react-native/local-cli/cli.js start`
+22 error Exit status 3221225786
+23 error Failed at the nodesignmodeframework@1.0.0 start script 'node node_modules/react-native/local-cli/cli.js start'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the nodesignmodeframework package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     node node_modules/react-native/local-cli/cli.js start
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs nodesignmodeframework
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls nodesignmodeframework
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

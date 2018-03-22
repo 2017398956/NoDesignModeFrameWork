@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     },
     instructions: {
         textAlign: 'center',
-        color: 'red',
+        color: 'yellow',
         marginBottom: 5,
     },
 });

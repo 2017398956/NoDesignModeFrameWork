@@ -2,15 +2,22 @@ package com.a2017398956.nodesignmodeframework.rn;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.LinearLayout;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.facebook.react.ReactInstanceManager;
+import com.facebook.react.ReactInstanceManagerBuilder;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.common.LifecycleState;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
+
+import java.util.Arrays;
+
+import cn.reactnative.modules.update.UpdateContext;
+import cn.reactnative.modules.update.UpdatePackage;
 
 /**
  * @author nfl
@@ -28,23 +35,28 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
         mReactLayout = findViewById(R.id.layout);
 
         mReactRootView = new ReactRootView(this);
+        mReactLayout.addView(mReactRootView);
 
-        mReactInstanceManager = ReactInstanceManager.builder()
+        ReactInstanceManagerBuilder mReactInstanceManagerBuilder = ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 .setBundleAssetName("index.android.bundle")
                 // 对应index.android.js
                 .setJSMainModulePath("index.android")
-                .addPackage(new MainReactPackage())
+                .addPackages(Arrays.asList(new MainReactPackage(), new UpdatePackage()))
                 // 开发者支持，BuildConfig.DEBUG的值默认是false，无法使用开发者菜单
                 // .setUseDeveloperSupport(BuildConfig.DEBUG)
                 // 开发者支持,开发的时候要设置为true，不然无法使用开发者菜单
                 .setUseDeveloperSupport(true)
-                .setInitialLifecycleState(LifecycleState.RESUMED)
-                .build();
+                .setInitialLifecycleState(LifecycleState.RESUMED);
+        // 使用热修复时必须加上 jsBundleFile
+        if (!TextUtils.isEmpty(UpdateContext.getBundleUrl(this))) {
+            mReactInstanceManagerBuilder.setJSBundleFile(UpdateContext.getBundleUrl(this));
+        }
+        mReactInstanceManager = mReactInstanceManagerBuilder.build();
         // 这里的 ReactNativeView 对应 index.js 中
         // AppRegistry.registerComponent('ReactNativeView', () => Root) 的 ReactNativeView
         mReactRootView.startReactApplication(mReactInstanceManager, "nodesignmodeframework", null);
-        mReactLayout.addView(mReactRootView);
+
         // setContentView(mReactRootView);
     }
 
