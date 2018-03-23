@@ -36,8 +36,8 @@ def BUILDTOOLS_VERSION = file('../BUILDTOOLS_VERSION.txt').text
 // tinker 相关
 // 发布新版本只需修改 VERSION_CODE 和 VERSION_NAME
 // 定义版本号和版本名称（方便 tinkerId 的更改，使用 git 版本号相对麻烦），升级时只需修改这里即可
-def VERSION_CODE = 3
-def VERSION_NAME = '3.0.0.0'
+def VERSION_CODE = 4
+def VERSION_NAME = '3.0.0.1'
 // 打包最新发布版本后修改这里为最新版本，此时可将${bakPath} 目录下之前版本相关文件删除
 // 从 ${bakPath} 目录下选择基文件的文件名，基文件为当前最新版本
 def oldDir = 'app-1127-16-09-25'//app-1223-14-38-42

@@ -13,6 +13,7 @@ import com.facebook.react.ReactRootView;
 import com.facebook.react.common.LifecycleState;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
+import com.nfl.libraryoflibrary.utils.LogTool;
 
 import java.util.Arrays;
 
@@ -46,7 +47,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
                 // 开发者支持，BuildConfig.DEBUG的值默认是false，无法使用开发者菜单
                 // .setUseDeveloperSupport(BuildConfig.DEBUG)
                 // 开发者支持,开发的时候要设置为true，不然无法使用开发者菜单
-                .setUseDeveloperSupport(true)
+                .setUseDeveloperSupport(false)
                 .setInitialLifecycleState(LifecycleState.RESUMED);
         // 使用热修复时必须加上 jsBundleFile
         if (!TextUtils.isEmpty(UpdateContext.getBundleUrl(this))) {
@@ -56,7 +57,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
         // 这里的 ReactNativeView 对应 index.js 中
         // AppRegistry.registerComponent('ReactNativeView', () => Root) 的 ReactNativeView
         mReactRootView.startReactApplication(mReactInstanceManager, "nodesignmodeframework", null);
-
+        LogTool.i("rn load success");
         // setContentView(mReactRootView);
     }
 

@@ -3,9 +3,4 @@ rootProject.name = 'NoDesignModeFrameWork'
 include ':react-native-update'
 project(':react-native-update').projectDir = new File(rootProject.projectDir, 	'.\\node_modules\\react-native-update\\android')
 
-File file = new File('D:\\360\\test3.txt')
-FileWriter fileWriter = new FileWriter(file)
-fileWriter.write(project(':react-native-update').projectDir.getAbsolutePath())
-fileWriter.flush()
-
 include ':app', ':test01library', ':libraryoflibrary', ':androidart', ':apt-lib', ':apt-compiler', ':aop'
