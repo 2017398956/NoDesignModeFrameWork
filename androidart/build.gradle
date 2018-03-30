@@ -25,11 +25,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
 //        exclude group: 'com.android.support', module: 'support-annotations'
 //    })
-    compile project(":libraryoflibrary")
-    compile "com.android.support:appcompat-v7:$SUPPORT_APPCOMPAT_V7_VERSION"
-    compile "com.android.support.constraint:constraint-layout:$CONSTRAINT_LAYOUT"
+    implementation project(":libraryoflibrary")
+    implementation "com.android.support:appcompat-v7:$SUPPORT_APPCOMPAT_V7_VERSION"
+    implementation "com.android.support.constraint:constraint-layout:$CONSTRAINT_LAYOUT"
 }

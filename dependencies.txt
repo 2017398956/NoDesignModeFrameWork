@@ -1,0 +1,120 @@
+Starting a Gradle Daemon (subsequent builds will be faster)
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.1.0/gradle-3.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle-core/3.1.0/gradle-core-3.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/bundletool/0.1.0-alpha01/bundletool-0.1.0-alpha01.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/lint/lint-gradle-api/26.1.0/lint-gradle-api-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/databinding/compilerCommon/3.1.0/compilerCommon-3.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/builder/3.1.0/builder-3.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle-api/3.1.0/gradle-api-3.1.0.pom
+Download https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib-jre8/1.2.0/kotlin-stdlib-jre8-1.2.0.pom
+Download https://jcenter.bintray.com/com/google/protobuf/protobuf-java-util/3.4.0/protobuf-java-util-3.4.0.pom
+Download https://jcenter.bintray.com/com/google/protobuf/protobuf-java/3.4.0/protobuf-java-3.4.0.pom
+Download https://jcenter.bintray.com/com/google/auto/value/auto-value/1.5.2/auto-value-1.5.2.pom
+Download https://jcenter.bintray.com/com/google/errorprone/error_prone_annotations/2.1.2/error_prone_annotations-2.1.2.pom
+Download https://jcenter.bintray.com/com/google/protobuf/protobuf-parent/3.4.0/protobuf-parent-3.4.0.pom
+Download https://jcenter.bintray.com/com/google/errorprone/error_prone_parent/2.1.2/error_prone_parent-2.1.2.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2-proto/0.1.0/aapt2-proto-0.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/sdklib/26.1.0/sdklib-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/builder-test-api/3.1.0/builder-test-api-3.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/sdk-common/26.1.0/sdk-common-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/builder-model/3.1.0/builder-model-3.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/manifest-merger/26.1.0/manifest-merger-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/shared/26.1.0/shared-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/protos/26.1.0/protos-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/ddms/ddmlib/26.1.0/ddmlib-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/tracker/26.1.0/tracker-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/apksig/3.1.0/apksig-3.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/common/26.1.0/common-26.1.0.pom
+Download https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-reflect/1.2.0/kotlin-reflect-1.2.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/databinding/baseLibrary/3.1.0/baseLibrary-3.1.0.pom
+Download https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib/1.2.0/kotlin-stdlib-1.2.0.pom
+Download https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib-jre7/1.2.0/kotlin-stdlib-jre7-1.2.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/dvlib/26.1.0/dvlib-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/repository/26.1.0/repository-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/layoutlib/layoutlib-api/26.1.0/layoutlib-api-26.1.0.pom
+Download https://jcenter.bintray.com/org/glassfish/jaxb/jaxb-runtime/2.2.11/jaxb-runtime-2.2.11.pom
+Download https://jcenter.bintray.com/com/sun/xml/bind/mvn/jaxb-runtime-parent/2.2.11/jaxb-runtime-parent-2.2.11.pom
+Download https://jcenter.bintray.com/com/sun/xml/bind/mvn/jaxb-parent/2.2.11/jaxb-parent-2.2.11.pom
+Download https://jcenter.bintray.com/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.pom
+Download https://jcenter.bintray.com/com/sun/activation/all/1.2.0/all-1.2.0.pom
+Download https://jcenter.bintray.com/com/sun/xml/bind/jaxb-bom-ext/2.2.11/jaxb-bom-ext-2.2.11.pom
+Download https://jcenter.bintray.com/org/glassfish/jaxb/jaxb-bom/2.2.11/jaxb-bom-2.2.11.pom
+Download https://jcenter.bintray.com/net/java/jvnet-parent/1/jvnet-parent-1.pom
+Download https://jcenter.bintray.com/org/jvnet/staxex/stax-ex/1.7.7/stax-ex-1.7.7.pom
+Download https://jcenter.bintray.com/com/sun/xml/fastinfoset/FastInfoset/1.2.13/FastInfoset-1.2.13.pom
+Download https://jcenter.bintray.com/org/glassfish/jaxb/jaxb-core/2.2.11/jaxb-core-2.2.11.pom
+Download https://jcenter.bintray.com/com/sun/xml/fastinfoset/fastinfoset-project/1.2.13/fastinfoset-project-1.2.13.pom
+Download https://jcenter.bintray.com/com/sun/istack/istack-commons-runtime/2.21/istack-commons-runtime-2.21.pom
+Download https://jcenter.bintray.com/org/glassfish/jaxb/txw2/2.2.11/txw2-2.2.11.pom
+Download https://jcenter.bintray.com/javax/xml/bind/jaxb-api/2.2.12-b140109.1041/jaxb-api-2.2.12-b140109.1041.pom
+Download https://jcenter.bintray.com/com/sun/istack/istack-commons/2.21/istack-commons-2.21.pom
+Download https://jcenter.bintray.com/com/sun/xml/bind/mvn/jaxb-txw-parent/2.2.11/jaxb-txw-parent-2.2.11.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/annotations/26.1.0/annotations-26.1.0.pom
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.1.0/gradle-3.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/bundletool/0.1.0-alpha01/bundletool-0.1.0-alpha01.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/lint/lint-gradle-api/26.1.0/lint-gradle-api-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle-api/3.1.0/gradle-api-3.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/databinding/compilerCommon/3.1.0/compilerCommon-3.1.0.jar
+Download https://jcenter.bintray.com/com/google/protobuf/protobuf-java-util/3.4.0/protobuf-java-util-3.4.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/builder/3.1.0/builder-3.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/manifest-merger/26.1.0/manifest-merger-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/sdk-common/26.1.0/sdk-common-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/ddms/ddmlib/26.1.0/ddmlib-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/builder-test-api/3.1.0/builder-test-api-3.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/tracker/26.1.0/tracker-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/shared/26.1.0/shared-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/sdklib/26.1.0/sdklib-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/layoutlib/layoutlib-api/26.1.0/layoutlib-api-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/dvlib/26.1.0/dvlib-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/repository/26.1.0/repository-26.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/common/26.1.0/common-26.1.0.jar
+Download https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib-jre8/1.2.0/kotlin-stdlib-jre8-1.2.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2-proto/0.1.0/aapt2-proto-0.1.0.jar
+Download https://jcenter.bintray.com/com/google/auto/value/auto-value/1.5.2/auto-value-1.5.2.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/protos/26.1.0/protos-26.1.0.jar
+Download https://jcenter.bintray.com/com/google/protobuf/protobuf-java/3.4.0/protobuf-java-3.4.0.jar
+Download https://jcenter.bintray.com/com/google/errorprone/error_prone_annotations/2.1.2/error_prone_annotations-2.1.2.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/builder-model/3.1.0/builder-model-3.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/apksig/3.1.0/apksig-3.1.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/databinding/baseLibrary/3.1.0/baseLibrary-3.1.0.jar
+Download https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-reflect/1.2.0/kotlin-reflect-1.2.0.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/annotations/26.1.0/annotations-26.1.0.jar
+Download https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib-jre7/1.2.0/kotlin-stdlib-jre7-1.2.0.jar
+Download https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib/1.2.0/kotlin-stdlib-1.2.0.jar
+Download https://jcenter.bintray.com/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar
+Download https://jcenter.bintray.com/org/glassfish/jaxb/jaxb-runtime/2.2.11/jaxb-runtime-2.2.11.jar
+Download https://jcenter.bintray.com/org/glassfish/jaxb/jaxb-core/2.2.11/jaxb-core-2.2.11.jar
+Download https://jcenter.bintray.com/org/jvnet/staxex/stax-ex/1.7.7/stax-ex-1.7.7.jar
+Download https://jcenter.bintray.com/com/sun/xml/fastinfoset/FastInfoset/1.2.13/FastInfoset-1.2.13.jar
+Download https://jcenter.bintray.com/javax/xml/bind/jaxb-api/2.2.12-b140109.1041/jaxb-api-2.2.12-b140109.1041.jar
+Download https://jcenter.bintray.com/org/glassfish/jaxb/txw2/2.2.11/txw2-2.2.11.jar
+Download https://jcenter.bintray.com/com/sun/istack/istack-commons-runtime/2.21/istack-commons-runtime-2.21.jar
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle-core/3.1.0/gradle-core-3.1.0.jar
+find android sdk with local.properties: sdk.dir=D\:\\nfl\\Android\\sdk
+
+sdk dir: D:\nfl\Android\android-studio-workplace\NoDesignModeFrameWork\D\:\nfl\Android\sdk
+find android sdk with local.properties: sdk.dir=D\:\\nfl\\Android\\sdk
+
+Exception while determining latest build tools. Using default build tools 24
+Observed package id 'add-ons;addon-google_apis-google_inc-10' in inconsistent location 'D:\nfl\Android\sdk\add-ons\addon_google_apis_google_inc_10' (Expected 'D:\nfl\Android\sdk\add-ons\addon-google_apis-google_inc-10')
+Observed package id 'add-ons;addon-google_apis-google_inc-13' in inconsistent location 'D:\nfl\Android\sdk\add-ons\addon_google_apis_google_inc_13' (Expected 'D:\nfl\Android\sdk\add-ons\addon-google_apis-google_inc-13')
+Observed package id 'add-ons;addon-google_apis-google_inc-8' in inconsistent location 'D:\nfl\Android\sdk\add-ons\addon_google_apis_google_inc_8' (Expected 'D:\nfl\Android\sdk\add-ons\addon-google_apis-google_inc-8')
+Observed package id 'add-ons;addon-real3d-lge-8' in inconsistent location 'D:\nfl\Android\sdk\add-ons\addon_real3d_lge_8' (Expected 'D:\nfl\Android\sdk\add-ons\addon-real3d-lge-8')
+Observed package id 'build-tools;18.0.1' in inconsistent location 'D:\nfl\Android\sdk\build-tools\android-4.3' (Expected 'D:\nfl\Android\sdk\build-tools\18.0.1')
+WARNING: Configuration 'provided' is obsolete and has been replaced with 'compileOnly'.
+It will be removed at the end of 2018
+WARNING: Configuration 'provided' is obsolete and has been replaced with 'compileOnly'.
+It will be removed at the end of 2018
+The TaskInternal.executer property has been deprecated and is scheduled to be removed in Gradle 5.0. There are better ways to re-use task logic, see https://docs.gradle.org/4.4/userguide/custom_tasks.html#sec:reusing_task_logic.
+WARNING: Configuration 'provided' is obsolete and has been replaced with 'compileOnly'.
+It will be removed at the end of 2018
+:dependencies
+
+------------------------------------------------------------
+Root project
+------------------------------------------------------------
+
+No configurations
+
+BUILD SUCCESSFUL in 4m 50s
+1 actionable task: 1 executed

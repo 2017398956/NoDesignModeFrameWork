@@ -101,7 +101,7 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
@@ -186,19 +186,24 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    api fileTree(include: ['*.jar'], dir: 'libs')
     // optional, help to generate the final application
     // provided("com.tencent.tinker:tinker-android-anno:$TINKER")
     // tinker's main Android lib
-    compile("com.tencent.tinker:tinker-android-lib:$TINKER")
-    compile project(':test01library')
-    compile project(':androidart')
-    provided project(':apt-lib')
+    implementation("com.tencent.tinker:tinker-android-lib:$TINKER") {
+        exclude group: 'com.android.support', module: 'support-v7'
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    api project(':test01library')
+    api project(':androidart')
+    api project(':apt-lib')
     annotationProcessor project(':apt-compiler')
-    implementation project(':aop')
-    compile "com.facebook.react:react-native:+"
-    compile project(':react-native-update')
+    api project(':aop')
+    implementation("com.facebook.react:react-native:0.54.2") {
+        exclude group: 'com.android.support', module: 'support-v7'
+    }
+    api project(':react-native-update')
 }
 
 /**
