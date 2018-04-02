@@ -10,3 +10,4 @@
 /app/*.apk
 /app/flavorTest
 /node_modules
+/*.hprof

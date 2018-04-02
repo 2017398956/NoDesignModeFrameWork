@@ -189,10 +189,10 @@ dependencies {
     api 'com.android.support.constraint:constraint-layout:1.0.2'
     api fileTree(include: ['*.jar'], dir: 'libs')
     // optional, help to generate the final application
-    // provided("com.tencent.tinker:tinker-android-anno:$TINKER")
+    // ("com.tencent.tinker:tinker-android-anno:$TINKER")
     // tinker's main Android lib
     implementation("com.tencent.tinker:tinker-android-lib:$TINKER") {
-        exclude group: 'com.android.support', module: 'support-v7'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
     api project(':test01library')
@@ -201,7 +201,7 @@ dependencies {
     annotationProcessor project(':apt-compiler')
     api project(':aop')
     implementation("com.facebook.react:react-native:0.54.2") {
-        exclude group: 'com.android.support', module: 'support-v7'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
     }
     api project(':react-native-update')
 }
