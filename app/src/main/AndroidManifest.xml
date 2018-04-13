@@ -72,8 +72,24 @@
             android:label="@string/title_activity_replaced"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-        <activity android:process=":rnf" android:name=".rn.MyReactActivity"/>
-        <activity android:process=":rns" android:name=".rn.MyReactNativeActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".rn.MyReactActivity"
+            android:process=":rnf" />
+        <activity
+            android:name=".rn.MyReactNativeActivity"
+            android:process=":rns"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <service
+            android:name=".service.RemoteService"
+            android:process="a.test.remote"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".service.Remote2Service"
+            android:process="a.test.remote"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.a2017398956.nodesignmodeframework.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -26,6 +27,8 @@ import android.widget.Toast;
 import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.databinding.ActivityMainBinding;
 import com.a2017398956.nodesignmodeframework.databinding.MainActivityHanding;
+import com.a2017398956.nodesignmodeframework.service.Remote2Service;
+import com.a2017398956.nodesignmodeframework.service.RemoteService;
 import com.nfl.apt.annotation.OnClick;
 import com.nfl.apt.annotation.TestAnnotation;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
@@ -145,6 +148,15 @@ public class MainActivity extends BaseActivity {
 
         snackbar.show();
         ViewFinder.inject(this);
+        startService(new Intent(this, RemoteService.class));
+        startService(new Intent(this, Remote2Service.class));
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stopService(new Intent(MainActivity.this, RemoteService.class)) ;
+            }
+        }, 3000);
+
     }
 
     @Override
