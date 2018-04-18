@@ -82,14 +82,16 @@
 
         <service
             android:name=".service.RemoteService"
-            android:process="a.test.remote"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            android:process="a.test.remote" />
         <service
             android:name=".service.Remote2Service"
-            android:process="a.test.remote"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            android:process="a.test.remote" />
+
+        <activity android:name=".rn.MyToastActivity"></activity>
     </application>
 
 </manifest>

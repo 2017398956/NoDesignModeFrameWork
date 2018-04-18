@@ -2,6 +2,7 @@ package com.a2017398956.nodesignmodeframework;
 
 import android.widget.Toast;
 
+import com.a2017398956.nodesignmodeframework.rn.mytoast.MyExampleToast;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -34,6 +35,7 @@ public class MyTinkerApplication extends TinkerApplication implements ReactAppli
             return Arrays.asList(
                     new MainReactPackage()
                     ,new UpdatePackage()
+                    ,new MyExampleToast()
             );
         }
 

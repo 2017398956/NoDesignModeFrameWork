@@ -245,6 +245,13 @@
                     android:layout_height="wrap_content"
                     android:onClick="@{mainActivityHanding::onClick}"
                     android:text="ReactNativeTest02" />
+
+                <Button
+                    android:id="@+id/bn_my_toast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding::onClick}"
+                    android:text="MyToast" />
             </LinearLayout>
 
             <android.support.design.widget.CoordinatorLayout
