@@ -95,7 +95,8 @@ public class MyToastActivity extends CommonActionBarActivity implements DefaultH
     protected void onDestroy() {
         if (mReactInstanceManager != null) {
             mReactInstanceManager.onHostDestroy(this);
-//             mReactInstanceManager.destroy();
+//             mReactInstanceManager.destroy();2017398956
+
         }
         LogTool.i("onDestroy");
         super.onDestroy();
