@@ -35,7 +35,6 @@ public class MyTinkerApplication extends TinkerApplication implements ReactAppli
             return Arrays.asList(
                     new MainReactPackage()
                     ,new UpdatePackage()
-                    ,new MyExampleToast()
             );
         }
 

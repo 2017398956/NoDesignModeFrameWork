@@ -6,6 +6,8 @@ import android.widget.Toast;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.nfl.libraryoflibrary.constant.ApplicationContext;
+import com.nfl.libraryoflibrary.utils.LogTool;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +44,7 @@ public class MyToast extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void show(String message, int duration) {
+        LogTool.i("MyToast.show()");
         Toast.makeText(getReactApplicationContext(), message, duration).show();
     }
 
