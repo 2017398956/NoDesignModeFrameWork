@@ -1,17 +1,23 @@
 package com.a2017398956.nodesignmodeframework.rn.mytoast;
 
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.nfl.libraryoflibrary.utils.LogTool;
+import com.nfl.libraryoflibrary.utils.net.CommonBean;
 import com.nfl.libraryoflibrary.utils.net.CustomCallBack;
 import com.nfl.libraryoflibrary.utils.net.CustomHttpHelper;
+import com.nfl.libraryoflibrary.view.CustomProgressBarDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class MyToast extends ReactContextBaseJavaModule {
@@ -46,21 +52,36 @@ public class MyToast extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void show(String message, int duration) {
-        LogTool.i("MyToast.show()");
         Toast.makeText(getReactApplicationContext(), message, duration).show();
     }
 
     @ReactMethod
-    public void getDataFromServer(String url, Map<String, String> parameters, final Callback callback) {
-
-        CustomCallBack customCallBack = new CustomCallBack() {
+    public void getDataFromServer(String url, String jsParameters, final Callback callback) {
+//        CustomProgressBarDialog.showProgressBarDialog(getCurrentActivity());
+        Map<String, String> parameters = null;
+        try {
+            parameters = new HashMap<>();
+            JSONObject jsonObject = new JSONObject(jsParameters);
+            String key;
+            Iterator<String> keys = jsonObject.keys();
+            while (keys.hasNext()) {
+                key = keys.next();
+                parameters.put(key, jsonObject.getString(key));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        CustomCallBack<CommonBean> customCallBack = new CustomCallBack<CommonBean>(CommonBean.class) {
             @Override
             public void failure() {
+
             }
 
             @Override
             public void success(String result) {
-                // 给 js 模块返回值
+                if(TextUtils.isEmpty(result)){
+                    result = "数据异常" ;
+                }
                 callback.invoke(result);
             }
         };
@@ -75,6 +96,6 @@ public class MyToast extends ReactContextBaseJavaModule {
      */
     @Override
     public String getName() {
-        return "mytoast";
+        return "MyToast";
     }
 }

@@ -21,7 +21,7 @@ public class MyToastActivity extends CommonActionBarActivity implements DefaultH
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_scramble_tickets);
+        // setContentView(R.layout.activity_scramble_tickets);
 
         mReactRootView = new ReactRootView(this);
         mReactInstanceManager = ReactInstanceManager.builder()
@@ -33,7 +33,7 @@ public class MyToastActivity extends CommonActionBarActivity implements DefaultH
                 .addPackage(new MyExampleToast())
                 // .setUseDeveloperSupport(BuildConfig.DEBUG) //开发者支持，BuildConfig.DEBUG的值默认是false，无法使用开发者菜单
                 // .setUseDeveloperSupport(true) //开发者支持,开发的时候要设置为true，不然无法使用开发者菜单
-                .setInitialLifecycleState(LifecycleState.RESUMED)
+                .setInitialLifecycleState(LifecycleState.BEFORE_RESUME)
                 .build();
         // 这里的 ReactNativeView 对应 index.android.js 中 AppRegistry.registerComponent('ReactNativeView', () => ReactNativeView) 的 ReactNativeView
         mReactRootView.startReactApplication(mReactInstanceManager, "AwesomeProject", null);
