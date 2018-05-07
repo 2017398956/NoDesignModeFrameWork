@@ -2,7 +2,10 @@ package nfl.com.androidart.chapter01.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
+import android.widget.Button;
 
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.view.activity.CommonActionBarActivity;
@@ -18,11 +21,43 @@ import nfl.com.androidart.R;
 public class ActivityLifecycleTestActivity extends CommonActionBarActivity implements View.OnClickListener {
 
     private final String TAG = "ActivityLifecycleTestActivity";
+    private Button bn_transparent_activity ;
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 10:
+                    LogTool.i("handler Button's width is " + bn_transparent_activity.getWidth()) ;
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lifecycle_test);
+        bn_transparent_activity = findViewById(R.id.bn_transparent_activity) ;
+        handler.sendEmptyMessage(10) ;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LogTool.i("onRestart Button's width is " + bn_transparent_activity.getWidth()) ;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LogTool.i("onStart Button's width is " + bn_transparent_activity.getWidth()) ;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LogTool.i("onResume Button's width is " + bn_transparent_activity.getWidth()) ;
     }
 
     @Override
