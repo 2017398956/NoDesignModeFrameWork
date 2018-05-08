@@ -4,18 +4,44 @@
     android:background="#f98008"
     android:layout_height="match_parent">
 
-    <Button
-        android:text="跳转到A"
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:text="这里是 B 界面"
+        android:textColor="@color/color_white" />
+
+    <Button
+        android:id="@+id/bn_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:id="@+id/bn_b" />
+        android:layout_centerVertical="true"
+        android:text="跳转到A" />
+
     <TextView
         android:id="@+id/tv_info"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bn_a"
+        android:layout_centerHorizontal="true"
+        android:text="test" />
+
+    <Button
+        android:id="@+id/bn_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_info"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="跳转到 B" />
+
+    <Button
+        android:id="@+id/bn_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/bn_b"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
-        android:text="test"/>
+        android:layout_centerVertical="true"
+        android:text="跳转到 C" />
 </RelativeLayout>

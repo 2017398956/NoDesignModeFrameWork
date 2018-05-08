@@ -13,7 +13,7 @@ import com.nfl.libraryoflibrary.view.BaseActivity;
 
 import java.util.Random;
 
-public class AActivity extends BaseActivity {
+public class CActivity extends BaseActivity {
 
     private Button bn_a, bn_b, bn_c;
     private TextView tv_info;
@@ -21,7 +21,7 @@ public class AActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_a);
+        setContentView(R.layout.activity_c);
         bn_a = findViewById(R.id.bn_a);
         bn_b = findViewById(R.id.bn_b);
         bn_c = findViewById(R.id.bn_c);
@@ -48,14 +48,14 @@ public class AActivity extends BaseActivity {
                     intent = new Intent(context, AActivity.class);
                     break;
                 case R.id.bn_b:
-                    intent = new Intent(context, BActivity.class);
+                    intent = new Intent(context, CActivity.class);
                     break;
                 case R.id.bn_c:
                     intent = new Intent(context, AActivity.class);
                     break;
             }
             if (null != intent) {
-                startActivityForResult(intent , 100);
+                startActivityForResult(intent, 100);
 //                finish();
                 overridePendingTransition(com.nfl.libraryoflibrary.R.anim.in_from_right, com.nfl.libraryoflibrary.R.anim.out_to_left);
             }

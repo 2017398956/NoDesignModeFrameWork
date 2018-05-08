@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,15 +22,15 @@ import nfl.com.androidart.R;
 public class ActivityLifecycleTestActivity extends CommonActionBarActivity implements View.OnClickListener {
 
     private final String TAG = "ActivityLifecycleTestActivity";
-    private Button bn_transparent_activity ;
-    private EditText et_restore ;
-    private Handler handler = new Handler(){
+    private Button bn_transparent_activity;
+    private EditText et_restore;
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 10:
-                    LogTool.i("handler Button's width is " + bn_transparent_activity.getWidth()) ;
+                    LogTool.i("handler Button's width is " + bn_transparent_activity.getWidth());
                     break;
             }
         }
@@ -41,21 +40,21 @@ public class ActivityLifecycleTestActivity extends CommonActionBarActivity imple
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lifecycle_test);
-        bn_transparent_activity = findViewById(R.id.bn_transparent_activity) ;
-        et_restore = findViewById(R.id.et_restore) ;
-        handler.sendEmptyMessage(10) ;
+        bn_transparent_activity = findViewById(R.id.bn_transparent_activity);
+        et_restore = findViewById(R.id.et_restore);
+        handler.sendEmptyMessage(10);
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        LogTool.i("onRestart Button's width is " + bn_transparent_activity.getWidth()) ;
+        LogTool.i("onRestart Button's width is " + bn_transparent_activity.getWidth());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        LogTool.i("onStart Button's width is " + bn_transparent_activity.getWidth()) ;
+        LogTool.i("onStart Button's width is " + bn_transparent_activity.getWidth());
     }
 
     @Override
@@ -67,7 +66,7 @@ public class ActivityLifecycleTestActivity extends CommonActionBarActivity imple
     @Override
     protected void onResume() {
         super.onResume();
-        LogTool.i("onResume Button's width is " + bn_transparent_activity.getWidth()) ;
+        LogTool.i("onResume Button's width is " + bn_transparent_activity.getWidth());
     }
 
     @Override
@@ -77,8 +76,8 @@ public class ActivityLifecycleTestActivity extends CommonActionBarActivity imple
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         LogTool.i(TAG + ": onSaveInstanceState");
     }
 

@@ -43,11 +43,14 @@
         <activity android:name=".activity.ImitationWin10ProgressBarActivity" />
         <activity
             android:name=".activity.ActivityTranslateAnimator.AActivity"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
             android:theme="@style/customAnimationActivity" />
         <activity
             android:name=".activity.ActivityTranslateAnimator.BActivity"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:theme="@style/customAnimationActivity" />
+        <activity
+            android:name=".activity.ActivityTranslateAnimator.CActivity"
             android:theme="@style/customAnimationActivity" />
         <activity android:name=".activity.RecyclerViewActivity" />
         <activity android:name=".activity.TestImitatationWeChatActivity" />
