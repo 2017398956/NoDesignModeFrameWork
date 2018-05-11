@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
+import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 
@@ -21,7 +22,7 @@ public class BActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_a);
+        setContentView(R.layout.activity_b);
         bn_a = findViewById(R.id.bn_a);
         bn_b = findViewById(R.id.bn_b);
         bn_c = findViewById(R.id.bn_c);
@@ -30,6 +31,12 @@ public class BActivity extends BaseActivity {
         bn_c.setOnClickListener(customOnClickListener);
         tv_info = findViewById(R.id.tv_info);
         tv_info.setText(new Random().nextInt(10000) + "");
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        LogTool.i("BActivity's onNewIntent");
     }
 
     @Override
@@ -51,7 +58,7 @@ public class BActivity extends BaseActivity {
                     intent = new Intent(context, BActivity.class);
                     break;
                 case R.id.bn_c:
-                    intent = new Intent(context, AActivity.class);
+                    intent = new Intent(context, CActivity.class);
                     break;
             }
             if (null != intent) {

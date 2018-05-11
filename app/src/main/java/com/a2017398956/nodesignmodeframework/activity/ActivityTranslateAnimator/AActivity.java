@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
+import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 
@@ -33,6 +34,12 @@ public class AActivity extends BaseActivity {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        LogTool.i("AActivity's onNewIntent");
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         ToastTool.showShortToast("onActivityResult");
@@ -51,7 +58,7 @@ public class AActivity extends BaseActivity {
                     intent = new Intent(context, BActivity.class);
                     break;
                 case R.id.bn_c:
-                    intent = new Intent(context, AActivity.class);
+                    intent = new Intent(context, CActivity.class);
                     break;
             }
             if (null != intent) {

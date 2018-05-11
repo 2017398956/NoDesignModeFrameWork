@@ -44,10 +44,12 @@
         <activity
             android:name=".activity.ActivityTranslateAnimator.AActivity"
             android:launchMode="singleTask"
+            android:taskAffinity=".test1"
             android:theme="@style/customAnimationActivity" />
         <activity
             android:name=".activity.ActivityTranslateAnimator.BActivity"
             android:launchMode="singleTask"
+            android:taskAffinity=".test2"
             android:theme="@style/customAnimationActivity" />
         <activity
             android:name=".activity.ActivityTranslateAnimator.CActivity"
