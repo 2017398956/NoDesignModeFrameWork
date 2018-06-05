@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.a2017398956.nodesignmodeframework.R;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactInstanceManagerBuilder;
+import com.facebook.react.ReactPackage;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.common.LifecycleState;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
@@ -43,7 +44,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
                 .setBundleAssetName("index.android.bundle")
                 // 对应index.android.js
                 .setJSMainModulePath("index.android")
-                .addPackages(Arrays.asList(new MainReactPackage(), new UpdatePackage()))
+                .addPackages(Arrays.<ReactPackage>asList(new MainReactPackage(), new UpdatePackage()))
                 // 开发者支持，BuildConfig.DEBUG的值默认是false，无法使用开发者菜单
                 // .setUseDeveloperSupport(BuildConfig.DEBUG)
                 // 开发者支持,开发的时候要设置为true，不然无法使用开发者菜单
