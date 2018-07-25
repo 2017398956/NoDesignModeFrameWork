@@ -96,7 +96,8 @@
             android:exported="true"
             android:process="a.test.remote" />
 
-        <activity android:name=".rn.MyToastActivity"></activity>
+        <activity android:name=".rn.MyToastActivity" />
+        <activity android:name=".activity.HeaderGridViewActivity"></activity>
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.activity.ActivityTranslateAnimator.AActivity;
 import com.a2017398956.nodesignmodeframework.activity.BottomSheetBehaviorTestActivity;
 import com.a2017398956.nodesignmodeframework.activity.FingerprintTestActivity;
+import com.a2017398956.nodesignmodeframework.activity.HeaderGridViewActivity;
 import com.a2017398956.nodesignmodeframework.activity.ImitationWin10ProgressBarActivity;
 import com.a2017398956.nodesignmodeframework.activity.MainActivity;
 import com.a2017398956.nodesignmodeframework.activity.PedometerActivity;
@@ -123,6 +124,9 @@ public class MainActivityHanding extends CustomOnClickListener {
                 break;
             case R.id.bn_my_toast:
                 intent = new Intent(mainActivity , MyToastActivity.class) ;
+                break;
+            case R.id.bn_header_grid_view:
+                intent = new Intent(mainActivity , HeaderGridViewActivity.class) ;
                 break;
         }
         if (null != intent) {

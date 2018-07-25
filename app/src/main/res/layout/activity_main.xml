@@ -252,6 +252,15 @@
                     android:layout_height="wrap_content"
                     android:onClick="@{mainActivityHanding::onClick}"
                     android:text="MyToast" />
+
+                <Button
+                    android:id="@+id/bn_header_grid_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainActivityHanding::onClick}"
+                    android:text="HeaderGridViewGoogle" />
+
+
             </LinearLayout>
 
             <android.support.design.widget.CoordinatorLayout
