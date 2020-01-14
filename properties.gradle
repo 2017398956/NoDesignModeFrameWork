@@ -52,7 +52,8 @@ String androidSDKDir() {
         file(androidExecPath.toString().trim()).getParentFile().getParentFile()
     } catch (ExecException) {
         exec {
-            commandLine 'grep', 'sdk.dir', 'local.properties'
+            // 2019-11-30 先注释掉
+            // commandLine 'grep', 'sdk.dir', 'local.properties'
             standardOutput = androidExecPath
         }
         println "find android sdk with local.properties: " + androidExecPath.toString()

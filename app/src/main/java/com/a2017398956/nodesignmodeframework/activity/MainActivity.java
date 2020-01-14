@@ -147,7 +147,7 @@ public class MainActivity extends BaseActivity {
                 });
 
         snackbar.show();
-        ViewFinder.inject(this);
+        // ViewFinder.inject(this);
         startService(new Intent(this, RemoteService.class));
         startService(new Intent(this, Remote2Service.class));
         handler.postDelayed(new Runnable() {
@@ -248,10 +248,16 @@ public class MainActivity extends BaseActivity {
             public void run() {
                 List<String> filterInfos = new ArrayList<>();// 判断是否有 root 可能的关键词
                 filterInfos.add("root");
-                String rootDetailInfo = new RootDetectorTool(ApplicationContext.applicationContext, filterInfos).getRootDetailInfo();
-                Looper.prepare();
-                binding.tvTestInfo.setText(rootDetailInfo);
-                Looper.loop();
+                final String rootDetailInfo = new RootDetectorTool(ApplicationContext.applicationContext, filterInfos).getRootDetailInfo();
+//                Looper.prepare();
+//                binding.tvTestInfo.setText(rootDetailInfo);
+//                Looper.loop();
+                binding.tvTestInfo.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.tvTestInfo.setText(rootDetailInfo);
+                    }
+                }) ;
             }
         }).start();
     }
