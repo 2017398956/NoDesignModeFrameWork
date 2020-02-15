@@ -43,6 +43,9 @@ public class ActivityLifecycleTestActivity extends CommonActionBarActivity imple
         bn_transparent_activity = findViewById(R.id.bn_transparent_activity);
         et_restore = findViewById(R.id.et_restore);
         handler.sendEmptyMessage(10);
+
+//        LogTool.i("View.MeasureSpec.makeMeasureSpec Button's width is " +
+//                View.MeasureSpec.makeMeasureSpec(0 , View.MeasureSpec.UNSPECIFIED));
     }
 
     @Override
@@ -67,6 +70,19 @@ public class ActivityLifecycleTestActivity extends CommonActionBarActivity imple
     protected void onResume() {
         super.onResume();
         LogTool.i("onResume Button's width is " + bn_transparent_activity.getWidth());
+        LogTool.i("getMeasuredWidth Button's width is " + bn_transparent_activity.getMeasuredWidth());
+        bn_transparent_activity.post(new Runnable() {
+            @Override
+            public void run() {
+                LogTool.i("bn_transparent_activity Button's width is " + bn_transparent_activity.getWidth());
+            }
+        }) ;
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        LogTool.i("onWindowFocusChanged Button's width is " + bn_transparent_activity.getWidth());
     }
 
     @Override
@@ -94,6 +110,11 @@ public class ActivityLifecycleTestActivity extends CommonActionBarActivity imple
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
+
+    @Override
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.bn_transparent_activity) {
@@ -101,7 +122,8 @@ public class ActivityLifecycleTestActivity extends CommonActionBarActivity imple
         } else if (id == R.id.bn_dialog_activity) {
             startActivity(new Intent(this, DialogActivity.class));
         } else if (id == R.id.bn_normal_activity) {
-            startActivity(new Intent(this, NormalActivity.class));
+            Intent intent = new Intent(this, NormalActivity.class) ;
+            startActivity(intent);
         }
     }
 }

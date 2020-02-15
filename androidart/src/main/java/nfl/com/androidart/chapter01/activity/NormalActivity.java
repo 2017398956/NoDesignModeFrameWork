@@ -33,4 +33,11 @@ public class NormalActivity extends CommonActionBarActivity {
         super.onResume();
         LogTool.i(TAG + " : onResume");
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogTool.i(TAG + " : onDestroy");
+        LogTool.i(TAG + " : onDestroy success !");
+    }
 }

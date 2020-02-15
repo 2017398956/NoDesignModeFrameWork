@@ -2,18 +2,25 @@ package com.a2017398956.nodesignmodeframework.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,6 +40,7 @@ import com.nfl.apt.annotation.OnClick;
 import com.nfl.apt.annotation.TestAnnotation;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
+import com.nfl.libraryoflibrary.skipads.SkipAdsService;
 import com.nfl.libraryoflibrary.utils.ExecShell;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
@@ -46,6 +54,8 @@ import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.os.Environment.DIRECTORY_MOVIES;
 
 public class MainActivity extends BaseActivity {
 
@@ -129,6 +139,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(null);
+        fileSystemDescription();
         LogTool.i("cmd: " + new ExecShell().executeCommand(new String[]{"ls"}));
         handler.sendEmptyMessageDelayed(2, 2000);
         hiddenBackIcon();
@@ -153,10 +164,61 @@ public class MainActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                stopService(new Intent(MainActivity.this, RemoteService.class)) ;
+                stopService(new Intent(MainActivity.this, RemoteService.class));
             }
         }, 3000);
+        openNotification();
+        // startService(new Intent(this , SkipAdsService.class)) ;
+    }
 
+    private void openNotification(){
+
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification notification = null;
+        String id = "channel_001";
+        String name = "name" ;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {//判断API
+            NotificationChannel mChannel = new NotificationChannel(id, name, NotificationManager.IMPORTANCE_LOW);
+            notificationManager.createNotificationChannel(mChannel);
+            notification = new Notification.Builder(this)
+                    .setChannelId(id)
+                    .setContentTitle("通知")
+                    .setContentText("你有一个新的通知")
+                    // .setContentIntent(pi)
+                    .setLights(Color.GREEN, 1000, 1000)//设置三色灯
+                    .setSmallIcon(R.drawable.icon_install).build();
+        }else{
+            notification = new NotificationCompat.Builder(this)
+                    .setContentTitle("通知")
+                    .setContentText("你有新的通知")
+                    .setSmallIcon(R.drawable.icon_install)
+                    .setOngoing(true)
+                    // .setContentIntent(pi)
+                    .setLights(Color.GREEN, 1000, 1000)//设置三色灯
+                    .setChannelId(id).build();//无效
+        }
+
+//         notification = new Notification.Builder(this)
+//                .setLargeIcon(BitmapFactory.decodeResource(getResources() , R.drawable.icon_adblock))
+//                .setSmallIcon(R.drawable.icon_install)
+//                .setTicker("ticker")
+//                .setSubText("subtext")
+//                .setContentText("跳过广告")
+//                .build() ;
+//        notification.tickerText = "tickerText" ;
+//        // 在构造方法中设置无效
+//        notification.icon = R.drawable.icon_adblock;
+//        notification.when =  System.currentTimeMillis();
+        notification.flags = Notification.FLAG_ONGOING_EVENT; // 设置常驻 Flag
+
+//        Intent intent = new Intent(this, SkipAdsService.class);
+
+//        PendingIntent contextIntent = PendingIntent.getActivity(this, 0,
+//                intent, 0);
+//        notification.setLatestEventInfo(getApplicationContext(),
+//                getString(R.string.app_name), "点击查看", contextIntent);
+        notificationManager.notify(1, notification);
     }
 
     @Override
@@ -257,12 +319,35 @@ public class MainActivity extends BaseActivity {
                     public void run() {
                         binding.tvTestInfo.setText(rootDetailInfo);
                     }
-                }) ;
+                });
             }
         }).start();
     }
 
     private String readContacts(String contact) {
         return "sfdjl";
+    }
+
+    private void fileSystemDescription() {
+        // /data
+        LogTool.i("Environment.getDataDirectory():" + Environment.getDataDirectory().getAbsolutePath());
+        // Environment.getRootDirectory()
+        LogTool.i("Environment.getRootDirectory():" + Environment.getRootDirectory().getAbsolutePath());
+        // /cache
+        LogTool.i("Environment.getDownloadCacheDirectory():" + Environment.getDownloadCacheDirectory().getAbsolutePath());
+        /*
+         * /storage/emulated/0/Movies（根据不同的版本会有差异，多张内置卡是不是编号从 0 到 n ？）这个路径是真实的 SDCard（手机内置的 SDCard）路径；
+         * /storage/self/primary/Movies 也等效于 /storage/self/primary ，但 primary 是对 /storage/emulated/0 的引用，是 link 类型的，有关内容参考 Linux 文件引用；
+         * /storage/131A-2419（也可能是别的名称，这个目录都是真实路径） 下的文件夹目录和 /storage/emulated/0 相同，一般是手机插的 TF 卡；
+         * 另外，/sdcard 是对 /storage/emulated/0 的引用，不是真正的文件。
+         */
+        LogTool.i("Environment.getExternalStoragePublicDirectory(DIRECTORY_MOVIES):" + Environment.getExternalStoragePublicDirectory(DIRECTORY_MOVIES).getAbsolutePath());
+
+        LogTool.i("外置存储卡：" + Environment.getExternalStoragePublicDirectory(DIRECTORY_MOVIES).getParentFile().getParentFile().getParentFile().listFiles()[0].getAbsolutePath());
+    }
+
+    private void cancelNotification(){
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.cancel(1);
     }
 }

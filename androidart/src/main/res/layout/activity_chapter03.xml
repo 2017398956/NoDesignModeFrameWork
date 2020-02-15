@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nfl.com.androidart.chapter03.view.CustomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cll_test"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/zhihu_bg"
+    tools:context=".chapter03.activity.Chapter03Activity">
+
+    <nfl.com.androidart.chapter03.view.CustomTextView
+        android:id="@+id/ctv_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="100dp"
+        android:background="@color/lol_color_steps_senior"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:text="拖动测试"/>
+
+    <nfl.com.androidart.chapter03.view.CustomTextView
+        android:id="@+id/ctv_test_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="100dp"
+        android:background="@color/lol_color_steps_senior"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:text="拖动测试"/>
+
+</nfl.com.androidart.chapter03.view.CustomLinearLayout>

@@ -62,10 +62,17 @@ public class AActivity extends BaseActivity {
                     break;
             }
             if (null != intent) {
-                startActivityForResult(intent , 100);
+                startActivity(intent);
+                // startActivityForResult(intent , 100);
 //                finish();
                 overridePendingTransition(com.nfl.libraryoflibrary.R.anim.in_from_right, com.nfl.libraryoflibrary.R.anim.out_to_left);
             }
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogTool.i("AActivity's onDestroy");
+    }
 }
