@@ -2,6 +2,7 @@
 apply from: 'properties.gradle'
 buildscript {
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
         jcenter()
         google()
         mavenCentral()
@@ -27,6 +28,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
         maven {
             //添加react native依赖，url路径根据实际的来写，本文的如下：
             url "$rootDir/node_modules/react-native/android"
