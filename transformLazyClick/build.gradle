@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        google()
+        jcenter()
+    }
+
+    dependencies {
+//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+//        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.9.9'
+//        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+targetCompatibility = JavaVersion.VERSION_1_7
+sourceCompatibility = JavaVersion.VERSION_1_7
+
+dependencies {
+    repositories {
+        mavenLocal()
+        google()
+        jcenter()
+    }
+
+    implementation gradleApi()
+    implementation localGroovy()
+
+//    implementation 'com.android.tools.build:gradle:3.6.1'
+    implementation 'com.android.tools.build:gradle:3.5.3'
+    implementation 'com.android.tools.build:transform-api:2.0.0-deprecated-use-gradle-api'
+//    implementation 'com.android.tools.build:transform-api:1.5.0'
+//    implementation 'com.google.code.gson:gson:2.8.2'
+
+//    compile 'commons-io:commons-io:2.4'
+    compile 'org.aspectj:aspectjtools:1.9.6'
+    compile 'org.aspectj:aspectjweaver:1.9.6'
+}
+
+// 这里是我添加的生成本地 maven 库
+group = 'personal.nfl.transformlazyclick'
+version = '0.0.1'
+
+// 先生成本地 maven 仓库 repo
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
+        }
+    }
+}

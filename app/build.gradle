@@ -3,6 +3,7 @@ import com.android.build.OutputFile
 apply plugin: 'com.android.application'
 apply plugin: 'abcpermission.plugin'
 apply from: "../node_modules/react-native/react.gradle"
+apply plugin: 'LazyClickPlugin'
 
 /**
  * Set this to true to create two separate APKs instead of one:
