@@ -30,7 +30,7 @@ dependencies {
 
 //    implementation 'com.android.tools.build:gradle:3.6.1'
     implementation 'com.android.tools.build:gradle:3.5.3'
-    implementation 'com.android.tools.build:transform-api:2.0.0-deprecated-use-gradle-api'
+//    implementation 'com.android.tools.build:transform-api:2.0.0-deprecated-use-gradle-api'
 //    implementation 'com.android.tools.build:transform-api:1.5.0'
 //    implementation 'com.google.code.gson:gson:2.8.2'
 
@@ -41,7 +41,7 @@ dependencies {
 
 // 这里是我添加的生成本地 maven 库
 group = 'personal.nfl.transformlazyclick'
-version = '0.0.1'
+version = '0.0.2'
 
 // 先生成本地 maven 仓库 repo
 uploadArchives {

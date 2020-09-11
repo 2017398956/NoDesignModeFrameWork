@@ -1,3 +1,6 @@
+/**
+ * 这里不能直接引用 .properties 文件中的数据，所以下面单独处理了
+ */
 import org.codehaus.groovy.runtime.StackTraceUtils
 
 int[] sdksAvailable() {
@@ -44,6 +47,7 @@ int highestSdkAvailable(int defaultSdk) {
 String androidSDKDir() {
     def androidExecPath = new ByteArrayOutputStream()
     try {
+        // 默认在 linux 下运行
         exec {
             commandLine 'which', 'android'
             standardOutput = androidExecPath
@@ -51,19 +55,35 @@ String androidSDKDir() {
         println "find android exec path: " + androidExecPath.toString()
         file(androidExecPath.toString().trim()).getParentFile().getParentFile()
     } catch (ExecException) {
-        exec {
-            // 2019-11-30 先注释掉
-            // commandLine 'grep', 'sdk.dir', 'local.properties'
-            standardOutput = androidExecPath
+        // 说明没有 which 命令或者没有配置 Android 环境变量
+        try {
+            exec {
+                // 2019-11-30 先注释掉
+                commandLine 'grep', 'sdk.dir', 'local.properties'
+                standardOutput = androidExecPath
+            }
+        }catch(Exception){
+            // local.properties 都是自动生成的并添加 sdk.dir 属性，如果在 linux 下发生了异常
+            // 则运行环境是 windows ，那么执行这里的命令
+            exec {
+                // 2019-11-30 先注释掉
+                commandLine 'find', '\"sdk.dir\"', 'local.properties'
+                standardOutput = androidExecPath
+            }
         }
         println "find android sdk with local.properties: " + androidExecPath.toString()
-        file(androidExecPath.toString().trim().split('=')[1])
+        androidExecPath.toString().trim().split('=')[1].replace("\\:" , ":")
+        // 下面的可能是 linux 下需要的，先注释掉，待验证
+        // file(androidExecPath.toString().trim().split('=')[1])
     }
 }
 
 String[] buildToolsAvailable() {
     println "sdk dir: " + androidSDKDir()
     def buildToolsDir = new File(androidSDKDir(), "build-tools")
+    println "print buildToolsDir1"
+    println buildToolsDir.exists()
+    println "print buildToolsDir2"
     buildToolsDir.list([accept: { d, f -> !f.contains("android") }] as FilenameFilter).sort { a, b -> b <=> a }
 }
 

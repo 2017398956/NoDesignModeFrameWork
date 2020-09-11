@@ -1,7 +1,9 @@
 package personal.nfl.transformlazyclick.transforms
 
 import com.android.build.api.transform.*
+import com.android.build.gradle.internal.pipeline.TransformManager
 import org.gradle.api.Project
+import personal.nfl.transformlazyclick.utils.FileUtils
 
 class SingleClickHunterTransform extends Transform {
 
@@ -57,12 +59,12 @@ class SingleClickHunterTransform extends Transform {
     Set<QualifiedContent.ContentType> getInputTypes() {
         // 其中的 CLASSES 包含了源项目中的 .class 文件和第三方库中的 .class文件。
         // RESOURCES 仅包含源项目中的 .class文件。
-        return QualifiedContent.DefaultContentType.RESOURCES;
+        return TransformManager.CONTENT_CLASS;
     }
 
     @Override
     Set<? super QualifiedContent.Scope> getScopes() {
         // 表示要处理的 .class文件的范围，主要有 PROJECT，SUB_PROJECTS，EXTERNAL_LIBRARIES等。
-        return QualifiedContent.Scope.PROJECT;
+        return TransformManager.SCOPE_FULL_PROJECT;
     }
 }
