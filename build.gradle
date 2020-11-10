@@ -6,6 +6,10 @@ buildscript {
          maven {
               url uri('repo')
          }
+        // 替换 jcenter()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        // 替换 google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
         jcenter()
         google()
@@ -17,7 +21,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
-        classpath 'com.github.2017398956:abcpermission-plugin:1.3.5'
+        classpath 'com.github.2017398956:abcpermission-plugin:1.7.1'
         classpath 'personal.nfl.transformlazyclick:transformLazyClick:0.0.2'
         // classpath 'com.github.2017398956:abcpermission-plugin:-SNAPSHOT'
         // classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
@@ -33,6 +37,10 @@ buildscript {
 
 allprojects {
     repositories {
+        // 替换 jcenter()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        // 替换 google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
         maven {
             //添加react native依赖，url路径根据实际的来写，本文的如下：

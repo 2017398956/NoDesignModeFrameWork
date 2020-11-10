@@ -1,13 +1,13 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.v4.view.NestedScrollingChild;
-import android.support.v4.widget.NestedScrollView;
+
+import androidx.core.widget.NestedScrollView;
 import android.view.View;
 import android.widget.Button;
 
 import com.a2017398956.nodesignmodeframework.R;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
 import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;

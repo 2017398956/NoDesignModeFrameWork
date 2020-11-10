@@ -263,11 +263,12 @@
 
             </LinearLayout>
 
-            <android.support.design.widget.CoordinatorLayout
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/constraint_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"></android.support.design.widget.CoordinatorLayout>
+                android:layout_alignParentBottom="true">
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </RelativeLayout>
     </ScrollView>
 </layout>

@@ -48,7 +48,7 @@ def debugOrRelease = 'debug'
 // 获得基准APK所在的路径，这里使用默认的即可
 def bakPath = file("${buildDir}/bakApk/")
 // 定义JDK版本
-def javaVersion = JavaVersion.VERSION_1_7
+def javaVersion = JavaVersion.VERSION_1_8
 
 android {
     compileSdkVersion "${COMPILE_SDK_VERSION}" as int
@@ -188,7 +188,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
     // optional, help to generate the final application
     // ("com.tencent.tinker:tinker-android-anno:$TINKER")
     // tinker's main Android lib
@@ -196,7 +196,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    api project(':test01library')
     api project(':androidart')
     api project(':apt-lib')
     annotationProcessor project(':apt-compiler')

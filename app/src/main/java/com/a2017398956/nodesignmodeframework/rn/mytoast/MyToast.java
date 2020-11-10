@@ -1,6 +1,6 @@
 package com.a2017398956.nodesignmodeframework.rn.mytoast;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -11,7 +11,6 @@ import com.facebook.react.bridge.ReactMethod;
 import com.nfl.libraryoflibrary.utils.net.CommonBean;
 import com.nfl.libraryoflibrary.utils.net.CustomCallBack;
 import com.nfl.libraryoflibrary.utils.net.CustomHttpHelper;
-import com.nfl.libraryoflibrary.view.CustomProgressBarDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;

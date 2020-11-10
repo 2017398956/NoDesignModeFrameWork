@@ -1,6 +1,6 @@
 package nfl.com.androidart.chapter01.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import nfl.com.androidart.R;

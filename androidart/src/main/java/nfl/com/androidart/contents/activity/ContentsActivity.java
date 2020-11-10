@@ -1,7 +1,6 @@
 package nfl.com.androidart.contents.activity;
 
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nfl.com.androidart.R;
-import nfl.com.androidart.chapter02.service.BookManagerService;
 import nfl.com.androidart.contents.adapter.ContentsAdapter;
 import nfl.com.androidart.contents.databinding.Contents;
 import nfl.com.androidart.contents.handing.ContentsViewController;

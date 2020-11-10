@@ -1,11 +1,12 @@
 package com.a2017398956.nodesignmodeframework;
 
 import android.content.Context;
-import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import androidx.customview.widget.ViewDragHelper;
 
 /**
  * Created by fuli.niu 2016/8/22
