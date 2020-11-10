@@ -200,7 +200,6 @@ dependencies {
     api project(':androidart')
     api project(':apt-lib')
     annotationProcessor project(':apt-compiler')
-    api project(':aop')
     api('com.facebook.react:react-native:+') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
@@ -215,7 +214,7 @@ dependencies {
 ext {
     //for some reason, you may want to ignore tinkerBuild, such as instant run debug build?
     // 是否开启 tinkerEnabled 模式
-    tinkerEnabled = true
+    tinkerEnabled = false
     def oldBasePath = "${bakPath}/${oldDir}/${nowFlavor}/app-${nowFlavor}-${debugOrRelease}"
     // for normal build,old apk file to build patch apk
     tinkerOldApkPath = oldBasePath + ".apk"
