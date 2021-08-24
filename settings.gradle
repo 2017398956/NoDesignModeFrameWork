@@ -1,7 +1,12 @@
-include ':transformLazyClick'
+//include ':transformLazyClick'
+
+//include ':react-native-update'
+//project(':react-native-update').projectDir = new File(rootProject.projectDir, 	'.\\node_modules\\react-native-update\\android')
+
+include ':app'
+include ':libraryoflibrary'
+include ':androidart'
+include ':apt-lib'
+include ':apt-compiler'
+
 rootProject.name = 'NoDesignModeFrameWork'
-
-include ':react-native-update'
-project(':react-native-update').projectDir = new File(rootProject.projectDir, 	'.\\node_modules\\react-native-update\\android')
-
-include ':app', ':libraryoflibrary', ':androidart', ':apt-lib', ':apt-compiler'

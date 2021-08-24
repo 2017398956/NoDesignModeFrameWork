@@ -22,7 +22,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
         classpath 'com.github.2017398956:abcpermission-plugin:1.7.1'
-        classpath 'personal.nfl.transformlazyclick:transformLazyClick:0.0.2'
+//        classpath 'personal.nfl.transformlazyclick:transformLazyClick:0.0.2'
         // classpath 'com.github.2017398956:abcpermission-plugin:-SNAPSHOT'
         // classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
         classpath "com.tencent.tinker:tinker-patch-gradle-plugin:$TINKER"

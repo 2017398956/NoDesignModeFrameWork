@@ -78,15 +78,6 @@
             android:name=".activity.ReplacedActivity"
             android:label="@string/title_activity_replaced"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-        <activity
-            android:name=".rn.MyReactActivity"
-            android:process=":rnf" />
-        <activity
-            android:name=".rn.MyReactNativeActivity"
-            android:process=":rns"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <service
             android:name=".service.RemoteService"
             android:enabled="true"
@@ -98,7 +89,6 @@
             android:exported="true"
             android:process="a.test.remote" />
 
-        <activity android:name=".rn.MyToastActivity" />
         <activity android:name=".activity.HeaderGridViewActivity"></activity>
     </application>
 
