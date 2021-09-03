@@ -3,6 +3,7 @@ package com.a2017398956.test01library;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.service.notification.NotificationListenerService;
 
 import com.nfl.libraryoflibrary.utils.LogTool;
 
@@ -13,7 +14,7 @@ public class Test01Receiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String actionTemp = intent.getAction() ;
-        LogTool.i(actionTemp);
+        LogTool.i("收到了一条广播：" + actionTemp);
         if("cn.bill.app.gw.startapp".equals(actionTemp)){
 //            Intent nextActivity = new Intent() ;
 //            nextActivity.setClass(context , Test01MainActivity.class) ;

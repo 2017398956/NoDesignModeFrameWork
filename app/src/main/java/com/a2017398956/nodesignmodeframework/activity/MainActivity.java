@@ -1,26 +1,22 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
+import static android.os.Environment.DIRECTORY_MOVIES;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.databinding.DataBindingUtil;
-
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -29,6 +25,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.a2017398956.nodesignmodeframework.databinding.ActivityMainBinding;
@@ -40,6 +42,7 @@ import com.nfl.apt.annotation.OnClick;
 import com.nfl.apt.annotation.TestAnnotation;
 import com.nfl.libraryoflibrary.constant.ApplicationContext;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
+import com.nfl.libraryoflibrary.skipads.SkipAdsService;
 import com.nfl.libraryoflibrary.utils.ExecShell;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.PhoneInfoTool;
@@ -52,8 +55,6 @@ import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.os.Environment.DIRECTORY_MOVIES;
 
 public class MainActivity extends BaseActivity {
 
@@ -165,58 +166,52 @@ public class MainActivity extends BaseActivity {
                 stopService(new Intent(MainActivity.this, RemoteService.class));
             }
         }, 3000);
-        openNotification();
+        openNotification(this);
         // startService(new Intent(this , SkipAdsService.class)) ;
     }
 
-    private void openNotification(){
+    private void openNotification(Context context) {
+        // startService(new Intent(this, NotificationReceiverService.class));
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(context, TestActivity.class);
+                startActivity(intent);
+                if(true)return;
+                PendingIntent contextIntent = PendingIntent.getActivity(context, 0,
+                        intent, 0);
 
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                Notification notification = null;
+                String id = "channel_001";
+                String name = "name";
+                String action = "" ;
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Notification notification = null;
-        String id = "channel_001";
-        String name = "name" ;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {//判断API
-            NotificationChannel mChannel = new NotificationChannel(id, name, NotificationManager.IMPORTANCE_LOW);
-            notificationManager.createNotificationChannel(mChannel);
-            notification = new Notification.Builder(this)
-                    .setChannelId(id)
-                    .setContentTitle("通知")
-                    .setContentText("你有一个新的通知")
-                    // .setContentIntent(pi)
-                    .setLights(Color.GREEN, 1000, 1000)//设置三色灯
-                    .setSmallIcon(R.drawable.icon_install).build();
-        }else{
-            notification = new NotificationCompat.Builder(this)
-                    .setContentTitle("通知")
-                    .setContentText("你有新的通知")
-                    .setSmallIcon(R.drawable.icon_install)
-                    .setOngoing(true)
-                    // .setContentIntent(pi)
-                    .setLights(Color.GREEN, 1000, 1000)//设置三色灯
-                    .setChannelId(id).build();//无效
-        }
-
-//         notification = new Notification.Builder(this)
-//                .setLargeIcon(BitmapFactory.decodeResource(getResources() , R.drawable.icon_adblock))
-//                .setSmallIcon(R.drawable.icon_install)
-//                .setTicker("ticker")
-//                .setSubText("subtext")
-//                .setContentText("跳过广告")
-//                .build() ;
-//        notification.tickerText = "tickerText" ;
-//        // 在构造方法中设置无效
-//        notification.icon = R.drawable.icon_adblock;
-//        notification.when =  System.currentTimeMillis();
-        notification.flags = Notification.FLAG_ONGOING_EVENT; // 设置常驻 Flag
-
-//        Intent intent = new Intent(this, SkipAdsService.class);
-
-//        PendingIntent contextIntent = PendingIntent.getActivity(this, 0,
-//                intent, 0);
-//        notification.setLatestEventInfo(getApplicationContext(),
-//                getString(R.string.app_name), "点击查看", contextIntent);
-        notificationManager.notify(1, notification);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {//判断API
+                    NotificationChannel mChannel = new NotificationChannel(id, name, NotificationManager.IMPORTANCE_LOW);
+                    notificationManager.createNotificationChannel(mChannel);
+                    notification = new Notification.Builder(context)
+                            .setChannelId(id)
+                            .setContentTitle("通知")
+                            .setContentText("你有一个新的通知")
+                            .setContentIntent(contextIntent)
+                            .setLights(Color.GREEN, 1000, 1000)//设置三色灯
+                            .setSmallIcon(R.drawable.icon_install).build();
+                } else {
+                    notification = new NotificationCompat.Builder(context)
+                            .setContentTitle("通知")
+                            .setContentText("你有新的通知")
+                            .setSmallIcon(R.drawable.icon_install)
+                            .setOngoing(true)
+                            .setContentIntent(contextIntent)
+                            .setLights(Color.GREEN, 1000, 1000)//设置三色灯
+                            .setChannelId(id).build();//无效
+                }
+                notification.flags = Notification.FLAG_ONGOING_EVENT; // 设置常驻 Flag
+                notificationManager.notify(1, notification);
+                LogTool.i("已发送通知");
+            }
+        }, 5000);
     }
 
     @Override
@@ -344,7 +339,7 @@ public class MainActivity extends BaseActivity {
         LogTool.i("外置存储卡：" + Environment.getExternalStoragePublicDirectory(DIRECTORY_MOVIES).getParentFile().getParentFile().getParentFile().listFiles()[0].getAbsolutePath());
     }
 
-    private void cancelNotification(){
+    private void cancelNotification() {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancel(1);
     }

@@ -8,5 +8,8 @@ include ':libraryoflibrary'
 include ':androidart'
 include ':apt-lib'
 include ':apt-compiler'
+include ':test01library'
+//include ':jiguang-demo'
+//include ':jiguang'
 
 rootProject.name = 'NoDesignModeFrameWork'
