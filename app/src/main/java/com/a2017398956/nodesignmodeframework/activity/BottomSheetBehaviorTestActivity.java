@@ -38,13 +38,10 @@ public class BottomSheetBehaviorTestActivity extends BaseActivity {
             BottomSheetBehavior behavior = BottomSheetBehavior.from(nsv_list_view) ;
             behavior.setHideable(true);
             behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-            switch (v.getId()){
-                case R.id.bn_open :
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                    break;
-                case R.id.bn_hide :
-                    behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                    break;
+            if (v.getId() == R.id.bn_open) {
+                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            } else if (v.getId() == R.id.bn_hide) {
+                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             }
             ToastTool.showShortToast(behavior.getState() + "" + behavior.isHideable());
         }

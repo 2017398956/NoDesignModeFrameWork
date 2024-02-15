@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.a2017398956.nodesignmodeframework">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS" />
     <uses-permission-sdk-23 android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -78,16 +77,6 @@
             android:name=".activity.ReplacedActivity"
             android:label="@string/title_activity_replaced"
             android:theme="@style/AppTheme.NoActionBar" />
-        <service
-            android:name=".service.RemoteService"
-            android:enabled="true"
-            android:exported="true"
-            android:process="a.test.remote" />
-        <service
-            android:name=".service.Remote2Service"
-            android:enabled="true"
-            android:exported="true"
-            android:process="a.test.remote" />
 
         <activity android:name=".activity.HeaderGridViewActivity"></activity>
     </application>

@@ -52,7 +52,7 @@ public class FingerprintTestActivity extends BaseActivity {
         setContentView(R.layout.activity_fingerprint_test);
         tool_bar = (Toolbar) findViewById(R.id.tool_bar);
 //        tool_bar.setTitle("Title");
-        tool_bar.setNavigationIcon(R.drawable.lol_icon_back_drawable);
+        tool_bar.setNavigationIcon(com.nfl.libraryoflibrary.R.drawable.lol_icon_back_drawable);
 //        tool_bar.setLogo(R.mipmap.ic_launcher);
 
         collapsing_tool_bar_layout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_tool_bar_layout);
@@ -84,52 +84,54 @@ public class FingerprintTestActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return;
         }
-        authenticationCallback = new FingerprintManager.AuthenticationCallback() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            authenticationCallback = new FingerprintManager.AuthenticationCallback() {
 
-            /**
-             * 当多次（经测试为第6次）无法正确识别指纹时触法（此时不会调用{@link #onAuthenticationFailed()} ），
-             * 并且系统会暂时停止指纹识别功能的使用；
-             * 即：重新开启指纹识别功能时，即使正确指纹也会直接跳转到这里
-             * @param errorCode
-             * @param errString
-             */
-            @Override
-            public void onAuthenticationError(int errorCode, CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
-                LogTool.i("onAuthenticationError");
-            }
+                /**
+                 * 当多次（经测试为第6次）无法正确识别指纹时触法（此时不会调用{@link #onAuthenticationFailed()} ），
+                 * 并且系统会暂时停止指纹识别功能的使用；
+                 * 即：重新开启指纹识别功能时，即使正确指纹也会直接跳转到这里
+                 * @param errorCode
+                 * @param errString
+                 */
+                @Override
+                public void onAuthenticationError(int errorCode, CharSequence errString) {
+                    super.onAuthenticationError(errorCode, errString);
+                    LogTool.i("onAuthenticationError");
+                }
 
-            /**
-             * 当指纹识别模块无法识别指纹时会触发，如：手指滑动过快，手指或采集指纹区不干净
-             * @param helpCode
-             * @param helpString
-             */
-            @Override
-            public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
-                super.onAuthenticationHelp(helpCode, helpString);
-                LogTool.i("onAuthenticationHelp");
-            }
+                /**
+                 * 当指纹识别模块无法识别指纹时会触发，如：手指滑动过快，手指或采集指纹区不干净
+                 * @param helpCode
+                 * @param helpString
+                 */
+                @Override
+                public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
+                    super.onAuthenticationHelp(helpCode, helpString);
+                    LogTool.i("onAuthenticationHelp");
+                }
 
-            /**
-             * 指纹识别成功，并结束本次指纹识别，再次识别时需要重新调用
-             * {@link android.hardware.fingerprint.FingerprintManager#authenticate(FingerprintManager.CryptoObject, CancellationSignal, int, FingerprintManager.AuthenticationCallback, Handler)}
-             * @param result
-             */
-            @Override
-            public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
-                LogTool.i("onAuthenticationSucceeded");
-            }
+                /**
+                 * 指纹识别成功，并结束本次指纹识别，再次识别时需要重新调用
+                 * {@link FingerprintManager#authenticate(FingerprintManager.CryptoObject, CancellationSignal, int, FingerprintManager.AuthenticationCallback, Handler)}
+                 * @param result
+                 */
+                @Override
+                public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
+                    super.onAuthenticationSucceeded(result);
+                    LogTool.i("onAuthenticationSucceeded");
+                }
 
-            /**
-             * 指纹识别失败
-             */
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-                LogTool.i("onAuthenticationFailed");
-            }
-        };
+                /**
+                 * 指纹识别失败
+                 */
+                @Override
+                public void onAuthenticationFailed() {
+                    super.onAuthenticationFailed();
+                    LogTool.i("onAuthenticationFailed");
+                }
+            };
+        }
 
         try {
             cipher = Cipher.getInstance("DES");

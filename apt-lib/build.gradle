@@ -5,5 +5,5 @@ dependencies {
 }
 // This module will be used in Android projects, need to be
 // compatible with Java 1.7
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+sourceCompatibility = "11"
+targetCompatibility = "11"

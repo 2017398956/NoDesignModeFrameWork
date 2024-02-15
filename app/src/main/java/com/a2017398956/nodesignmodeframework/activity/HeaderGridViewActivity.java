@@ -27,7 +27,7 @@ public class HeaderGridViewActivity extends CommonActionBarActivity {
         setContentView(R.layout.activity_header_grid_view);
         hgv_google = findViewById(R.id.hgv_google) ;
         ImageView imageView = new ImageView(this) ;
-        imageView.setImageResource(R.drawable.a);
+        imageView.setImageResource(com.nfl.libraryoflibrary.R.drawable.a);
         hgv_google.addHeaderView(imageView);
         HashMap<String , String> hashMap ;
         for(int i = 0 ; i < 100 ; i++){

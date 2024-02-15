@@ -50,16 +50,12 @@ public class BActivity extends BaseActivity {
         public void onClick(View v) {
             super.onClick(v);
             Intent intent = null;
-            switch (v.getId()) {
-                case R.id.bn_a:
-                    intent = new Intent(context, AActivity.class);
-                    break;
-                case R.id.bn_b:
-                    intent = new Intent(context, BActivity.class);
-                    break;
-                case R.id.bn_c:
-                    intent = new Intent(context, CActivity.class);
-                    break;
+            if (v.getId() == R.id.bn_a) {
+                intent = new Intent(context, AActivity.class);
+            } else if (v.getId() == R.id.bn_b) {
+                intent = new Intent(context, BActivity.class);
+            } else if (v.getId() == R.id.bn_b) {
+                intent = new Intent(context, CActivity.class);
             }
             if (null != intent) {
                 startActivity(intent);

@@ -23,9 +23,10 @@ import android.os.SystemClock;
 import com.a2017398956.nodesignmodeframework.utils.tinker.reporter.SampleTinkerReport;
 import com.a2017398956.nodesignmodeframework.utils.tinker.util.TinkerManager;
 import com.a2017398956.nodesignmodeframework.utils.tinker.util.Utils;
+import com.tencent.tinker.entry.ApplicationLike;
 import com.tencent.tinker.lib.tinker.TinkerApplicationHelper;
 import com.tencent.tinker.lib.util.TinkerLog;
-import com.tencent.tinker.loader.app.ApplicationLike;
+//import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.tencent.tinker.loader.shareutil.ShareTinkerInternals;
 

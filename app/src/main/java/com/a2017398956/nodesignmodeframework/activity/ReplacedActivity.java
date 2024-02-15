@@ -14,7 +14,7 @@ public class ReplacedActivity extends Activity {
         setContentView(R.layout.activity_replaced);
     }
 
-    @Repalce
+//    @Repalce
     private void replace() {
 
     }

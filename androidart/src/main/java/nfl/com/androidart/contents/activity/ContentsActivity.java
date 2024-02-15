@@ -15,14 +15,12 @@ import nfl.com.androidart.R;
 import nfl.com.androidart.contents.adapter.ContentsAdapter;
 import nfl.com.androidart.contents.databinding.Contents;
 import nfl.com.androidart.contents.handing.ContentsViewController;
-import nfl.com.androidart.databinding.ActivityContentsBinding;
 
 /**
  * 《Android 开发艺术探索》
  */
 public class ContentsActivity extends CommonActionBarActivity {
 
-    private ActivityContentsBinding binding;
     private View bindingView;
     private Contents contents;
     private ContentsViewController contentsViewController;
@@ -43,14 +41,10 @@ public class ContentsActivity extends CommonActionBarActivity {
     }
 
     private void initDatabinding() {
-        // 测试 bn_test 的 Databinding 效果
-        binding = DataBindingUtil.bind(bindingView);
         contents = new Contents();
         contents.setChapter("测试按钮");
-        binding.setContents(contents);
 
         contentsViewController = new ContentsViewController();
-        binding.setController(contentsViewController);
 
         // 添加目录
         String[] titles = {"第 1 章 Activity 的生命周期和启动模式", "第 2 章 IPC 机制",
@@ -66,8 +60,6 @@ public class ContentsActivity extends CommonActionBarActivity {
             data.add(contents);
         }
         contentsAdapter = new ContentsAdapter(this, data);
-        binding.rvContents.setAdapter(contentsAdapter);
-        binding.rvContents.addOnItemClickListener(onItemClickListener);
 
         // 测试 BaseAdapter 使用 Databinding
         // Contents2Adapter contents2Adapter = new Contents2Adapter(this , data) ;

@@ -12,7 +12,6 @@ import java.util.List;
 
 import nfl.com.androidart.R;
 import nfl.com.androidart.contents.databinding.Contents;
-import nfl.com.androidart.databinding.ItemContentsBinding;
 
 /**
  * Created by fuli.niu on 2017/4/5.
@@ -22,8 +21,6 @@ public class ContentsAdapter extends RecyclerViewBaseAdapter<ContentsAdapter.MyV
 
     private Context context;
     private List<Contents> contentsList;
-    private ItemContentsBinding itemContentsBinding;
-    private ItemContentsBinding itemContentsBindingTemp;
     private MyViewHolder myViewHolder;
 
     public ContentsAdapter(Context context, List<Contents> contentsList) {
@@ -34,17 +31,15 @@ public class ContentsAdapter extends RecyclerViewBaseAdapter<ContentsAdapter.MyV
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         super.onCreateViewHolder(parent, viewType);
-        itemContentsBindingTemp = DataBindingUtil.inflate(LayoutInflater.from(context),
-                R.layout.item_contents, parent, false);
-        myViewHolder = new MyViewHolder(itemContentsBindingTemp);
-        return myViewHolder;
+//        itemContentsBindingTemp = DataBindingUtil.inflate(LayoutInflater.from(context),
+//                R.layout.item_contents, parent, false);
+//        myViewHolder = new MyViewHolder(itemContentsBindingTemp);
+        return null;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        itemContentsBinding = holder.getItemContentsBinding();
-        itemContentsBinding.setContents(contentsList.get(position));
     }
 
     @Override
@@ -54,24 +49,23 @@ public class ContentsAdapter extends RecyclerViewBaseAdapter<ContentsAdapter.MyV
 
     public class MyViewHolder extends RecyclerViewBaseAdapter.BaseViewHolder {
 
-        private ItemContentsBinding itemContentsBinding;
 
         public MyViewHolder(View itemView) {
             super(itemView);
         }
 
-        public MyViewHolder(ItemContentsBinding itemContentsBinding) {
-            this(itemContentsBinding.getRoot());
-            this.itemContentsBinding = itemContentsBinding;
-        }
-
-        public ItemContentsBinding getItemContentsBinding() {
-            return itemContentsBinding;
-        }
-
-        public void setItemContentsBinding(ItemContentsBinding itemContentsBinding) {
-            this.itemContentsBinding = itemContentsBinding;
-        }
+//        public MyViewHolder(ItemContentsBinding itemContentsBinding) {
+//            this(itemContentsBinding.getRoot());
+//            this.itemContentsBinding = itemContentsBinding;
+//        }
+//
+//        public ItemContentsBinding getItemContentsBinding() {
+//            return itemContentsBinding;
+//        }
+//
+//        public void setItemContentsBinding(ItemContentsBinding itemContentsBinding) {
+//            this.itemContentsBinding = itemContentsBinding;
+//        }
     }
 
 }

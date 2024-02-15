@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 def COMPILESDK_VERSION = Integer.parseInt(file('../COMPILESDK_VERSION.txt').text)
 def BUILDTOOLS_VERSION = file('../BUILDTOOLS_VERSION.txt').text
 
 android {
 
-    compileSdkVersion "${COMPILE_SDK_VERSION}" as int
-    buildToolsVersion "${BUILD_TOOLS_VERSION}"
+    compileSdk 34
     defaultConfig {
         minSdkVersion "${MIN_SDK_VERSION}" as int
         targetSdkVersion "${TARGET_SDK_VERSION}" as int
@@ -17,9 +17,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlin {
+        jvmToolchain(11)
+    }
+    namespace 'com.a2017398956.test01library'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.core:core-ktx:1.10.1'
     compileOnly project(":libraryoflibrary")
 }

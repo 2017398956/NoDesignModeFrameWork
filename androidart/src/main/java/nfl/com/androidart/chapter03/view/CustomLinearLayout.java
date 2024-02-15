@@ -1,10 +1,11 @@
 package nfl.com.androidart.chapter03.view;
 
 import android.content.Context;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
 
 import com.nfl.libraryoflibrary.utils.LogTool;
 
@@ -43,7 +44,7 @@ public class CustomLinearLayout extends LinearLayout {
         boolean result = super.onInterceptTouchEvent(ev);
         LogTool.i(result ? "CustomLinearLayout onInterceptTouchEvent 拦截了触摸事件" : "CustomLinearLayout onInterceptTouchEvent 没拦截触摸事件");
         LogTool.i("CustomLinearLayout's onInterceptTouchEvent after");
-        return result ;
+        return result;
     }
 
     @Override
@@ -64,6 +65,7 @@ public class CustomLinearLayout extends LinearLayout {
 
     /**
      * 可以干预事件是否拦截
+     *
      * @param disallowIntercept
      */
     @Override

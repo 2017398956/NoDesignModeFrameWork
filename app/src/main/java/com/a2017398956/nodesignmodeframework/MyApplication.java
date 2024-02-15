@@ -16,8 +16,8 @@ import com.nfl.libraryoflibrary.utils.CustomActivityLifecycleCallbacks;
 import com.nfl.libraryoflibrary.utils.CustomBroadcastSender;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.utils.ToastTool;
+import com.tencent.tinker.entry.DefaultApplicationLike;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
-import com.tencent.tinker.loader.app.DefaultApplicationLike;
 
 //import org.acra.ACRA;
 //import org.acra.ReportField;

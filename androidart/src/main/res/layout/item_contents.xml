@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
+<!--    <data>-->
 
-        <variable
-            name="contents"
-            type="nfl.com.androidart.contents.databinding.Contents"></variable>
-    </data>
+<!--        <variable-->
+<!--            name="contents"-->
+<!--            type="nfl.com.androidart.contents.databinding.Contents"></variable>-->
+<!--    </data>-->
 
     <LinearLayout
 
@@ -19,7 +19,6 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="50dp"
-            android:background="@color/ripple_material_light"
-            android:text="@={contents.chapter}" />
+            android:background="@color/ripple_material_light"/>
     </LinearLayout>
 </layout>
