@@ -1,7 +1,6 @@
 package com.a2017398956.nodesignmodeframework.activity
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Notification
 import android.app.NotificationChannel
@@ -17,16 +16,8 @@ import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.view.Gravity
-import android.view.MotionEvent
-import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.a2017398956.nodesignmodeframework.activity.ActivityTranslateAnimator.AActivity
 import com.a2017398956.nodesignmodeframework.databinding.ActivityMainBinding
@@ -36,21 +27,20 @@ import com.google.android.material.snackbar.Snackbar
 import com.nfl.libraryoflibrary.R
 import com.nfl.libraryoflibrary.constant.ApplicationContext
 import com.nfl.libraryoflibrary.utils.ExecShell
+import com.nfl.libraryoflibrary.utils.ImageTools
 import com.nfl.libraryoflibrary.utils.LogTool
-import com.nfl.libraryoflibrary.utils.PhoneInfoTool
 import com.nfl.libraryoflibrary.utils.RootDetectorTool
-import com.nfl.libraryoflibrary.utils.SharePreferenceTool
 import com.nfl.libraryoflibrary.utils.ToastTool
 import com.nfl.libraryoflibrary.utils.image.ImageLoadTool
-import com.nfl.libraryoflibrary.utils.inflate
 import com.nfl.libraryoflibrary.view.BaseActivity
-import com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView2
+import com.nfl.libraryoflibrary.view.db_insight.DBInsightActivity
 import com.nfl.libraryoflibrary.view.floatwindow.FloatWindowActivity
 import com.nfl.libraryoflibrary.view.traffic_float_window.TrafficFloatWindowActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import nfl.com.androidart.utils.ActivityLauncher
+import personal.nfl.permission.annotation.GetPermissions4AndroidX
 
 class MainActivity : BaseActivity() {
 
@@ -78,25 +68,21 @@ class MainActivity : BaseActivity() {
         hiddenBackIcon()
         actionBarTitle = "主页"
         loadNetworkImage()
-        addAnotherLeftSlidingView()
         setListeners()
         printRootInfo()
         Snackbar.make(binding.constraintLayout, "Test snackbar", Snackbar.LENGTH_LONG)
             .setAction(
-                "action", View.OnClickListener {
-                    ToastTool.showShortToast("Action");
-                }).show()
+                "action"
+            ) {
+                ToastTool.showShortToast("Action");
+            }.show()
         // ViewFinder.inject(this);
         openNotification(this)
     }
 
     private fun openNotification(context: Context) {
         // startService(new Intent(this, NotificationReceiverService.class));
-        handler.postDelayed(Runnable {
-            return@Runnable
-            val intent = Intent(context, TestActivity::class.java)
-            startActivity(intent)
-            if (true) return@Runnable
+        handler.postDelayed({
             val contextIntent = PendingIntent.getActivity(
                 context, 0,
                 intent, 0
@@ -121,6 +107,7 @@ class MainActivity : BaseActivity() {
                     .setContentTitle("通知")
                     .setContentText("你有新的通知")
                     .setSmallIcon(R.drawable.icon_install)
+                    .setLargeIcon(ImageTools.drawableToBitmap(resources.getDrawable(R.drawable.icon_install)))
                     .setOngoing(true)
                     .setContentIntent(contextIntent)
                     .setLights(Color.GREEN, 1000, 1000) //设置三色灯
@@ -181,16 +168,7 @@ class MainActivity : BaseActivity() {
         binding.bnResultException.setOnClickListener {
             startActivity(Intent(this, ResultInfoExceptionActivity::class.java))
         }
-        binding.bnTest.setOnClickListener {
-            startActivity(Intent(this, TestActivity::class.java))
-        }
-        binding.bnBottomSheetBehavior.setOnClickListener {
-            startActivity(Intent(this, BottomSheetBehaviorTestActivity::class.java))
-        }
-        binding.bnPtrsml.setOnClickListener {
-            startActivity(Intent(this, PullToRefreshSwipeMenuListViewActivity::class.java))
-        }
-        binding.llDisplayed.setOnClickListener {
+        binding.llLeftSliding.setDisplayedViewOnClickListener {
             ToastTool.showShortToast("ll_displayed")
         }
         binding.tv01.setOnClickListener {
@@ -198,6 +176,18 @@ class MainActivity : BaseActivity() {
         }
         binding.tv02.setOnClickListener {
             ToastTool.showShortToast("tv_02")
+        }
+        binding.bnBottomSheetBehavior.setOnClickListener {
+            startActivity(Intent(this, BottomSheetBehaviorTestActivity::class.java))
+        }
+        binding.bnPtrsml.setOnClickListener {
+            startActivity(Intent(this, PullToRefreshSwipeMenuListViewActivity::class.java))
+        }
+        binding.bnCrv.setOnClickListener {
+            startActivity(Intent(this, PushLoadMoreActivity::class.java))
+        }
+        binding.bnRecyclerView.setOnClickListener {
+            startActivity(Intent(this, RecyclerViewActivity::class.java))
         }
         binding.bnValueAnimator.setOnClickListener {
             startActivity(Intent(this, ValueAnimatorTestActivity::class.java))
@@ -214,17 +204,17 @@ class MainActivity : BaseActivity() {
         binding.bnLiuLang.setOnClickListener {
             startActivity(Intent(this, TrafficFloatWindowActivity::class.java))
         }
+        binding.bnDatabase.setOnClickListener {
+            startActivity(Intent(this, DBInsightActivity::class.java))
+        }
         binding.bnTranslateAnimator.setOnClickListener {
             startActivity(Intent(this, AActivity::class.java))
-        }
-        binding.bnRecyclerView.setOnClickListener {
-            startActivity(Intent(this, RecyclerViewActivity::class.java))
         }
         binding.bnWebView.setOnClickListener {
             startActivity(Intent(this, WebViewActivity::class.java))
         }
         binding.bnFingerprint.setOnClickListener {
-            startActivity(Intent(this, FingerprintTestActivity::class.java))
+            startFingerprintTestActivity()
         }
         binding.bnPedometer.setOnClickListener {
             startActivity(Intent(this, PedometerActivity::class.java))
@@ -238,34 +228,14 @@ class MainActivity : BaseActivity() {
         binding.bnAndroidArt.setOnClickListener {
             ActivityLauncher.launchContentsActivity(this)
         }
-        binding.bnCrv.setOnClickListener {
-            startActivity(Intent(this, PushLoadMoreActivity::class.java))
-        }
         binding.bnHeaderGridView.setOnClickListener {
             startActivity(Intent(this, HeaderGridViewActivity::class.java))
         }
     }
 
-    private fun addAnotherLeftSlidingView() {
-        val ll01 = LinearLayout(this)
-        val t01 = Button(this)
-        t01.width = PhoneInfoTool.getScreenWidth(this)
-        t01.text = "test"
-        t01.gravity = Gravity.CENTER
-        t01.height = 180
-        t01.isClickable = false
-        ll01.addView(t01)
-        val ll02 = LinearLayout(this)
-        val t02 = TextView(this)
-        t02.width = 180
-        t02.text = "yes"
-        t02.height = 180
-        t02.isClickable = true
-        t02.gravity = Gravity.CENTER
-        t02.setBackgroundColor(Color.RED)
-        ll02.addView(t02)
-        val customHorizontalLeftSlidingView2 = CustomHorizontalLeftSlidingView2(this, ll01, ll02)
-        binding.llRootView.addView(customHorizontalLeftSlidingView2.getView());
+    @GetPermissions4AndroidX(*[Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION])
+    private fun startFingerprintTestActivity() {
+        startActivity(Intent(this, FingerprintTestActivity::class.java))
     }
 
     private fun printRootInfo() {
@@ -297,7 +267,11 @@ class MainActivity : BaseActivity() {
                 Environment.DIRECTORY_MOVIES
             ).absolutePath
         )
-        LogTool.i("外置存储卡：" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).parentFile.parentFile.parentFile.listFiles()[0].absolutePath)
+        LogTool.i(
+            "外置存储卡：" + (Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).parentFile?.parentFile?.parentFile?.listFiles()
+                ?.get(0)?.absolutePath
+                ?: "没有权限")
+        )
     }
 
     private fun cancelNotification() {

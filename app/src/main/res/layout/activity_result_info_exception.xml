@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context="com.a2017398956.nodesignmodeframework.exception.test.ResultInfoExceptionActivity">
 
-    <Button
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="点击跳转后返回"
-        android:onClick="exceptionTest"/>
-</RelativeLayout>
+        android:padding="16dp"
+        android:text="new task 方式会直接调用 onActivityResult 且 resultCode = RESULT_CANCELED"/>
+    <Button
+        android:id="@+id/btn_new_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="使用 new task 打开 activity" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="直接打开 activity" />
+</LinearLayout>

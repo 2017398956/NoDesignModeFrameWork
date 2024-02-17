@@ -1,44 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_contents"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-<!--    <data>-->
-
-<!--        <variable-->
-<!--            name="contents"-->
-<!--            type="nfl.com.androidart.contents.databinding.Contents"></variable>-->
-<!--        <variable-->
-<!--            name="controller"-->
-<!--            type="nfl.com.androidart.contents.handing.ContentsViewController"/>-->
-<!--    </data>-->
-
-
-    <LinearLayout
-        android:id="@+id/ll_contents"
+    <Button
+        android:id="@+id/bn_test"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:visibility="visible" />
 
-        <Button
-            android:id="@+id/bn_test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"/>
+    <com.nfl.libraryoflibrary.view.recyclerview.CustomRecyclerView
+        android:id="@+id/rv_contents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.nfl.libraryoflibrary.view.recyclerview.CustomRecyclerView>
 
-        <com.nfl.libraryoflibrary.view.recyclerview.CustomRecyclerView
-            android:id="@+id/rv_contents"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </com.nfl.libraryoflibrary.view.recyclerview.CustomRecyclerView>
-
-        <ListView
-            android:id="@+id/lv_contents"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone">
-
-        </ListView>
-
-    </LinearLayout>
-
-</layout>
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -7,12 +8,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,15 +34,11 @@ public class RecyclerViewActivity extends BaseActivity {
     private RecyclerView recyclerView ;
     private MyRecyclerViewDivider myRecyclerViewDivider ;
     private TestRecyclerViewAdapter adapter ;
-    private List<Map<String , String>> data = new ArrayList<>();
-    private Handler handler = new Handler(){
+    private final List<Map<String , String>> data = new ArrayList<>();
+    private final Handler handler = new Handler(Looper.getMainLooper()){
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
-                case 1 :
-                    break;
-            }
         }
     } ;
 
@@ -48,7 +47,7 @@ public class RecyclerViewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView) ;
-        myRecyclerViewDivider = new MyRecyclerViewDivider(new ColorDrawable(0xeeeeeeee), OrientationHelper.VERTICAL) ;
+        myRecyclerViewDivider = new MyRecyclerViewDivider(new ColorDrawable(0xeeeeeeee), OrientationHelper.VERTICAL);
         //单位:px
         myRecyclerViewDivider.setMargin(50, 50, 50, 50);
         myRecyclerViewDivider.setHeight(ConvertTool.dp2px(1));
@@ -60,30 +59,29 @@ public class RecyclerViewActivity extends BaseActivity {
             map.put("title" , "item" + i) ;
             data.add(map) ;
         }
-        adapter = new TestRecyclerViewAdapter(this , data) ;
+        adapter = new TestRecyclerViewAdapter(this, data);
         recyclerView.setAdapter(adapter);
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                data.get(0).put("title" , "alert") ;
-                adapter.notifyDataSetChanged();
-            }
-        } , 2000) ;
+        handler.postDelayed(() -> {
+            data.get(0).put("title" , "alert") ;
+            adapter.notifyItemChanged(0);
+        }, 2000) ;
     }
 
-    class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapter.VH>{
+    static class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestRecyclerViewAdapter.VH>{
 
-        private Context context ;
-        private List<Map<String , String>> data ;
+        private final Context context ;
+        private final List<Map<String , String>> data ;
 
         public TestRecyclerViewAdapter(Context context , List<Map<String , String>> data){
             this.context = context ;
             this.data = data ;
         }
+        @SuppressLint("InflateParams")
+        @NonNull
         @Override
-        public TestRecyclerViewAdapter.VH onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new VH(LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1 , null)) ;
+        public TestRecyclerViewAdapter.VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new VH(LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, null));
         }
 
         @Override
@@ -96,7 +94,7 @@ public class RecyclerViewActivity extends BaseActivity {
             return null == data ? 0 : data.size() ;
         }
 
-        class VH extends RecyclerView.ViewHolder{
+        static class VH extends RecyclerView.ViewHolder{
             TextView tv_title ;
             public VH(View itemView) {
                 super(itemView);
@@ -105,7 +103,7 @@ public class RecyclerViewActivity extends BaseActivity {
         }
     }
 
-    class MyRecyclerViewDivider extends RecyclerView.ItemDecoration{
+    static class MyRecyclerViewDivider extends RecyclerView.ItemDecoration{
 
         private Drawable mDivider;
         private int leftMargin, rightMargin, topMargin, bottomMargin;

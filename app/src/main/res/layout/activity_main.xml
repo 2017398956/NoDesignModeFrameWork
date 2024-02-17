@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/sv"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView
+        android:id="@+id/sv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/ll_root_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -43,7 +42,8 @@
                 android:id="@+id/bn_result_exception"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="测试ResultInfo异常" />
+                android:text="测试 onActivityResult 异常"
+                android:textAllCaps="false" />
 
             <com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView
                 android:id="@+id/ll_left_sliding"
@@ -100,29 +100,31 @@
             </com.nfl.libraryoflibrary.view.CustomHorizontalLeftSlidingView>
 
             <Button
-                android:id="@+id/bn_test"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="测试"
-                android:visibility="visible" />
-
-            <Button
                 android:id="@+id/bn_bottom_sheet_behavior"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="测试底部弹出sheet" />
+                android:text="测试底部弹出" />
 
             <Button
                 android:id="@+id/bn_ptrsml"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="下拉刷新和侧滑删除" />
+                android:text="ListView 下拉刷新和侧滑删除"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/bn_crv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="My RecyclerView" />
+                android:text="My RecyclerView 下拉加载更多"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bn_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RecyclerView 测试"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/bn_value_animator"
@@ -155,22 +157,23 @@
                 android:text="流量悬浮窗" />
 
             <Button
+                android:id="@+id/bn_database"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="数据库" />
+
+            <Button
                 android:id="@+id/bn_translate_animator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="转场动画" />
 
             <Button
-                android:id="@+id/bn_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RecyclerView" />
-
-            <Button
                 android:id="@+id/bn_webView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="WebView" />
+                android:text="WebView"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/bn_fingerprint"
@@ -188,32 +191,37 @@
                 android:id="@+id/bn_tinker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tinker测试" />
+                android:text="Tinker测试"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/bn_picture_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="图片选择器" />
+                android:text="图片选择器"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/bn_android_art"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Android 开发艺术探索" />
+                android:text="Android 开发艺术探索"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/bn_header_grid_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HeaderGridViewGoogle" />
+                android:text="HeaderGridViewGoogle"
+                android:textAllCaps="false" />
 
         </LinearLayout>
+    </ScrollView>
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/constraint_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
-    </RelativeLayout>
-</ScrollView>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>
+

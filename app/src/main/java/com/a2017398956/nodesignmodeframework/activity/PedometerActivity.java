@@ -3,10 +3,13 @@ package com.a2017398956.nodesignmodeframework.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.a2017398956.nodesignmodeframework.R;
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
@@ -23,9 +26,9 @@ public class PedometerActivity extends BaseActivity {
     private Button bn_database_manager;
     private Timer timer;
     private TimerTask timmerTask;
-    private Handler handler = new Handler() {
+    private final Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if (msg.what == 100) {
                 tv_steps.setText("今天的步数：" + StepsCountTool.getTodaySteps());
@@ -40,6 +43,8 @@ public class PedometerActivity extends BaseActivity {
         initView();
         initData();
         setListeners();
+//        DBInsightService.canShowDBInsight = true;
+        startService(new Intent(getApplicationContext(), DBInsightService.class));
     }
 
     @Override
@@ -55,8 +60,8 @@ public class PedometerActivity extends BaseActivity {
     }
 
     private void initView() {
-        tv_steps = (TextView) findViewById(R.id.tv_steps);
-        bn_database_manager = (Button) findViewById(R.id.bn_database_manager);
+        tv_steps = findViewById(R.id.tv_steps);
+        bn_database_manager = findViewById(R.id.bn_database_manager);
         bn_database_manager.setText(DBInsightService.canShowDBInsight ? "关闭数据库管理工具" : "开启数据库管理工具");
     }
 
@@ -74,14 +79,14 @@ public class PedometerActivity extends BaseActivity {
         bn_database_manager.setOnClickListener(onClickListener);
     }
 
-    private CustomOnClickListener onClickListener = new CustomOnClickListener() {
+    private final CustomOnClickListener<View> onClickListener = new CustomOnClickListener<>() {
         @Override
         public void onClick(View v) {
             super.onClick(v);
             if (v.getId() == R.id.bn_database_manager) {
                 DBInsightService.canShowDBInsight = !DBInsightService.canShowDBInsight;
                 bn_database_manager.setText(DBInsightService.canShowDBInsight ? "关闭数据库管理工具" : "开启数据库管理工具");
-                startService(new Intent(PedometerActivity.this, DBInsightService.class));
+                startService(new Intent(getApplicationContext(), DBInsightService.class));
             }
         }
     };

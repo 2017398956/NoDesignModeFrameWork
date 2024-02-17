@@ -26,13 +26,8 @@ android {
         jvmToolchain(11)
     }
 
-//    dataBinding {
-//        enable true
-//    }
-
     buildFeatures {
-//        viewBinding true
-//        dataBinding true
+        viewBinding true
         aidl true
     }
     namespace 'nfl.com.androidart'

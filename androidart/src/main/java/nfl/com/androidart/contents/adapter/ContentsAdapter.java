@@ -1,17 +1,15 @@
 package nfl.com.androidart.contents.adapter;
 
 import android.content.Context;
-import androidx.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.nfl.libraryoflibrary.view.recyclerview.RecyclerViewBaseAdapter;
 
 import java.util.List;
 
-import nfl.com.androidart.R;
 import nfl.com.androidart.contents.databinding.Contents;
+import nfl.com.androidart.databinding.ItemContentsBinding;
 
 /**
  * Created by fuli.niu on 2017/4/5.
@@ -21,7 +19,6 @@ public class ContentsAdapter extends RecyclerViewBaseAdapter<ContentsAdapter.MyV
 
     private Context context;
     private List<Contents> contentsList;
-    private MyViewHolder myViewHolder;
 
     public ContentsAdapter(Context context, List<Contents> contentsList) {
         this.context = context;
@@ -31,15 +28,13 @@ public class ContentsAdapter extends RecyclerViewBaseAdapter<ContentsAdapter.MyV
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         super.onCreateViewHolder(parent, viewType);
-//        itemContentsBindingTemp = DataBindingUtil.inflate(LayoutInflater.from(context),
-//                R.layout.item_contents, parent, false);
-//        myViewHolder = new MyViewHolder(itemContentsBindingTemp);
-        return null;
+        return new MyViewHolder(ItemContentsBinding.inflate(LayoutInflater.from(context), parent, false));
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
+        holder.binding.tvChapterName.setText(contentsList.get(position).getChapter());
     }
 
     @Override
@@ -49,23 +44,12 @@ public class ContentsAdapter extends RecyclerViewBaseAdapter<ContentsAdapter.MyV
 
     public class MyViewHolder extends RecyclerViewBaseAdapter.BaseViewHolder {
 
+        private ItemContentsBinding binding;
 
-        public MyViewHolder(View itemView) {
-            super(itemView);
+        public MyViewHolder(ItemContentsBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
-
-//        public MyViewHolder(ItemContentsBinding itemContentsBinding) {
-//            this(itemContentsBinding.getRoot());
-//            this.itemContentsBinding = itemContentsBinding;
-//        }
-//
-//        public ItemContentsBinding getItemContentsBinding() {
-//            return itemContentsBinding;
-//        }
-//
-//        public void setItemContentsBinding(ItemContentsBinding itemContentsBinding) {
-//            this.itemContentsBinding = itemContentsBinding;
-//        }
     }
 
 }

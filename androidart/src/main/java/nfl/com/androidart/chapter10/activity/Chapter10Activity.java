@@ -1,5 +1,6 @@
 package nfl.com.androidart.chapter10.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,11 +9,14 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+
 import com.nfl.libraryoflibrary.listener.CustomOnClickListener;
 import com.nfl.libraryoflibrary.utils.ExceptionTool;
 import com.nfl.libraryoflibrary.utils.LogTool;
 import com.nfl.libraryoflibrary.view.activity.CommonActionBarActivity;
 
+import java.util.Objects;
 import java.util.Random;
 
 import nfl.com.androidart.R;
@@ -20,13 +24,6 @@ import nfl.com.androidart.R;
 public class Chapter10Activity extends CommonActionBarActivity {
 
     private Button bn_test;
-    private Handler handlerActivity = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            bn_test.setText("handlerActivity");
-        }
-    } ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +34,21 @@ public class Chapter10Activity extends CommonActionBarActivity {
             @Override
             public void onClick(View v) {
                 super.onClick(v);
-                if (interactiveWithUIThread.isAlive()) {
-                } else {
+                if (!interactiveWithUIThread.isAlive()) {
                     interactiveWithUIThread.start();
                 }
-
             }
         });
     }
 
-    private Thread interactiveWithUIThread = new Thread(new Runnable() {
+    private final Thread interactiveWithUIThread = new Thread(new Runnable() {
 
         private Looper myLooper;
 
-        private android.os.Handler handler = new android.os.Handler() {
+        private Handler handler = new Handler(Looper.getMainLooper()) {
             @Override
-            public void handleMessage(Message msg) {
+            public void handleMessage(@NonNull Message msg) {
                 super.handleMessage(msg);
-                LogTool.i("接收到 Handler 发送的信息");
-                LogTool.i("handler Looper.myLooper(): " + Looper.myLooper());
                 // 这里得到的是 UI 线程的 Looper 即：MainLooper ; MainLooper 不能 quit
                 if (Looper.myLooper() != null && Looper.myLooper() != Looper.getMainLooper()) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -65,7 +58,7 @@ public class Chapter10Activity extends CommonActionBarActivity {
                     }
                 }
                 if (msg.what == 10) {
-                    bn_test.setText("非 UI 线程修改 UI 成功 " + new Random(100));
+                    bn_test.setText("自定义 loop 已启动");
                 }
                 if (null != myLooper) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -81,19 +74,17 @@ public class Chapter10Activity extends CommonActionBarActivity {
         public void run() {
             try {
                 LogTool.i("Before Looper.loop()");
-                LogTool.i("Looper.myLooper(): " + Looper.myLooper() + " , Looper.getMainLooper(): " + Looper.getMainLooper());
-//                looperPrepare();
-                LogTool.i("Looper.myLooper(): " + Looper.myLooper() + " , Looper.getMainLooper(): " + Looper.getMainLooper());
-//                final Handler handler02 = new Handler(){
-//                    @Override
-//                    public void handleMessage(Message msg) {
-//                        super.handleMessage(msg);
-//                        LogTool.i("handler02 Looper.myLooper(): " + Looper.myLooper()) ;
-//                    }
-//                } ;
-                // handler02.sendEmptyMessage(10) ;
-                handler.sendEmptyMessage(10);
-//                Looper.loop();
+                looperPrepare();
+                final Handler handler02 = new Handler(myLooper) {
+                    @Override
+                    public void handleMessage(@NonNull Message msg) {
+                        super.handleMessage(msg);
+                        LogTool.i("handler02 Looper.myLooper(): " + Looper.myLooper());
+                        handler.sendEmptyMessage(10);
+                    }
+                };
+                handler02.sendEmptyMessage(10);
+                Looper.loop();
                 LogTool.i("After Looper.loop()");
             } catch (Exception e) {
                 LogTool.i(ExceptionTool.getExceptionTraceString(e));
@@ -106,7 +97,7 @@ public class Chapter10Activity extends CommonActionBarActivity {
          */
         private void looperPrepare() {
             try {
-                if(null == myLooper){
+                if (null == myLooper) {
                     Looper.prepare();
                     myLooper = Looper.myLooper();
                 }

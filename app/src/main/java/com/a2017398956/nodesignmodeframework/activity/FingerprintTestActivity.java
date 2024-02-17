@@ -1,8 +1,13 @@
 package com.a2017398956.nodesignmodeframework.activity;
 
+import static android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG;
+
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.hardware.biometrics.BiometricManager;
+import android.hardware.biometrics.BiometricPrompt;
 import android.hardware.fingerprint.FingerprintManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -11,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Handler;
+
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -28,12 +34,15 @@ import com.nfl.libraryoflibrary.utils.ToastTool;
 import com.nfl.libraryoflibrary.view.BaseActivity;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 
 public class FingerprintTestActivity extends BaseActivity {
 
+    private final static String TAG = "FingerprintTestActivity";
     private FingerprintManager fingerprintManager;
     private FingerprintManager.CryptoObject cryptoObject;
     private Cipher cipher;
@@ -50,6 +59,7 @@ public class FingerprintTestActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint_test);
+        hideAppBar();
         tool_bar = (Toolbar) findViewById(R.id.tool_bar);
 //        tool_bar.setTitle("Title");
         tool_bar.setNavigationIcon(com.nfl.libraryoflibrary.R.drawable.lol_icon_back_drawable);
@@ -81,10 +91,46 @@ public class FingerprintTestActivity extends BaseActivity {
 //        tab_layout.addTab(tab_layout.newTab().setText("Tab01"), 0 , true);
 //        tab_layout.addTab(tab_layout.newTab().setText("Tab02") , 1 );
 //        tab_layout.addTab(tab_layout.newTab().setText("Tab03") , 2);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return;
+        testFinger();
+    }
+
+    /**
+     * 原生方法没有 GMS 框架无效
+     */
+    private void getLocation() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (null != locationManager) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 1, new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    ToastTool.showShortToast("经纬度：" + location.getLatitude() + "," + location.getLongitude());
+                }
+
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+                    ToastTool.showShortToast("onStatusChanged");
+                }
+
+                @Override
+                public void onProviderEnabled(String provider) {
+                    ToastTool.showShortToast("onProviderEnabled");
+                }
+
+                @Override
+                public void onProviderDisabled(String provider) {
+                    ToastTool.showShortToast("onProviderDisabled");
+                }
+            });
         }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+    }
+
+    private void testFinger() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            LogTool.d(TAG, "Android 6.0 之前没有统一的指纹 api");
+        } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             authenticationCallback = new FingerprintManager.AuthenticationCallback() {
 
                 /**
@@ -131,68 +177,66 @@ public class FingerprintTestActivity extends BaseActivity {
                     LogTool.i("onAuthenticationFailed");
                 }
             };
-        }
-
-        try {
-            cipher = Cipher.getInstance("DES");
-            cryptoObject = new FingerprintManager.CryptoObject(cipher);
-            LogTool.i("加密成功");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        }
-
-        fingerprintManager = (FingerprintManager) getSystemService(Context.FINGERPRINT_SERVICE);
-        if (null != fingerprintManager) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
+            try {
+                cipher = Cipher.getInstance("DES");
+                cryptoObject = new FingerprintManager.CryptoObject(cipher);
+                LogTool.i("加密成功");
+            } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+                e.printStackTrace();
             }
-            if (fingerprintManager.isHardwareDetected()) {
-                // 如果探测到指纹识别硬件
-                if (fingerprintManager.hasEnrolledFingerprints()) {
-                    // 是否录入过指纹
-                    ToastTool.showShortToast("录入过指纹");
+
+            fingerprintManager = (FingerprintManager) getSystemService(Context.FINGERPRINT_SERVICE);
+            if (null != fingerprintManager) {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
+                    LogTool.d(TAG, "没有指纹权限");
+                    return;
                 }
-                // 进行指纹验证
+                if (fingerprintManager.isHardwareDetected()) {
+                    // 如果探测到指纹识别硬件
+                    if (fingerprintManager.hasEnrolledFingerprints()) {
+                        // 是否录入过指纹
+                        ToastTool.showShortToast("录入过指纹");
+                    }
+                    // 进行指纹验证
 //                fingerprintManager.authenticate(cryptoObject , cancellationSignal , 0 , authenticationCallback, handler);
-                fingerprintManager.authenticate(null, null, 0, authenticationCallback, null);
-            } else {
-                ToastTool.showShortToast("您的设备不支持指纹识别");
+                    fingerprintManager.authenticate(null, null, 0, authenticationCallback, null);
+                } else {
+                    ToastTool.showShortToast("您的设备不支持指纹识别");
+                }
             }
+        } else {
+            CancellationSignal cancellationSignal = new CancellationSignal();
+            cancellationSignal.setOnCancelListener(() -> LogTool.d(TAG, "用户取消了授权"));
+            Executor executor = Executors.newSingleThreadExecutor();
+            new BiometricPrompt.Builder(this).setTitle("测试指纹授权")
+                    .setNegativeButton("取消", executor, (dialog, which) -> LogTool.d(TAG, "用户点击了取消了授权")).build()
+                    .authenticate(cancellationSignal,
+                            executor,
+                            new BiometricPrompt.AuthenticationCallback() {
+                                @Override
+                                public void onAuthenticationError(int errorCode, CharSequence errString) {
+                                    super.onAuthenticationError(errorCode, errString);
+                                    LogTool.d(TAG, "授权错误，errorCode：" + errorCode + " errorString:" + errString);
+                                }
 
-        }
+                                @Override
+                                public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
+                                    super.onAuthenticationHelp(helpCode, helpString);
+                                    LogTool.d(TAG, "授权帮助，helpCode：" + helpCode + " helpString:" + helpString);
+                                }
 
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (null != locationManager) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 1, new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    ToastTool.showShortToast("经纬度：" + location.getLatitude() + "," + location.getLongitude());
-                }
+                                @Override
+                                public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                                    super.onAuthenticationSucceeded(result);
+                                    LogTool.d(TAG, "授权成功，result：" + result);
+                                }
 
-                @Override
-                public void onStatusChanged(String provider, int status, Bundle extras) {
-                    ToastTool.showShortToast("onStatusChanged");
-                }
-
-                @Override
-                public void onProviderEnabled(String provider) {
-                    ToastTool.showShortToast("onProviderEnabled");
-                }
-
-                @Override
-                public void onProviderDisabled(String provider) {
-                    ToastTool.showShortToast("onProviderDisabled");
-                }
-            });
+                                @Override
+                                public void onAuthenticationFailed() {
+                                    super.onAuthenticationFailed();
+                                    LogTool.d(TAG, "授权失败");
+                                }
+                            });
         }
     }
 }
