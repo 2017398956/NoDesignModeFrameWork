@@ -25,10 +25,13 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:persistent="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.HeatMapActivity"
+            android:exported="false" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -78,8 +81,7 @@
             android:name=".activity.ReplacedActivity"
             android:label="@string/title_activity_replaced"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".activity.HeaderGridViewActivity"></activity>
+        <activity android:name=".activity.HeaderGridViewActivity" />
     </application>
 
 </manifest>

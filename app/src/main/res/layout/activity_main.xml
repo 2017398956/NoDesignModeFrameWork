@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:fitsSystemWindows="false"
     android:layout_height="match_parent">
 
     <ScrollView
@@ -215,6 +216,13 @@
                 android:text="HeaderGridViewGoogle"
                 android:textAllCaps="false" />
 
+            <Button
+                android:id="@+id/bn_heat_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="HeatMap"
+                android:textAllCaps="false" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -223,5 +231,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -70,6 +70,19 @@ class MainActivity : BaseActivity() {
         loadNetworkImage()
         setListeners()
         printRootInfo()
+//        ViewCompat.getRootWindowInsets(window.decorView)?.let {
+//            window.decorView.post {
+//                Log.d(TAG, "navigationBar height:${it.getInsets(WindowInsetsCompat.Type.navigationBars())}")
+//            }
+//            Log.d(TAG, "statusBar height:${it.getInsets(WindowInsetsCompat.Type.statusBars())}")
+//        }
+        // FIXME: 使用 window.decorView 会导致状态栏和导航栏设置的颜色丢失
+//        ViewCompat.setOnApplyWindowInsetsListener(
+//            window.decorView
+//        ) { v, insets ->
+//            Log.d(TAG, "navigationBar height2:${insets.getInsets(WindowInsetsCompat.Type.navigationBars())}")
+//            insets
+//        }
         Snackbar.make(binding.constraintLayout, "Test snackbar", Snackbar.LENGTH_LONG)
             .setAction(
                 "action"
@@ -228,8 +241,8 @@ class MainActivity : BaseActivity() {
         binding.bnAndroidArt.setOnClickListener {
             ActivityLauncher.launchContentsActivity(this)
         }
-        binding.bnHeaderGridView.setOnClickListener {
-            startActivity(Intent(this, HeaderGridViewActivity::class.java))
+        binding.bnHeatMap.setOnClickListener {
+            startActivity(Intent(this, HeatMapActivity::class.java))
         }
     }
 
