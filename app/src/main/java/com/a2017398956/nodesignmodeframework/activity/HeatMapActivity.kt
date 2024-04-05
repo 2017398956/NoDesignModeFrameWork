@@ -14,6 +14,7 @@ class HeatMapActivity : BaseActivity() {
     private lateinit var binding: ActivityHeatMapBinding
     private var imageWidth = 0
     private var imageHeight = 0
+    private val radius = 35
     private lateinit var heatMap: HeatMap
     private lateinit var heatMapOverlay: HeatMapOverlay
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,9 +46,9 @@ class HeatMapActivity : BaseActivity() {
             imageHeight = binding.image.height
             val data = generateHeatMapData()
             heatMap =
-                HeatMap.Builder().weightedData(data).radius(35).width(imageWidth).height(imageHeight)
+                HeatMap.Builder().weightedData(data).radius(radius).width(imageWidth).height(imageHeight)
                     .build()
-            heatMapOverlay = HeatMapOverlay.Builder().weightedData(data).radius(35).width(imageWidth)
+            heatMapOverlay = HeatMapOverlay.Builder().weightedData(data).radius(radius).width(imageWidth)
                 .height(imageHeight).build()
             binding.image.setImageBitmap(heatMap.generateMap())
         }
@@ -55,14 +56,27 @@ class HeatMapActivity : BaseActivity() {
 
     private fun generateHeatMapData(): List<WeightedLatLng> {
         val data: MutableList<WeightedLatLng> = ArrayList()
-        for (i in 0..32*32) {
-            data.add(
-                WeightedLatLng(
-                    (Math.random() * imageWidth).toInt(), (Math.random() * imageHeight).toInt(),
-                    Math.random() * 100
+//        for (i in 0..32*32) {
+//            data.add(
+//                WeightedLatLng(
+//                    (Math.random() * imageWidth).toInt(), (Math.random() * imageHeight).toInt(),
+//                    Math.random() * 100
+//                )
+//            )
+//        }
+
+        for (i in 5 .. 28) {
+            for (j in 10 .. 22) {
+                data.add(
+                    WeightedLatLng(imageWidth / 32 * i, imageHeight / 32 * j,
+                        ((Math.random() * 100 + 10).toInt() / 20 * 20).toDouble()
+                    )
                 )
-            )
+            }
         }
+
+//        data.add(WeightedLatLng(radius, radius, 99.00))
+//        data.add(WeightedLatLng(imageWidth - radius, radius, 99.00))
         return data
     }
 
