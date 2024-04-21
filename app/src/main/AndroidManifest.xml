@@ -30,6 +30,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.ScreenShotActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.HeatMapActivity"
             android:exported="false" />
         <activity android:name=".activity.MainActivity">

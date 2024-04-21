@@ -207,6 +207,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.activity:activity:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.github.tiann:FreeReflection:3.2.0'
     kapt project(':apt-compiler')
 }
 

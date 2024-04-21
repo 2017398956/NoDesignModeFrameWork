@@ -1,7 +1,11 @@
 package com.a2017398956.nodesignmodeframework;
 
+import android.content.Context;
+
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
+
+import me.weishu.reflection.Reflection;
 
 
 /**
@@ -28,4 +32,9 @@ public class MyTinkerApplication extends TinkerApplication {
         super.onCreate();
     }
 
+    @Override
+    protected void onBaseContextAttached(Context base, long applicationStartElapsedTime, long applicationStartMillisTime) {
+        super.onBaseContextAttached(base, applicationStartElapsedTime, applicationStartMillisTime);
+        Reflection.unseal(base);
+    }
 }

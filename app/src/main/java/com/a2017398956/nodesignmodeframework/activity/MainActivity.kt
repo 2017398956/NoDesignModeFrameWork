@@ -244,6 +244,9 @@ class MainActivity : BaseActivity() {
         binding.bnHeatMap.setOnClickListener {
             startActivity(Intent(this, HeatMapActivity::class.java))
         }
+        binding.bnScreenShot.setOnClickListener {
+            startActivity(Intent(this, ScreenShotActivity::class.java))
+        }
     }
 
     @GetPermissions4AndroidX(*[Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION])
