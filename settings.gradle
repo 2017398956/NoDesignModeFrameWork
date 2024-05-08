@@ -1,3 +1,104 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+        // 使用本地 maven 仓库 repo 时再添加
+//         maven {
+//              url uri('repo')
+//         }
+        jcenter()
+        mavenCentral()
+        maven { url 'https://www.jitpack.io' }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        // 替换 jcenter()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        // 替换 google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
+    }
+    // 升级 AGP 7.x以后，引入带冒号‘:‘的插件规则
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'com.android.tools.build_gradle') {
+                useModule('com.android.tools.build:gradle:8.3.2')
+            } else if (requested.id.id == 'com.github.2017398956_AspectPlugin') {
+                useModule('com.github.2017398956:AspectPlugin:2.5.1')
+            } else if (requested.id.id == 'com.github.2017398956.abcpermission-plugin') {
+                useModule('com.github.2017398956:abcpermission-plugin:1.7.2_3_2')
+            } else if (requested.id.id == 'com.tencent.tinker.tinker-patch-gradle-plugin') {
+                useModule('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.14.26.3')
+            } else if (requested.id.id == 'org.jetbrains.kotlin.kotlin-gradle-plugin') {
+                useModule('org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22')
+            }
+        }
+    }
+}
+
+plugins {
+    // AGP 8.0 后如果没有安装 jvmTool 工具，不会自动下载，这个插件用于自动下载
+    id("org.gradle.toolchains.foojay-resolver") version "0.8.0"
+}
+
+plugins {
+    id 'com.android.tools.build_gradle' version "8.3.2" apply false
+    id 'com.github.2017398956_AspectPlugin' version '2.5.1' apply false
+    id 'com.github.2017398956.abcpermission-plugin' version '1.7.2_3_2' apply false
+    // classpath 'personal.nfl.transformlazyclick:transformLazyClick:0.0.2'
+    // classpath 'com.github.2017398956:abcpermission-plugin:-SNAPSHOT'
+    // classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
+    id 'com.tencent.tinker.tinker-patch-gradle-plugin' version '1.9.14.26.3' apply(false)
+    id "org.jetbrains.kotlin.kotlin-gradle-plugin" version '1.9.22' apply(false)
+    // 添加 APT 依赖
+    // Error:android-apt plugin is incompatible with the Android Gradle plugin.
+    // Please use 'annotationProcessor' configuration instead.
+    // classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+}
+
+/**
+ * abcpermission-plugin 中添加了 jitpack 仓库，在 Sync 时，如果使用 dependencyResolutionManagement 会报如下错误：
+ * Build was configured to prefer settings repositories over project repositori。。。
+ * 所以这里还是在 build.gradle 中使用 allprojects {...} 吧
+ */
+//dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositories {
+//        //        maven {
+////            //添加react native依赖，url路径根据实际的来写，本文的如下：
+////            url "$rootDir/node_modules/react-native/android"
+////        }
+//        google()
+//        jcenter()
+//        maven { url 'https://www.jitpack.io' }
+//        mavenCentral()
+////        maven { url 'https://maven.google.com' }
+//        // 替换 jcenter()
+//        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+//        // 替换 google()
+//        maven { url 'https://maven.aliyun.com/repository/google' }
+//        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
+//    }
+//}
+
+toolchainManagement {
+    jvm {
+        javaRepositories {
+            repository("foojay") {
+                resolverClass = org.gradle.toolchains.foojay.FoojayToolchainResolver
+            }
+        }
+    }
+}
+
+
 //include ':transformLazyClick'
 
 //include ':react-native-update'

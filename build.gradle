@@ -1,51 +1,55 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: 'properties.gradle'
+
 buildscript {
     ext {
         kotlin_version = '1.9.22'
     }
-    repositories {
-        // 使用本地 maven 仓库 repo 时再添加
-//         maven {
-//              url uri('repo')
-//         }
-        // 替换 jcenter()
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        // 替换 google()
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
-        jcenter()
-        google()
-        mavenCentral()
-        maven { url 'https://www.jitpack.io' }
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.3.2'
-        classpath 'com.github.2017398956:AspectPlugin:2.5.1'
-        classpath 'com.github.2017398956:abcpermission-plugin:1.7.2_3_2'
-//        classpath 'personal.nfl.transformlazyclick:transformLazyClick:0.0.2'
-        // classpath 'com.github.2017398956:abcpermission-plugin:-SNAPSHOT'
-        // classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
-        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.14.26.3')
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // 添加 APT 依赖
-        // Error:android-apt plugin is incompatible with the Android Gradle plugin.
-        // Please use 'annotationProcessor' configuration instead.
-        // classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-    }
+//    repositories {
+//        google {
+//            content {
+//                includeGroupByRegex("com\\.android.*")
+//                includeGroupByRegex("com\\.google.*")
+//                includeGroupByRegex("androidx.*")
+//            }
+//        }
+//        mavenCentral()
+//        gradlePluginPortal()
+//        // 使用本地 maven 仓库 repo 时再添加
+////         maven {
+////              url uri('repo')
+////         }
+//        jcenter()
+//        mavenCentral()
+//        maven { url 'https://www.jitpack.io' }
+//        maven {
+//            url "https://plugins.gradle.org/m2/"
+//        }
+//        // 替换 jcenter()
+//        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+//        // 替换 google()
+//        maven { url 'https://maven.aliyun.com/repository/google' }
+//        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
+//    }
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:8.3.2'
+//        classpath 'com.github.2017398956:AspectPlugin:2.5.1'
+//        classpath 'com.github.2017398956:abcpermission-plugin:1.7.2_3_2'
+////        classpath 'personal.nfl.transformlazyclick:transformLazyClick:0.0.2'
+//        // classpath 'com.github.2017398956:abcpermission-plugin:-SNAPSHOT'
+//        // classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
+//        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.14.26.3')
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//        // 添加 APT 依赖
+//        // Error:android-apt plugin is incompatible with the Android Gradle plugin.
+//        // Please use 'annotationProcessor' configuration instead.
+//        // classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+//    }
 }
 
 allprojects {
     repositories {
-        // 替换 jcenter()
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        // 替换 google()
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
-//        maven {
+        //        maven {
 //            //添加react native依赖，url路径根据实际的来写，本文的如下：
 //            url "$rootDir/node_modules/react-native/android"
 //        }
@@ -54,6 +58,11 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
         mavenCentral()
 //        maven { url 'https://maven.google.com' }
+        // 替换 jcenter()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        // 替换 google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }//阿里云镜像服务
     }
 }
 
