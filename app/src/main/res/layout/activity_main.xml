@@ -230,6 +230,12 @@
                 android:text="截屏"
                 android:textAllCaps="false" />
 
+            <Button
+                android:id="@+id/bn_material_designer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Material Designer"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 

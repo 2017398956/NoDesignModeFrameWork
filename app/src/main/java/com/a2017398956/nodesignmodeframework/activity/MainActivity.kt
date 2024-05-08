@@ -247,6 +247,9 @@ class MainActivity : BaseActivity() {
         binding.bnScreenShot.setOnClickListener {
             startActivity(Intent(this, ScreenShotActivity::class.java))
         }
+        binding.bnMaterialDesigner.setOnClickListener {
+            startActivity(Intent(this, MaterialDesignerActivity::class.java))
+        }
     }
 
     @GetPermissions4AndroidX(*[Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION])

@@ -30,6 +30,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.MaterialDesignerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+        <activity
             android:name=".activity.ScreenShotActivity"
             android:exported="false" />
         <activity
