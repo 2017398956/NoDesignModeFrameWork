@@ -10,12 +10,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.lifecycleScope
@@ -61,6 +63,17 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(null)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            //判断是否有管理外部存储的权限
+            if (!Environment.isExternalStorageManager()) {
+                // ACTION_APPLICATION_DETAILS_SETTINGS
+                val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                Uri.fromParts("package", packageName, null).let {
+                    intent.setData(it)
+                }
+                startActivity(intent)
+            }
+        }
         binding = ActivityMainBinding.inflate(layoutInflater, ll_pad_container, true)
         fileSystemDescription()
         LogTool.i("cmd: " + ExecShell().executeCommand(arrayOf("ls")))
