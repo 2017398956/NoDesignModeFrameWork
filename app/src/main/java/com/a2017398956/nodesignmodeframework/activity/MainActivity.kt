@@ -31,6 +31,7 @@ import com.nfl.libraryoflibrary.constant.ApplicationContext
 import com.nfl.libraryoflibrary.utils.ExecShell
 import com.nfl.libraryoflibrary.utils.ImageTools
 import com.nfl.libraryoflibrary.utils.LogTool
+import com.nfl.libraryoflibrary.utils.PermissionUtil
 import com.nfl.libraryoflibrary.utils.RootDetectorTool
 import com.nfl.libraryoflibrary.utils.ToastTool
 import com.nfl.libraryoflibrary.utils.image.ImageLoadTool
@@ -63,17 +64,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(null)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            //判断是否有管理外部存储的权限
-            if (!Environment.isExternalStorageManager()) {
-                // ACTION_APPLICATION_DETAILS_SETTINGS
-                val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                Uri.fromParts("package", packageName, null).let {
-                    intent.setData(it)
-                }
-                startActivity(intent)
-            }
-        }
+        PermissionUtil.requestManagerAllFiles(this, 0)
+        PermissionUtil.requestInstallApk(this, 0)
         binding = ActivityMainBinding.inflate(layoutInflater, ll_pad_container, true)
         fileSystemDescription()
         LogTool.i("cmd: " + ExecShell().executeCommand(arrayOf("ls")))
