@@ -255,6 +255,9 @@ class MainActivity : BaseActivity() {
         binding.bnMaterialDesigner.setOnClickListener {
             startActivity(Intent(this, MaterialDesignerActivity::class.java))
         }
+        binding.bnMeeting.setOnClickListener {
+            startActivity(Intent(this, MeetingActivity::class.java))
+        }
     }
 
     @GetPermissions4AndroidX(*[Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION])

@@ -236,6 +236,13 @@
                 android:layout_height="wrap_content"
                 android:text="Material Designer"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bn_meeting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="会话动画"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 
