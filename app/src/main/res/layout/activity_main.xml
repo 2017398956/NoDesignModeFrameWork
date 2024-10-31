@@ -243,6 +243,13 @@
                 android:layout_height="wrap_content"
                 android:text="会话动画"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bn_connect_wifi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="连接 WIFI"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 

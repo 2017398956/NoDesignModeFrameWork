@@ -56,7 +56,7 @@ def javaVersion = JavaVersion.VERSION_11
 android{
     // ndkVersion "22.1.7171670"
     // compileSdk "${COMPILE_SDK_VERSION}" as int
-    compileSdk 34
+    compileSdk 35
     flavorDimensions = ["nfl"]
 
     compileOptions {
@@ -190,23 +190,23 @@ android{
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api 'androidx.constraintlayout:constraintlayout:2.1.4'
+    api 'androidx.constraintlayout:constraintlayout:2.2.0'
     // optional, help to generate the final application
     // ("com.tencent.tinker:tinker-android-anno:$TINKER")
     // tinker's main Android lib
-    implementation("com.tencent.tinker:tinker-android-lib:1.9.14.26.3") {
+    implementation('com.tencent.tinker:tinker-android-lib:1.9.14.27') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
     implementation project(':libraryoflibrary')
     implementation project(':androidart')
     api project(':apt-lib')
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.core:core-ktx:1.15.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation project(path: ':test01library')
     implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.activity:activity:1.9.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.activity:activity:1.9.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
     implementation 'com.github.tiann:FreeReflection:3.2.0'
     kapt project(':apt-compiler')
 }

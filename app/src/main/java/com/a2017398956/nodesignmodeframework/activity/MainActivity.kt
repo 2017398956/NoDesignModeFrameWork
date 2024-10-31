@@ -34,6 +34,7 @@ import com.nfl.libraryoflibrary.utils.LogTool
 import com.nfl.libraryoflibrary.utils.PermissionUtil
 import com.nfl.libraryoflibrary.utils.RootDetectorTool
 import com.nfl.libraryoflibrary.utils.ToastTool
+import com.nfl.libraryoflibrary.utils.WifiTool
 import com.nfl.libraryoflibrary.utils.image.ImageLoadTool
 import com.nfl.libraryoflibrary.view.BaseActivity
 import com.nfl.libraryoflibrary.view.db_insight.DBInsightActivity
@@ -257,6 +258,14 @@ class MainActivity : BaseActivity() {
         }
         binding.bnMeeting.setOnClickListener {
             startActivity(Intent(this, MeetingActivity::class.java))
+        }
+        binding.bnConnectWifi.setOnClickListener {
+            WifiTool(this).connectWifi("Ulucu-47df", "")
+        }
+        ExecShell().executeCommand(arrayOf("ping", "-c", "4", "www.baidu.com"))?.let {
+            for (str in it) {
+                LogTool.d("NFL", "str:$str")
+            }
         }
     }
 

@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdk 34
+    compileSdk 35
     defaultConfig {
         minSdkVersion "${MIN_SDK_VERSION}" as int
         multiDexEnabled true
@@ -39,6 +39,6 @@ dependencies {
 //        exclude group: 'com.android.support', module: 'support-annotations'
 //    })
     api project(":libraryoflibrary")
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.core:core-ktx:1.15.0'
 }
