@@ -250,6 +250,13 @@
                 android:layout_height="wrap_content"
                 android:text="连接 WIFI"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bn_my_palette"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MyPalette"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 

@@ -262,6 +262,9 @@ class MainActivity : BaseActivity() {
         binding.bnConnectWifi.setOnClickListener {
             WifiTool(this).connectWifi("Ulucu-47df", "")
         }
+        binding.bnMyPalette.setOnClickListener {
+            startActivity(Intent(this, MyPaletteActivity::class.java))
+        }
         ExecShell().executeCommand(arrayOf("ping", "-c", "4", "www.baidu.com"))?.let {
             for (str in it) {
                 LogTool.d("NFL", "str:$str")
